@@ -1,0 +1,36 @@
+<!--https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates-->
+
+<html>
+    <head>
+      {% if title %}
+      <title>{{ title }} - Microblog</title>
+      {% else %}
+      <title>Welcome to Microblog</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Microblog:
+            <!--url_for() used because view function names are internal and more
+            stable, and some URLs have dynamic components-->
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+        <hr>
+        <!--so that flashed messages appear on website-->
+        <!--once flashed messages are requested through get_flashed_messages(),
+        they are removed from the message list-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <!--blocks have unique names ("content"), which derived templates
+        reference for providing content; defines where derived templates can
+        insert themselves; .-->
+        {% block content %}{% endblock %}
+    </body>
+</html>

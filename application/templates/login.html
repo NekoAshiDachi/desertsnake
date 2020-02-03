@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Sign In</h1>
+    <!--The HTML <form> element is used as a container for the web form.
+
+    action attr = URL that should be used when submitting form data; when empty,
+    it is the address bar's URL (the URL that rendered the form on the page).
+
+    method attr = HTTP request method that should be used when submitting form
+    to the server; GET request by default; POST request almost better UX because
+    POST requests submit form data in the body of the request, while GET
+    requests add the form fields to the URL, cluttering the browser address bar.
+
+    novalidate attr = tells web browser to not apply validation to form fields,
+    which lets Flask application running in server apply validation. -->
+    <form action="" method="post" novalidate>
+
+        <!--form.hidden_tag() + SECRET_KEY var defined in the Flask configuration
+        generates a hidden field that includes a token that is used to protect
+        the form against CSRF attacks. Flask-WTF does the rest.-->
+        {{ form.hidden_tag() }}
+        <p>
+            <!--form object fields will render as HTML. Username and password
+            fields' size args are added to the <input> HTML element as attrs.
+            This is how CSS classes or IDs can be attached to form fields.-->
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+
+            <!--shows form fields' validator error messages-->
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

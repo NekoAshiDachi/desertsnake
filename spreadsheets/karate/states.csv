@@ -1,0 +1,139 @@
+id,name,country_id,stateCode
+1,Alabama,222,AL
+2,Alaska,222,AK
+3,Arizona,222,AZ
+4,Arkansas,222,AR
+5,California,222,CA
+6,Colorado,222,CO
+7,Connecticut,222,CT
+8,Delaware,222,DE
+9,Florida,222,FL
+10,Georgia,222,GA
+11,Hawaii,222,HI
+12,Idaho,222,ID
+13,Illinois,222,IL
+14,Indiana,222,IN
+15,Iowa,222,IA
+16,Kansas,222,KS
+17,Kentucky,222,KY
+18,Louisiana,222,LA
+19,Maine,222,ME
+20,Maryland,222,MD
+21,Massachusetts,222,MA
+22,Michigan,222,MI
+23,Minnesota,222,MN
+24,Mississippi,222,MS
+25,Missouri,222,MO
+26,Montana,222,MT
+27,Nebraska,222,NE
+28,Nevada,222,NV
+29,New Hampshire,222,NH
+30,New Jersey,222,NJ
+31,New Mexico,222,NM
+32,New York,222,NY
+33,North Carolina,222,NC
+34,North Dakota,222,ND
+35,Ohio,222,OH
+36,Oklahoma,222,OK
+37,Oregon,222,OR
+38,Pennsylvania,222,PA
+39,Rhode Island,222,RI
+40,South Carolina,222,SC
+41,South Dakota,222,SD
+42,Tennessee,222,TN
+43,Texas,222,TX
+44,Utah,222,UT
+45,Vermont,222,VT
+46,Virginia,222,VA
+47,Washington,222,WA
+48,West Virginia,222,WV
+49,Wisconsin,222,WI
+50,Wyoming,222,WY
+51,District of Columbia,222,DC
+52,Alberta,39,AB
+53,British Columbia,39,BC
+54,Manitoba,39,MB
+55,New Brunswick,39,NB
+56,Newfoundland and Labrador,39,NL
+57,Northwest Territories,39,NT
+58,Nova Scotia,39,NS
+59,Nunavut,39,NU
+60,Ontario,39,ON
+61,Prince Edward Island,39,PE
+62,Québec,39,QC
+63,Saskatchewan,39,SK
+64,Yukon Territory,39,YT
+65,Distrito Federa,31,DF
+66,Acre,31,AC
+67,Alagoas,31,AL
+68,Amapá,31,AP
+69,Amazonas,31,AM
+70,Bahia,31,BA
+71,Ceará,31,CE
+72,Espírito Santo,31,ES
+73,Goiás,31,GO
+74,Maranhão,31,MA
+75,Mato Grosso,31,MT
+76,Mato Grosso do Sul,31,MS
+77,Minas Gerais,31,MG
+78,Pará,31,PA
+79,Paraíba,31,PB
+80,Paraná,31,PR
+81,Pernambuco,31,PE
+82,Piauí,31,PI
+83,Rio de Janeiro,31,RJ
+84,Rio Grande do Norte,31,RN
+85,Rio Grande do Sul,31,RS
+86,Rondônia,31,RO
+87,Roraima,31,RR
+88,Santa Catarina,31,SC
+89,São Paulo,31,SP
+90,Sergipe,31,SE
+91,Tocantins,31,TO
+92,Aichi,106,AI
+93,Akita,106,AK
+94,Aomori,106,AO
+95,Chiba,106,CH
+96,Ehime,106,EH
+97,Fukui,106,FI
+98,Fukuoka,106,FO
+99,Fukushima,106,FS
+100,Gifu,106,GF
+101,Gumma,106,GM
+102,Hiroshima,106,HS
+103,Hokkaido,106,HK
+104,Hyogo,106,HG
+105,Ibaraki,106,IB
+106,Ishikawa,106,IS
+107,Iwate,106,IW
+108,Kagawa,106,KG
+109,Kagoshima,106,KS
+110,Kanagawa,106,KN
+111,Kochi,106,KC
+112,Kumamoto,106,KM
+113,Kyoto,106,KY
+114,Mie,106,ME
+115,Miyagi,106,MG
+116,Miyazaki,106,MZ
+117,Nagano,106,NN
+118,Nagasaki,106,NS
+119,Nara,106,NR
+120,Niigata,106,NI
+121,Oita,106,OT
+122,Okayama,106,OY
+123,Okinawa,106,ON
+124,Osaka,106,OS
+125,Saga,106,SG
+126,Saitama,106,ST
+127,Shiga,106,SH
+128,Shimane,106,SM
+129,Shizuoka,106,SZ
+130,Tochigi,106,TC
+131,Tokushima,106,TS
+132,Tokyo,106,TK
+133,Tottori,106,TT
+134,Toyama,106,TY
+135,Wakayama,106,WK
+136,Yamagata,106,YT
+137,Yamaguchi,106,YC
+138,Yamanashi,106,YN
