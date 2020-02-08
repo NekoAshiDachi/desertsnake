@@ -40,7 +40,7 @@ def login():
     # form renders back to user
     if form.validate_on_submit():
 
-        # Flask stores the message, butit  will not magically appear in web pages
+        # Flask stores the message, but it  will not magically appear in web pages
         flash(f"Login requested for user {form.username.data}, remember_me={form.remember_me.data}")
 
         # instructs web browser to automatically navigate to different page
