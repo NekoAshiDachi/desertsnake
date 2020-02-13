@@ -1,33 +1,78 @@
 from datetime import datetime
-from application import db
+from application import db, login
 
 # in python prompt:
-# from app import db
-# from app.models import <table1>, <table2>
-# u = Model(<column1>='<value1>', <column2>='<value2>')
-# db.session.add(u)
+# from application import db
+# from application.models import <table1>, <table2>
+# u = Model(<column1>='<value1>', <backref>=<Model_instance>)
+# db.session.add(u); db.session.delete(u)
 # db.session.commit()  writes all changes to db at once
 # db.session.rollback()  aborts session and removes changes stored in it
+
+# Model.query.all(); Model_instance.backref.all()
+# Model.query.get(<id>)
+# Model.query.order_by(Model.column.desc()).all()
+# Model.query.filter_by(<column>='<value>').first()  1st returns 1st user or None
+
+# ------------------------------------------------------------------------------
 
 # Flask models typically defined with uppercase character
 # SQLAlchemy uses lowercase characters or snake case for multi-word models
 # db.ForeignKey() uses SQLAlchemy case
 # db.relationship() uses Flask model case
 
-class User(db.Model):
+# ------------------------------------------------------------------------------
+
+# installed with Flask; password hash has no known reverse operation and can
+# has same password with different hashes
+from werkzeug.security import generate_password_hash, check_password_hash
+
+"""Flask-Login requires is_authenticated (True if valid credentials), is_active
+(True if user account active), is_anonymous (True if anon user), get_id()
+(returns unique str user ID); these are provided with UserMixin
+
+Each logged-in user has a Flask user session (assigned storage space), and each
+time the user navigates to a new page, Flask-Login retrieves the user id from the
+session and loads the user into memory. A user loader function bridging the DB
+and the Flask-Login extension is also required.
+"""
+from flask_login import UserMixin
+from hashlib import md5
+
+class User(UserMixin, db.Model):
     # unique/index flags optimize db searches
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True)
     password_hash = db.Column(db.String(128))  # indirect password
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
     # db.relationship() is a view and defined on "one" side of "one-to-many"
     # backref = name of field added to "many" objects pointing back to "one"
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
+    def set_password(self, password):
+        self.password_hash  = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    """Gravatar default size 80x80p; s arg specifies size; d arg predetermines
+    avatar; some sites don't accept Gravatar"""
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return f"https://www.gravatar.com/avatar/{digest}?d=monsterid&s={size}"
+
     # how class will print
     def __repr__(self):
         return f'<User {self.username}>'
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+# ------------------------------------------------------------------------------
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
