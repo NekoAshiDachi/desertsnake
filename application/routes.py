@@ -2,7 +2,8 @@ from datetime import datetime
 
 """Flask passes url_for(**kwargs) in to URL query args; request.args returns
 k-v pairs after ? in URL"""
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, g
+from flask_babel import get_locale
 
 """current_user can be used at any time during handling to obtain user object;
 read through user loader callback in application.models"""
@@ -27,6 +28,8 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         # user_loader in models puts target user into db session
         db.session.commit()
+    # adds language code to base template through flask_babel's get_locale()
+    g.locale = str(get_locale())
 
 # INDEX ------------------------------------------------------------------------
 

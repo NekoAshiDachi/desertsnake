@@ -1,6 +1,9 @@
 # Main application module
 from application import app, db
 
+# running --flask help will list the translate command
+from application import cli
+
 # To run:
 # export shares defined variables and functions shared with new processes
 # $ export FLASK_APP=desertsnake.py
