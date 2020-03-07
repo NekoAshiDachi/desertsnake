@@ -1,2 +1,13 @@
 .pyc
 __pycache__
+.env
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+logs

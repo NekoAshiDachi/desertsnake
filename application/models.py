@@ -1,46 +1,56 @@
 from datetime import datetime
+from hashlib import md5
 from time import time
-from application import app, db, login
-
-# in python prompt:
-# from application import db
-# from application.models import <table1>, <table2>
-# u = Model(<column1>='<value1>', <backref>=<Model_instance>)
-# db.session.add(u); db.session.delete(u)
-# db.session.commit()  writes all changes to db at once
-# db.session.rollback()  aborts session and removes changes stored in it
-
-# Model.query.all(); Model_instance.backref.all()
-# Model.query.get(<id>)
-# Model.query.order_by(Model.column.desc()).all()
-# Model.query.filter_by(<column>='<value>').first()  1st returns 1st user or None
-# Model.filter(table.c.column == model.column).count() > 0
-# Model.query.join(<Model|Table>, (Table.c.col == Model.col)).filter(condition).order_by(Model.col.desc())
+from flask import current_app
 
 # ------------------------------------------------------------------------------
-
-# Flask models typically defined with uppercase character
-# SQLAlchemy uses lowercase characters or snake case for multi-word models
-# db.ForeignKey() uses SQLAlchemy case
-# db.relationship() uses Flask model case
-
-# ------------------------------------------------------------------------------
-
-"""installed with Flask; password hash has no known reverse operation and can
-has same password with different hashes"""
-from werkzeug.security import generate_password_hash, check_password_hash
-
-"""Flask-Login requires is_authenticated (True if valid credentials), is_active
+"""
+Flask-Login requires is_authenticated (True if valid credentials), is_active
 (True if user account active), is_anonymous (True if anon user), get_id()
 (returns unique str user ID); these are provided with UserMixin
 
 Each logged-in user has a Flask user session (assigned storage space), and each
 time the user navigates to a new page, Flask-Login retrieves the user id from the
 session and loads the user into memory. A user loader function bridging the DB
-and the Flask-Login extension is also required.
-"""
+and the Flask-Login extension is also required."""
 from flask_login import UserMixin
-from hashlib import md5
+
+# ------------------------------------------------------------------------------
+"""
+installed with Flask; password hash has no known reverse operation and can has
+same password with different hashes"""
+from werkzeug.security import generate_password_hash, check_password_hash
+
+# ------------------------------------------------------------------------------
+
+import jwt
+from application import db, login
+
+# ==============================================================================
+"""
+in python prompt:
+    # from application import db
+    # from application.models import <table1>, <table2>
+    # u = Model(<column1>='<value1>', <backref>=<Model_instance>)
+    # db.session.add(u); db.session.delete(u)
+    # db.session.commit()  writes all changes to db at once
+    # db.session.rollback()  aborts session and removes changes stored in it
+
+    # Model.query.all(); Model_instance.backref.all()
+    # Model.query.get(<id>)
+    # Model.query.order_by(Model.column.desc()).all()
+    # Model.query.filter_by(<column>='<value>').first()  1st returns 1st user or None
+    # Model.filter(table.c.column == model.column).count() > 0
+    # Model.query.join(
+        # <Model|Table>,
+        (Table.c.col == Model.col)).filter(condition).order_by(Model.col.desc())
+
+# Flask models typically defined with uppercase character
+# SQLAlchemy uses lowercase characters or snake case for multi-word models
+# db.ForeignKey() uses SQLAlchemy case
+# db.relationship() uses Flask model case"""
+
+# ------------------------------------------------------------------------------
 
 # Auxiliary/association table with no data other than foreign keys; does not
 # need Model class
@@ -48,20 +58,72 @@ followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id')) )
 
+
 class User(UserMixin, db.Model):
     # unique/index flags optimize db searches
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True)
 
-    # --------------------------------------------------------------------------
-    password_hash = db.Column(db.String(128))  # indirect password
+    # indirect password
+    password_hash = db.Column(db.String(128))
+
+    """
+    db.relationship() is a view and defined on "one" side of "one-to-many"
+    backref = name of field added to "many" objects pointing back to "one" """
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+
+    """
+    - links User to Users followed; secondary=association table defined below;
+      lazy=dynamic means query not run until requested
+    - Model.relationship is like list; can append and remove"""
+    followed = db.relationship('User',
+        secondary=followers,
+        primaryjoin=(followers.c.follower_id == id),
+        secondaryjoin=(followers.c.followed_id == id),
+        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+
+    # how class will print
+    def __repr__(self):
+        return f'<User {self.username}>'
 
     def set_password(self, password):
-        self.password_hash  = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    """
+    Gravatar default size 80x80p; s arg specifies size; d arg predetermines
+    avatar; some sites don't accept Gravatar"""
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return f"https://www.gravatar.com/avatar/{digest}?d=monsterid&s={size}"
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    def is_following(self, user):
+        return self.followed.filter(
+            followers.c.followed_id == user.id).count() > 0
+
+    """
+    followed gets all users that are followed, then all with follower = user;
+    queries Post and returns posts only, rather than all joined columns"""
+    def followed_posts(self):
+        followed = Post.query.join(
+            followers, (followers.c.followed_id == Post.user_id)).filter(
+                followers.c.follower_id == self.id)
+        own = Post.query.filter_by(user_id=self.id)
+        return followed.union(own).order_by(Post.timestamp.desc())
 
     def get_reset_password_token(self, expires_in=600):
         """The dict is the payload written into the token.
@@ -72,10 +134,12 @@ class User(UserMixin, db.Model):
 
         The exp field is standard for JWTs and indicates the token's expiration.
         If a token is past expiration, then it will also be invalid."""
-        return jwt.encode({'reset_password': self.id, 'exp': time() + expires_in},
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time() + expires_in},
             app.config['SECRET_KEY'], algorithm='HS256').decode('utf-8')
 
-    @staticmethod  # invoked directly from class; doesn't take class as 1st arg
+    # invoked directly from class; doesn't take class as 1st arg
+    @staticmethod
     def verify_reset_password_token(token):
         try:
             # algorithm=how to generate token; HS256 is the most widely used
@@ -86,57 +150,6 @@ class User(UserMixin, db.Model):
             return
         return User.query.get(id)
 
-    # --------------------------------------------------------------------------
-    """db.relationship() is a view and defined on "one" side of "one-to-many"
-    backref = name of field added to "many" objects pointing back to "one" """
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
-
-    about_me = db.Column(db.String(140))
-    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
-
-    """Gravatar default size 80x80p; s arg specifies size; d arg predetermines
-    avatar; some sites don't accept Gravatar"""
-    def avatar(self, size):
-        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
-        return f"https://www.gravatar.com/avatar/{digest}?d=monsterid&s={size}"
-
-    # --------------------------------------------------------------------------
-    """
-    - links User to Users followed; secondary=association table defined below;
-      lazy=dynamic means query not run until requested
-    - Model.relationship is like list; can append and remove
-    """
-    followed = db.relationship('User',
-        secondary=followers,
-        primaryjoin=(followers.c.follower_id == id),
-        secondaryjoin=(followers.c.followed_id == id),
-        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
-
-    def is_following(self, user):
-        return self.followed.filter(
-            followers.c.followed_id == user.id).count() > 0
-
-    def follow(self, user):
-        if not self.is_following(user):
-            self.followed.append(user)
-
-    def unfollow(self, user):
-        if self.is_following(user):
-            self.followed.remove(user)
-
-    """followed gets all users that are followed, then all with follower = user;
-    queries Post and returns posts only, rather than all joined columns"""
-    def followed_posts(self):
-        followed = Post.query.join(
-            followers, (followers.c.followed_id == Post.user_id)).filter(
-                followers.c.follower_id == self.id)
-        own = Post.query.filter_by(user_id=self.id)
-        return followed.union(own).order_by(Post.timestamp.desc())
-
-    # --------------------------------------------------------------------------
-    # how class will print
-    def __repr__(self):
-        return f'<User {self.username}>'
 
 @login.user_loader
 def load_user(id):
@@ -150,6 +163,7 @@ class Post(db.Model):
     # can set default time zone to UTC in MySQL config
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    language = db.Column(db.String(5))
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)

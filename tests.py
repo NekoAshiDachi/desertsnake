@@ -1,7 +1,16 @@
+#!/usr/bin/env python3.8
 from datetime import datetime, timedelta
 import unittest
-from application import app, db
+from application import create_app, db
 from application.models import User, Post
+from config import Config
+
+
+class TestConfig(Config):
+    TESTING = True
+    # using in-memory sqlite prevents unittest from using regular database
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
+
 
 class UserModelCase(unittest.TestCase):
 
@@ -9,14 +18,16 @@ class UserModelCase(unittest.TestCase):
     executes before and after each test, respectively."""
 
     def setUp(self):
-        # using in-memory sqlite prevents unittest from using regular database
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
+        self.app = create_app(TestConfig)
+        self.app_context = self.app.app_context()
+        self.app_context.push()
         # creates all database tables
         db.create_all()
 
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+        self.app_context.pop()
 
     # --------------------------------------------------------------------------
 
