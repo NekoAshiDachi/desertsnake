@@ -18,6 +18,12 @@ from application.models import User, Post
 app = create_app()
 cli.register(app)
 
+"""Using whoosh instead of Elasticsearch due to virtualization problems in
+pythonanywhere."""
+import flask_whooshalchemy as whooshalchemy
+with app.app_context():
+    whooshalchemy.whoosh_index(app, Post)
+
 """
 Adds shell reference name and items to shell; pre-imports
 $ flask shell

@@ -158,6 +158,9 @@ def load_user(id):
 # ------------------------------------------------------------------------------
 
 class Post(db.Model):
+    __tablename__ = 'post'
+    __searchable__ = ['body']
+
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     # can set default time zone to UTC in MySQL config

@@ -6,7 +6,7 @@ from flask_babel import _, get_locale
 from guess_language import guess_language
 
 from application import db
-from application.main.forms import EditProfileForm, PostForm
+from application.main.forms import EditProfileForm, PostForm, SearchForm
 from application.models import User, Post
 from application.translate import translate
 from application.main import bp
@@ -22,6 +22,7 @@ def before_request():
         db.session.commit()
     # adds language code to base template through flask_babel's get_locale()
     g.locale = str(get_locale())
+    g.search_form = SearchForm()
 
 # INDEX ------------------------------------------------------------------------
 """
@@ -160,3 +161,21 @@ def translate_text():
     return jsonify({'text': translate(
         request.form['text'], request.form['source_language'],
         request.form['dest_language'])})
+
+# SEARCH --------------------------------------------------------------------
+
+@bp.route('/search', methods=['POST'])
+@login_required
+def search():
+    if not g.search_form.validate_on_submit():
+        return redirect(url_for('main.index'))
+    return redirect(
+        url_for('main.search_results', query=g.search_form.search.data))
+
+@bp.route('/search_results/<query>')
+@login_required
+def search_results(query):
+    results = Post.query.whoosh_search(
+        query, current_app.config['MAX_SEARCH_RESULTS']).all()
+    return render_template(
+        'search_results.html', query=query, results=results)
