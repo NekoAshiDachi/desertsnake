@@ -1,0 +1,4 @@
+git clone https://github.com/miguelgrinberg/Flask-WhooshAlchemy.git
+pip install Flask-WhooshAlchemy
+
+app.config['WHOOSH_BASE'] = '/home/desertsnake/modules/whoosh base'

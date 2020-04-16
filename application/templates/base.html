@@ -34,17 +34,36 @@
                     <li><a href="{{ url_for('auth.login') }}">{{ _('Login') }}</a></li>
 
                     {% else %}
-                    <li><form style="display: inline-block; padding: 10px;"
-                        action="{{ url_for('main.search') }}" method="post"
-                        name="search">
-                        {{ g.search_form.hidden_tag() }}
-                        {{ g.search_form.search(size=15) }}
-                        <input type="submit" value="Search">
-                    </form></li>
+                        <li><a href="{{ url_for('main.user', username=current_user.username) }}">
+                            {{ _('Profile') }}</a></li>
+                        <li>
+                            <a href="{{ url_for('main.messages') }}">
+                                {{ _('Messages') }}
+                                {% set new_messages = current_user.new_messages() %}
+                                <span id="message_count" class="badge"
+                                      style="visibility: {% if new_messages %}visible
+                                                         {% else %}hidden {% endif %};">
+                                    {{ new_messages }}
+                                </span>
+                            </a>
+                        </li>
+                        <li><a href="{{ url_for('auth.logout') }}">{{ _('Logout') }}</a></li>
 
-                    <li><a href="{{ url_for('main.user', username=current_user.username) }}">
-                        {{ _('Profile') }}</a></li>
-                    <li><a href="{{ url_for('auth.logout') }}">{{ _('Logout') }}</a></li>
+                        <!-- some pages, such as error pages, may not have
+                        g.search_form defined -->
+                        {% if g.search_form %}
+
+                        <!-- other forms have empty action attr because they
+                        were submitted to same page that rendered form; because
+                        this form appears in all pages, it needs to be told
+                        specific route -->
+                        <form class="navbar-form navbar-left" method="get"
+                            action="{{ url_for('main.search') }}">
+                            <div class="form-group">
+                                {{ g.search_form.q(size=20, class='form-control',
+                                    placeholder=g.search_form.q.label.text) }}
+                        </div></form>
+                        {% endif %}
                     {% endif %}
                 </ul>
             </div>
@@ -57,6 +76,19 @@
 providing content; defines where derived templates can insert themselves; .-->
 {% block content %}
     <div class="container">
+        {% if current_user.is_authenticated %}
+            {% with tasks = current_user.get_tasks_in_progress() %}
+                {% if tasks %}
+                    {% for task in tasks %}
+                    <div class="alert alert-success" role="alert">
+                        {{ task.description }}
+                        <span id="{{ task.id }}-progress">{{ task.get_progress() }}</span>%
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        {% endif %}
+
         <!--shows flashed messages on website; once messages are passed through
         get_flashed_messages(), they are removed from messages-->
         {% with messages = get_flashed_messages() %}
@@ -97,6 +129,96 @@ to rather than replaces block scripts-->
             }).fail(function() {
                 $(destElem).text("{{ _('Error: Could not contact server.') }}");
             });
+        }
+
+        /* $( ... ) wrapper loads jQuery function with page; attaches event to
+        all elements in collection */
+        $(function() {
+            /* avails timer to handlerOut in case of unintended pause on link */
+            var timer = null;
+            var xhr = null;
+            $('.user_popup').hover(
+                // handlerIn: mouse in event
+                function(event) {
+                    var elem = $(event.currentTarget);
+                    /* setTimeout function invoked after given delay (1 sec) */
+                    timer = setTimeout(function() {
+                        timer = null;
+                        /* Flask url_for() cannot beused in JS */
+                        xhr = $.ajax(
+                            '/user/' + elem.first().text().trim() + '/popup').done(
+                                function(data) {
+                                    xhr = null
+                                    elem.popover({
+                                        trigger: 'manual',
+                                        html: true,
+                                        animation: false,
+                                        container: elem,
+                                        content: data
+                                    }).popover('show');
+                                    /* when new Flask-Moment elements (last seen)
+                                    added by Ajax, flask_moment_render_all()
+                                    needs to be invoked */
+                                    flask_moment_render_all();
+                                }
+                            );
+                    }, 1000);
+                },
+                // handlerOut: mouse out event
+                function(event) {
+                    var elem = $(event.currentTarget);
+                    if (timer) {
+                        clearTimeout(timer);
+                        timer = null;
+                    }
+                    else if (xhr) {
+                        xhr.abort();
+                        xhr = null;
+                    }
+                    else {
+                        elem.popover('destroy');
+                    }
+                }
+            )
+        })
+
+        function set_message_count(n) {
+            $('#message_count').text(n);
+            $('#message_count').css('visibility', n ? 'visible' : 'hidden');
+        }
+
+        {% if current_user.is_authenticated %}
+        $(function() {
+            var since = 0;
+            /* uses same args as setTimeout(), except fires callback at regular
+            intervals rather than just once */
+            setInterval(function() {
+                $.ajax('{{ url_for('main.notifications') }}?since=' + since).done(
+                    function(notifications) {
+                        for (var i = 0; i < notifications.length; i++) {
+                            switch (notifications[i].name) {
+                                case 'unread_message_count':
+                                    set_message_count(notifications[i].data);
+                                    break;
+                                case 'task_progress':
+                                    set_task_progress(
+                                        notifications[i].data.task_id,
+                                        notifications[i].data.progress);
+                                    break;
+                            }
+                            /* if notification received, update since to last
+                            notification's timestamp to avoid duplicates */
+                            since = notifications[i].timestamp;
+                        }
+                    }
+                );
+            }, 10000);
+        });
+        {% endif %}
+
+        /* jQuery does nothing if no elements located */
+        function set_task_progress(task_id, progress) {
+            $('#' + task_id + '-progress').text(progress);
         }
     </script>
 {% endblock %}

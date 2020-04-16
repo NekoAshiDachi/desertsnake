@@ -26,3 +26,5 @@ class Config(object):
     SYSTRAN_TRANSLATOR_KEY = os.environ.get('SYSTRAN_TRANSLATOR_KEY')
 
     POSTS_PER_PAGE = 25
+
+    REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'

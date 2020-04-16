@@ -33,4 +33,29 @@ class PostForm(FlaskForm):
 # SEARCH -----------------------------------------------------------------------
 
 class SearchForm(FlaskForm):
-    search = StringField('search', validators=[DataRequired()])
+    """
+    q = standard search term and allows searches to be completely encapsulated
+    in URL, so can be shared; e.g., google.com/search?q=python
+
+    Does not need submit field, as browser submits when pressing Enter when
+    focused on text field
+    """
+    q = StringField(_l('Search'), validators=[DataRequired()])
+
+    """provides values for formdata and csrf_enabled if not provided by caller;
+    Flask-WTF by default from POST uses request.form, but from GET uses
+    request.args; CSRF needs to be disabled for clickable search links to work
+    """
+    def __init__(self, *args, **kwargs):
+        if 'formdata' not in kwargs:
+            kwargs['formdata'] = request.args
+        if 'csrf_enabled' not in kwargs:
+            kwargs['csrf_enabled'] = False
+        super(SearchForm, self).__init__(*args, **kwargs)
+
+# MESSAGE ----------------------------------------------------------------------
+
+class MessageForm(FlaskForm):
+    message = TextAreaField(_l('Message'),
+        validators=[DataRequired(), Length(min=0, max=140)])
+    submit = SubmitField(_l('Submit'))
