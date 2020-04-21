@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<h1>{{ title }}</h1>
+
+<p>Shotokan Scholar is currently a work in progress, but big things are afoot.</p>
+
+<h3>The Scholar</h3>
+<p>The creator of this website has been practicing karate for a long time. She started at eight-years-old in Hawaii
+    with <a href="http://www.jikc-hq.org/">Japan International Karate Center</a>, under Senseis Roy and Martha
+    Woodard, of Soke Hirano Kiyohisa, of Wado-ryu's founder Otsuka Hironori. She later trained under Sensei George
+    Sasano of <a href="{{o(1)}}">JKA</a>-era <a href="{{p(2)}}">Hirokazu
+    Kanazawa</a>. Upon moving to New York in her twenties, she trained with <a href="{{o(2)}}">
+    SKIF</a> under Sensei <a href="{{p(31)}}">Igor Dyachenko</a>, and later on her own with other SKIF students. At last, it seems that she's
+    finally found a karate home at Sensei <a href="{{p(32)}}">Richard Amos's</a>
+    <a href="{{o(8)}}">WTKO</a>.</p>
+
+<p>Outside of karate, she's tried other martial arts ranging from
+    (in rough chronological order) bo staff, sai, iaido, American kempo, tang soo do, jiu-jitsu, fencing, boxing,
+    muay thai, and tai chi (enough to know that Shotokan karate's the best one of them all—just kidding!).</p>
+
+<!--<a title="Using the Site" href="<?php echo site_url('using-the-site') ?>">Using the Site</a>: how to get the best use out of the site depending on your relationship to Shotokan karate.<br>-->
+
+<a title="Partners" href="{{ url_for('main.partners') }}">Partners</a>: the karate community is a global community, and in that spirit we're open to collaboration.<br>
+
+<a title="Terms Of Use" href="{{ url_for('main.terms_of_use') }}">Terms of Use</a>: copyrights and legality; only a concern to those with bad intents.<br>
+
+<a title="Contact Us" href="{{ url_for('main.contact') }}">Contact Us</a>: Questions? Contact us through our email form; we welcome your input!<br>
+
+{% endblock %}

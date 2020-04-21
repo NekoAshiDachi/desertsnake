@@ -493,8 +493,8 @@ class Kata_style_org(db.Model):
 class Org(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     acronym = db.Column(db.String(25))
-    name = db.Column(db.String(25))
-    japaneseName = db.Column(db.String(25))
+    name = db.Column(db.String(50))
+    japaneseName = db.Column(db.String(50))
     kanji = db.Column(db.String(25))
     start_date = db.Column(db.DateTime)
     style_id = db.Column(db.Integer)
@@ -519,6 +519,12 @@ class Person(db.Model):
     bio = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
+
+def o(id):
+    return url_for('library.org', id=id)
+
+def p(id):
+    return url_for('library.person', id=id)
 
 class Publication(db.Model):
     id = db.Column(db.Integer, primary_key=True)

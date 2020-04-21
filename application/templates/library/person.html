@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<h1>{{ p.firstName }} {{ p.lastName }} ({{ p.altLastName }})</h1>
+<p>{{ p.DoB }} - {% if p.DoD %}{{p.DoD}}{% endif %}</p>
+
+<table>
+    <tr><td>Style ID (in progress): {{ p.style_id }}</td></tr>
+    <tr><td>Org ID (in progress): {{ p.org_id }}</td></tr>
+    <tr><td>Rank (in progress): {{ p.rank }}</td></tr>
+    <tr><td>Pic (in progress): {{ p.pic }}</td></tr>
+    <tr><td>Last updated: {{ p.updated_date }}</td></tr>
+</table>
+
+Bio (in progress): {{ p.bio }}
+
+{% endblock %}

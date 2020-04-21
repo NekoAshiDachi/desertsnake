@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<h1 id="#Top">FAQ</h1>
+
+<p><a href='#What is Shotokan?'>What is Shotokan karate?</a></p>
+<p><a href='#How is Shotokan different?'>How is Shotokan karate different from other styles of karate?</a></p>
+<p><a href='#Is Shotokan karate better?'>Is Shotokan karate better than &lt;insert other martial art here&gt;?</a></p>
+<p><a href="#What if I'm an attacker with a weapon?">What if I'm an attacker with a knife? Or a gun?</a></p>
+<p><a href='#Is Shotokan safe?'>Is Shotokan karate safe?</a></p>
+<p><a href='#What is kumite?'>What is kumite? I wanna fight!</a></p>
+<p><a href='#What is kata?'>What is kata?</a></p>
+<p><a href='#Student-How can I get the best use?'>I'm a beginning/intermediate/advanced student. How can I get the best
+        use out of this site?</a></p>
+<p><a href='#Non-student-How can I get the best use?'>I'm a parent/partner/friend of a karate-ka, but I don't train.
+        What's in this site for me?</a></p>
+
+<p><strong id="What is Shotokan?">What is Shotokan karate?</strong></p>
+
+<p>Shotokan karate is the style of Okinawan karate brought to Japan by <a href="{{p(1)}}">Gichin Funakoshi </a> in
+    the early 1900s and developed by him and his students. It is known for its direct striking approach to fighting that
+    prioritizes clean and strong technique. Beginners learn techniques through basic steps as taught through
+    <a href="{{ url_for('library.kata') }}">kata</a> (forms) and choreographed <a href="{{ url_for('library.kumite') }}">
+    kumite</a> (controlled fighting). More advanced students practice increasingly complex kata and kumite, spar in
+    unchoreographed matches, and learn bunkai (practical self-defense application of techniques). Its first organization
+    was the <a href="{{o(1)}}">Japan Karate Association</a>, though the largest one (outside Japan) today is the
+    <a href="{{o(2)}}">Shotokan Karate International Federation</a>.</p>
+
+<p><strong id="How is Shotokan different?">How is Shotokan karate different from other styles of karate?</strong></p>
+
+<p>Shotokan, compared to other karate styles, privileges striking over grappling, meaning that its techniques and
+    stances tend to be more straightforward for generating maximum power, as opposed to circular movements that are
+    closer to the body. This comes out in which techniques and stances are used in kata, the bunkai of the kata, or
+    which kata are practiced at all. There are also stylistic differences within Shotokan as imparted by organization,
+    school, and instructor, as well as how the technique is being interpreted and performed by the individual student.
+</p>
+
+<p><strong id="Is Shotokan karate better?">Is Shotokan karate better than &lt;insert other martial art here&gt;?</strong></p>
+
+<p>This question is generally asked in the context of combat. Individual ability and circumstance are more indicative of
+    superiority than the type of martial art or its style. Equalizing factors like physical condition, talent,
+    dedication, and quality of instruction, a practitioner of any martial art for ten years will defeat a practitioner
+    who has trained any other martial art for only five. It is not just a matter of which techniques are within a
+    person's repertoire, but it is also the subtle gifts of experience such as the abilities to read body language, take
+    advantage of human limitations, and react quickly. Then there are the circumstantial factors such as the rules of
+    the match: if head or leg strikes are allowed, whether the match stops after first contact or if it is a continuous
+    match, etc. It is really a multifaceted question and answer.</p>
+
+<p><strong id="What if I'm an attacker with a weapon?">What if I'm an attacker with a knife? Or a gun?</strong></p>
+
+<p>If you have a knife, an experienced karate-ka should at least have a general idea of how to disarm you, whether by
+    removing the weapon from your hand or by incapacitating you. In facing a gun, the karate-ka, while not being
+    superhuman and therefore faster than a speeding bullet, can at least draw from a mind accustomed to thinking about
+    danger and the environment, and with luck and skill, possibly come to better results than a person without
+    experience in karate.</p>
+
+<p><strong id="Is Shotokan safe?">Is Shotokan karate safe?</strong></p>
+
+<p>Like any other sport, Shotokan karate is safe if taught and practiced properly, meaning that techniques do no lasting
+    harm to joints and ligaments, that the class is paced properly, and, of course, that rules of etiquette and safety
+    are followed when it comes to anything approximating contact. For children, the emphasis of the dojo should be of
+    learning techniques and gaining self-discipline rather than beating up other kids. Adults should not join a dojo
+    never expecting to be hit while sparring, but this should not be an issue for beginners; later, sparring should
+    cause no hard feelings, and one finishes class ready for the next one.</p>
+
+<p><strong id="What is kumite?">What is kumite? I wanna fight!</strong></p>
+
+<p><a href="{{ url_for('library.kumite') }}">Kumite</a> can be choreographed (basic: <em>kihon</em><em>) </em>or free
+    (<em>jiyu</em>) sparring. The first is similar to kata in that each move is predetermined, except with two people
+    switching roles as attacker and defender. <em>Kihon ippon kumite </em>is one-step sparring, in which the attacks
+    consist of a single technique. <em>Kihon sanbon kumite</em> consist of a series of three techniques, and <em>kihon
+    gohon kumite</em> of five. <em>Jiyu kumite</em> is free sparring of generally any technique, which can be in the
+    context of continuous sparring or of point sparring. In point sparring, the match ends as soon as an attacker lands
+    a strike that adheres to the standards of the governing rules. The idea behind point sparring is that while the
+    technique has been controlled so that it does not harm the defender, it had the potential to incapacitate the
+    defender should the attacker had chosen so. One goes through the various kihon to jiyu kumite as experience is
+    accrued, and at the top level karate-ka may compete in international competitions.</p>
+
+<p><strong id="What is kata?">What is kata?</strong></p>
+
+<p><a href="{{ url_for('library.kata') }}">Kata</a> is a set of choreographed moves, also known as a form, in which the
+    karate-ka executes techniques against an imaginary opponent. One of its traditional uses was to teach karate
+    techniques and their possible applications in a real fight. To that function is now added competition within the
+    kata divisions of tournaments. Though kumite tends to take the greater glory of karate for spectators, kata can be
+    intensely rewarding and meaningful for the experienced practitioner.</p>
+
+<p><strong id="Student-How can I get the best use?">I'm a beginning/intermediate/advanced student. How can I get the best use
+        out of this site?</strong></p>
+
+<p>Beginners would benefit from the <a href="{{ url_for('library.glossary') }}">Glossary</a> section of the site, and
+    karate-ka of all ranges of experience will benefit from perusing our listed
+    <a href="{{ url_for('library.media') }}">media</a>. To that end we have tags to facilitate searches such as
+    <em>kihon</em>, <em>kata, </em><em>kumite</em>, <em>instructional</em>, and <em>bunkai</em>, as well as for
+    particular kata. There are some truly exemplary or inspiring performances of karate technique in some, while in
+    others are explanations that at the least provide a different point of view. <!--We even have a nifty
+    <a href=training_session_generator</a>, adjustable to
+    skill level, for doing the work on figuring out what to practice for the day.--> The more advanced or curious can
+    browse through our <a href="{{ url_for('library.history') }}">history page</a> or our profiles on important
+    <a href="{{ url_for('library.people') }}">people</a> in karate to get an idea of the founders behind the current,
+    dominant <a href="{{ url_for('library.orgs') }}">organizations</a> of Shotokan, whose approaches to karate
+    provide key insight to many important questions: why Shotokan karate has developed into the system of techniques it
+    is today, how Shotokan has traveled from East to West, the function of competition in an ostensibly lethal martial
+    art, etc.</p>
+
+<p><strong id="Non-student-How can I get the best use?">I'm a parent/partner/friend of a karate-ka, but I don't train.
+        What's in this site for me?</strong></p>
+
+<p>There are a lot of stereotypes that martial artists must face that are not helped by the proliferation of
+    contradictory teaching principles and methods - some arguably by instructors that are karate-ka in name only. For
+    this reason, it helps to know a little of the history and philosophy of Shotokan karate. For
+    <a href="{{ url_for('library.history') }}">history</a>, check out <a href="{{p(1)}}">Gichin Funakoshi's</a> profile,
+    for the spread and standardization of Shotokan, <a href="{{p(3)}}">Masatoshi Nakayama's</a> profile, and for the
+    philosophy, some of the approaches within the other <a href="{{ url_for('library.people') }}">people</a> profiles. Looking through the
+    <a href="{{ url_for('library.media') }}">videos</a> tagged as <em>kata </em>and <i>kumite</i> would also give you a
+    sense of what it is like to train in Shotokan karate.</p>
+
+{% endblock %}

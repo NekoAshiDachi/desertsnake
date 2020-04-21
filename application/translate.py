@@ -3,19 +3,18 @@ import requests
 from flask import current_app
 from flask_babel import _
 
-
 def translate(text, source_language, dest_language):
-    if 'SYSTRAN_TRANSLATOR_KEY' not in app.config or \
-            not app.config['SYSTRAN_TRANSLATOR_KEY']:
+    if 'SYSTRAN_TRANSLATOR_KEY' not in current_app.config \
+        or not current_app.config['SYSTRAN_TRANSLATOR_KEY']:
         return _("%s Error: the translation service is not configured." %
-        app.config['SYSTRAN_TRANSLATOR_KEY'])
+        current_app.config['SYSTRAN_TRANSLATOR_KEY'])
 
     host = "systran-systran-platform-for-language-processing-v1.p.rapidapi.com"
     translate_path = "/translation/text/translate"
 
     headers = {
         'x-rapidapi-host': host,
-        'x-rapidapi-key': app.config['SYSTRAN_TRANSLATOR_KEY']}
+        'x-rapidapi-key': current_app.config['SYSTRAN_TRANSLATOR_KEY']}
 
     querystring = {
         "source": source_language, "target": dest_language, "input": text}

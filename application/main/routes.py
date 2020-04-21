@@ -12,7 +12,7 @@ from application import db
 from application.main.forms import (
     EditProfileForm, PostForm, SearchForm, MessageForm)
 
-from application.models import User, Post, Message, Notification
+from application.models import User, Post, Message, Notification, o, p
 from application.translate import translate
 from application.main import bp
 
@@ -265,3 +265,42 @@ def export_posts():
         current_user.launch_task('export_posts', _('Exporting posts...'))
         db.session.commit()
     return redirect(url_for('main.user', username=current_user.username))
+
+# SHOTOKAN SCHOLAR =============================================================
+
+@bp.route('/faq')
+def faq():
+    return render_template("faq.html", title=_('Frequently Asked Questions'),
+    o=o, p=p)
+
+@bp.route('/about')
+def about():
+    return render_template("about.html", title=_('About Us'), o=o, p=p)
+
+@bp.route('/partners')
+def partners():
+    return render_template("partners.html", title=_('Partners'))
+
+@bp.route('/terms_of_use')
+def terms_of_use():
+    return render_template("terms_of_use.html", title=_('Terms of Use'))
+
+@bp.route('/contact', methods=['GET', 'POST'])
+def contact():
+    form = MessageForm()
+    admin=User.query.filter_by(id=1).first()
+
+    if form.validate_on_submit():
+        msg = Message(
+            author=User.query.filter_by(id=2).first(),
+            recipient=User.query.filter_by(id=1).first(),
+            body=form.message.data)
+
+        db.session.add(msg)
+        admin.add_notification('unread_message_count', admin.new_messages())
+        db.session.commit()
+        flash(_('Your message has been sent.'))
+        return redirect(url_for('main.contact'))
+    return render_template('contact.html', title=_('Contact Us'), form=form)
+
+

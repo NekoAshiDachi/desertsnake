@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+<h2>{{ title }}</h2>
+
+<p class="lead">Please feel free to contact us for any question or request, including (but not limited to):</p>
+<ul>
+    <li>I have some material and/or information that I would like to share;</li>
+    <li>Some information on this website is incorrect or inaccurate;</li>
+    <li>I have a Karate blog and I want to partner up with you;</li>
+    <li>I want to contribute to the development/maintenance of the website;</li>
+    <li>Shotokan Scholar is using copyrighted material or personal data and I want it credited or modified.</li>
+</ul>
+We appreciate your feedback.
+
+Osu!
+
+<div class="row">
+    <div class="col-lg-4">
+        {{ wtf.quick_form(form) }}
+    </div>
+</div>
+
+{% endblock %}

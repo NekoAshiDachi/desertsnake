@@ -1,10 +1,8 @@
 from flask import current_app
-import flask_whooshalchemy as whoosh
 
 """
 Creates abstraction of search engine so that other search engines could be used.
-For other search engine, all would have to do is reimplement these three
-functions.
+All one would have to do is reimplement these three functions.
 
 Whoosh used as pythonanywhere cannot accomodate Elasticsearch with virtualization.
 
@@ -36,3 +34,10 @@ def query_index(model, query:str, page:int, per_page:int):
     end_idx = page * per_page
 
     return ids[start_idx:end_idx], len(ids)
+
+""" May have to reinitialize whoosh_search index:
+>> whoosh.whoosh_index(app, Post)
+>> posts = [i for i in Post.query.all()]
+>> for post in Post.query.all(): db.session.delete(post)
+>> for post in posts: db.session.add(body=post.body, user_id=5)
+"""

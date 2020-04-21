@@ -1,0 +1,476 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<h1>Kihon</h1>
+
+<p>
+    Kihon means <i>basic</i>, but as all experienced karate-ka know, basic is anything but <i>easy</i>. The simplest
+    movements can illustrate the areas requiring the most improvement in one's application of karate, as can techniques
+    isolated from combinations or speed. It is for this reason that the tradition of seemingly endless repetition of
+    techniques exists. As practitioners at one dojo joked, "Mo ichi do means mo bettah" ("one more time means
+    better"). It's true: difference between skill level is often the difference of the sheer amount of time committed.
+    Though at the same time, only "<i>perfect practice</i> that makes <i>perfect technique</i>." Kihon, then, where all
+    karate begins and ends.
+</p>
+<p>
+    This page is separated by the dominant parts of the body used for each technique, though the experienced karate-ka
+    will utilize much more of the body than may be immediately apparent. However, for organization's sake, I've split
+    this page by stances, arm techniques, leg techniques, and the entire body, similarly to how a new student might be
+    ntroduced to stances, blocks, punches, kicks, and then stepping forward with any of those techniques. As this is
+    part of my compendium of notes, I have the more fundamental points <strong>embolded</strong>, while my
+    personal notes/goals (I'd like to believe that these can be anyone's) are <i>italicized</i>.
+</p>
+
+<h3>Terminology</h3>
+
+<p>Some concepts have been described interchangeably (depending on where I was in my life at the time of my notetaking)
+    by anatomical terms (sagittal/lateral—dividing left and right, frontal/coronal—dividing front and back), and
+    transverse—dividing top and bottom), or by Amos Sensei's terms (front body—could mean squeezing the pectorals and
+    lats forward, and opposite body—squeezing the lats and ribs on the opposite side of one's technique forward). It's
+    the same for the terms <i>center of gravity</i> and <i>one point</i>—I believe that one point is more specific than
+    center of gravity since it refers to the position of shoulders and hips in addition to one's <i>tantien</i>, but
+    they otherwise embody the same karate concept of keeping technique low and direct. There may also be conflict
+    between such concepts, as these ideas belong to different instructors and/or organizations, and have thus been
+    superscripted to denote origin/credit.
+</p>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<div class='w-50' style='border: 1px solid lightgray'>
+    <div class='row'>
+        <div class='span6'>
+            <h3 id="#Top" style='padding-left:25px'>Contents</h3></div>
+    </div>
+
+    <ul>
+        <li><a href="#General">General Technique</a></li>
+        <li><a href='#Stances'>Stances</a></li>
+        <ul>
+            <li><a href='#stance1'>stance1</a></li>
+        </ul>
+        <li><a href='#Upper Body'>Upper Body</a></li>
+        <ul>
+            <li><a href='#Punches'>Punches</a></li>
+            <ul>
+                <li><a href='#stance1'>stance1</a></li>
+            </ul>
+            <li><a href='#Blocks'>Blocks</a></li>
+            <ul>
+                <li><a href='#Blocks: General'>General</a></li>
+                <li><a href='#Jodan-uke'>Jodan-uke</a></li>
+                <li><a href='#Soto-uke'>Soto-uke</a></li>
+                <li><a href='#Uchi-uke'>Uchi-uke</a></li>
+                <li><a href='#Gedan-barai'>Gedan-barai</a></li>
+                <li><a href='#Shuto-uke'>Shuto-uke</a></li>
+            </ul>
+            <li><a href='#Lower Body'>Lower Body</a></li>
+            <ul>
+                <li><a href='#Kicks'>Kicks</a></li>
+                <ul>
+                    <li><a href='#stance1'>stance1</a></li>
+                </ul>
+            </ul>
+            <li><a href='#Full Body'>Full Body</a></li>
+            <ul>
+                <li><a href='#Progressive Movements'>Progressive Movements</a></li>
+                <li><a href='#Turning'>Turning</a></li>
+            </ul>
+        </ul>
+    </ul>
+</div>
+<br>
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<?php function ref($ref_array) {
+
+    $org_id = $ref_array[0]; $org_link_name = $ref_array[1]; $people_id = $ref_array[2]; $person_name = $ref_array[3];
+
+    $org_link = (gettype($org_id) == 'integer') ? $org_link = base_url()."library/organizations/".$org_id : $org_id;
+    $person_link = base_url()."library/people/".$people_id;
+    $person_acronym = explode(' ', $person_name)[0][0].explode(' ', $person_name)[1][0];
+
+    return "<sup><button type='button' class='btn btn-link btn-xs' data-toggle='popover' data-trigger='focus'
+        data-html='true' data-placement='right' data-content=\"
+        <a href='".$org_link."'>".$org_link_name."</a> -
+        <a href='".$person_link."'>".$person_name."</a>\">[".
+        $person_acronym."]</button></sup>"; }
+
+$refs = array('RA' => array(8, 'WTKO', 29, 'Richard Amos'),
+    'ID' => array('karatecity.org', 'Karate City', 30, 'Igor Dyachenko'),
+    'MM' => array(2, 'SKIF', 27, 'Manabu Murakami'),
+    'TN' => array(1, 'JKA', 20, 'Tatsuya Naka'),
+    'HK' => array(2, 'SKIF', 2, 'Hirokazu Kanazawa')
+);
+
+$kata_url = base_url()."library/kata/";
+$org_url = base_url()."library/organizations/"?>
+
+<span id="#General"><h3>General Technique</h3></span>
+    <ul>
+        <li><h4>Basics</h4></li>
+            <ul>
+                <li>Seven important parts of techniques (Scott Langley, previously of <a href="<?=$org_url?>8">WTKO</a>):
+                    1. Breathing; 2. Centerline; 3. Active stability; 4. Maximal contraction/expansion; 5. Snap/thrust;
+                    6. Golgi effect; 7. Hip rotation: front/back</li>
+                <li>Even when doing slower techniques, do not start off slow or delay technique and then speed up—
+                    maintain same speed; eventually improve initial acceleration.</li>
+            </ul>
+        <li><h4>Coordination</h4></li>
+            <ul>
+                <li>The centerline is on medial and frontal planes. By isolating the torso into different working
+                    segments, conserve energy and momentum while maintaining the technique’s direction upon the
+                    centerline.</li>
+                <li>The body operates as separate units, but all units must end at the same time.<?=ref($refs['ID'])?></li>
+                <li>Use arms for legs and legs for arms; this doesn't mean unncessary movement, but being mindful of
+                    the placement and usage of these parts in tandem with their respective arm/leg
+                    techniques.<?=ref($refs['MM'])?></li>
+            </ul>
+        <li><h4>Combinations</h4></li>
+            <ul>
+                <li>Pair or triple techniques to bounce from one technique to the next, and emphasize pauses between
+                    combinations (See <a href="<?=$kata_url?>6">Heian Godan, <a href="<?=$kata_url?>10">Bassai</a>)<?=ref($refs['RA'])?></li>
+            </ul>
+    </ul>
+<div align="right"><a href="#Top">Page Top</a></div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<br><span id="#Stances"><h3>Stances</h3></span>
+    <ul>
+        <li><h4>Placement</h4></li>
+        <ul>
+            <li>Knee remains at same angle regardless of stance; only ankle angle changes.<?=ref($refs['MM'])?></li>
+            <li>Maintain direction of center of gravity's momentum in turns by not bringing the foot
+                back.<?=ref($refs['MM'])?></li>
+            <li>Squeeze with front and inner thigh when feet are not crossed, otherwise with back and inner
+                thigh.<?=ref($refs['RA'])?></li>
+            <li>Head up; shoulders down; <i>hara</i> and tailbone pulled towards each other.<?=ref($refs['ID'])?></li>
+        </ul>
+        <li><h4>Transitions</h4></li>
+        <ul>
+            <li>High center of gravity = speed; low center of gravity = power.<?=ref($refs['MM'])?> Cats stay
+                low in advancing on prey while prey moves upward (like antelopes) in attempting to escape.
+                <?=ref($refs['RA'])?></li>
+            <li>Avoid pushing off in opposite direction first or turning out knee/footprior to movement; drop
+                and then move. Emulate Michael Jordan's coiled knees - coil down for transition between stances,
+                moving into coil rather than moving pullback hand back; or coil downwards and towards,
+                contracting ribs (see <a href="<?=$kata_url?>6">Heian Godan).</a><?=ref($refs['RA'])?>
+            </li>
+        </ul>
+    </ul>
+    <ul>
+        <li><h4>Specific Stances</h4></li>
+        <ul>
+            <li>Zenkutsu-dachi</li>
+            <li>Kōkutsu-dachi</li>
+            <ul>
+                <li>Transfer weight to ball of back foot; like moving back in kumite.<?=ref($refs['ID'])?></li>
+                <li>Transition between progressive zenkutsu-dachi with koukutsu-dachi, and vice versa.<?=ref($refs['MM'])?></li>
+                <li>Use hip to drive foot forward and turn; keep knee tight.</li>
+                <li>Hip torques back so that energy moves back instead of forward (Shinji Tanaka,
+                    <a href="<?=$org_url?>2">SKIF</a>).</li>
+            </ul>
+            <li>Fudō-dachi</li>
+            <ul>
+                <li>Keep back knee pointing to side.<?=ref($refs['RA'])?></li>
+            </ul>
+        </ul>
+    </ul>
+<div align="right"><a href="#Top">Page Top</a></div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<br><span id="#Upper Body"><h3>Upper Body</h3></span>
+    <ul>
+        <li><h4>General</h4></li>
+        <ul>
+            <li>Keep shoulders down by using latissimus dorsi muscles.</li>
+        </ul>
+        <li><h4><i>Hikite</i></h4> (pullback hand)</li>
+        <ul>
+            <li>Use back for hikite instead of arm.<?=ref($refs['RA'])?></li>
+            <li>Squeeze upper arm and lats together (as if squeezing armpit) for hikite.<?=ref($refs['RA'])?></li>
+            <li>Hikite is on and protects the soft area between the lowest rib and the hip bone.<?=ref($refs['MM'])?>
+            </li>
+            <li>Hikite is ½-way between armpit & hip, with elbow pulled towards back, back tight, and knuckles to
+                forearm straight. Causes same torso side to contract; other side expands; whips.<?=ref($refs['ID'])?>
+            </li>
+
+        </ul>
+        <li><h4>Timing</h4></li>
+        <ul>
+            <li>Better to move hands early, allowing more optionality.<?=ref($refs['RA'])?></li>
+        </ul>
+        <li><h4>Punches</h4></li>
+        <ul>
+            <li>1st two knuckles at target; knuckles to forearm straight; arm to torso 90°.<?=ref($refs['ID'])?></li>
+            <li>Use lats to fully extend arm/fist forward (open-closed fist exercise).<?=ref($refs['MM'])?>Keep armpit
+                tight from beginning of punch to avoid flicking upwards, and watch punching elbow from going out.</li>
+            <li>Can turn hip in opposite direction first to get hip twist with punch. (<?=ref($refs['MM'])?>, 
+                <a href="https://www.youtube.com/watch?v=7GMtqWYx-Zg" target="_blank">Germany 2014 demonstration</a>)
+            </li>
+        </ul>
+        <li><h4>Specific punches</h4></li>
+        <ul>
+            <li><i>Seiken</i> (making punches) for <i>chokuzuki</i> in <i>hachijidachi</i> (the basic punch; will review
+                video to add clarity to notes):
+                <ol>
+                    <li>Fists at centerline, together, fingers then thumbs.</li>
+                    <li>Both sides at same time: pullback fist vertical and other fist upwards at halfway point; elbows
+                        rub side of body.</li>
+                    <li>Pullback fist twists upwards as going back, other fist twists rests of way forwards till facing
+                        down. Fist goes across and then back center of body to hikite position.</li>
+                    <li>Same time as punching, push up head and shoulders down, tighten lats (down full side of body,
+                        coming together feeling, straighten back, ...direction come down to hara CoG with breathing
+                        (very important).(<?=ref($refs['HK'])?>, <a href="https://www.youtube.com/watch?v=-Sz8u84M5l0"
+                        target="_blank">Te Waza</a>)</li>
+                </ol>
+
+
+            Gyakuzuki (Kanazawa, Te Waza)</li>
+            <li>Hips twisting very important, from 45 degrees, hold halfway, don't twist hips and shoulders (front knee can become more obtuse). Then hips, shoulder, and fist twisting at end at same time and breathing out with mouth. Hips/waist don't just twist; they move forward during punch</li>
+            <li>Returning to hikite, breathing inwards through nose (front knee can become more acute as hips go downwards and forwards), pushing back leg towards ground. If fast, breathe out through mouth, same as attacking/punching/blocking.</li>
+            <li>Yahara: gyaku hanmi for gyakuzuki but keep shoulders down, shoulder blades pulled towards back, head facing forward, front knee centered - being fully stretched</li>
+            ○ For jodan uke, ensure shoulder down to keep block’s shape and centered</li>
+            ○ Koukutsudachi: squeeze glute of front leg and squeeze inner thigh of back</li>
+
+            <li>Turning with punch: emphasis on turning hips and feet at same time, rather than feet first - for any turn >=90 degrees</li>
+
+            Oi-zuki (Kanazawa, Te Waza):</li>
+            <li>1. Push back foot, pull front foot, keep same knee angle, ankle angle deepens → feet together 2. ¼ way forward, weight 50/50, back knee bent 3. Extend punch/legs at same time; hips don't change throughout until last ¼ of movement</li>
+            <li>Power from hara, technique from hips' movement, shoulder down, upper/lower body contraction, ¼ way forward like changing gears of car → expansion</li>
+            <li>Inhale during the first ¾, exhale during the last 1/4th of the movement.</li>
+            Kizami-zuki (Kanazawa, Te Waza):</li>
+            <li>Starts from kumite hand position (front elbow one fist away from body)</li>
+            <li>As stepping forward, pushing hip/shoulder/fist forward, twisting fist at end</li>
+            <li>if turning to side/diagonal as punching, hand, hip and foot moves at same time</li>
+            <li>45° punch (Igor)</li>
+            Other (Kanazawa, Te Waza)</li>
+            <li>Age-zuki (uppercut punch): come halfway then rise and slight snap up with wrist</li>
+            <li>Mawashi-zuki: come halfway then turns</li>
+            <li>Tate-zuki: wrist at end snaps down slightly (aligning first 2 knuckles towards target)</li>
+            <li>Yama-zuki: upper arm block and punch in same movement; lower arm does ura-zuki at the same time (to abdomen); both arms bent (upper slightly); upper body also slightly leaning forward, and hip slightly up too. With hanase-zuki, arms are straight         </li>
+            Uraken (backhands)</li>
+        </ul>
+        </ul>
+
+    </ul>
+
+
+<li>Opposite body for unsu four gyaku</li>
+
+
+
+Other Strikes</li>
+
+<li>Harmony in hand/hips/feet, with sabaki, twist outside of attacker's line just before being hit, strike from elbow joint same time as pushing off with leg (Kanazawa, Te Waza)</li>
+<li>Conservation of momentum: conduct opponent’s momentum caught from blocking (whether moving back or turning 180 degrees) to propel the counterattack - same hand (bounce off opponent's body), or opposite hand (through body). (Kanazawa, Te Waza)</li>
+Types (Kanazawa, Te Waza)</li>
+<li>Either horizontal ( yoko mawashi) or vertical (tate mawashi). (Murakami seminar)</li>
+<li>Yoko-uraken: horizontal plane, from chest, fist downwards till halfway, then turn to back of fist</li>
+<li>Tate-uraken: only snapping, vertical plane, back of hand</li>
+<li>Tetsui-uraken: hitting with side of fist (pinky side), jodan/chudan/gedan</li>
+  
+<li>Ippon-ken: one knuckle (index), thumb pushing/supporting index finger</li>
+<li>Hia-ken: (vertical/horizontal bear claw), thumb against index finger (same position as ippon-ken), attacks throat/face</li>
+Uchi (strikes)</li>
+Open hands (Kanazawa, Te Waza, 33:57)</li>
+<li>Shuto: Outside blade of hand (sword), snap wrist as turning; outside-in turn hand ¾ of way through, elbow like uchi-uke. Inside-outside turn ½ way through.</li>
+<li>Haito: inside blade of hand, big magnitude for swing for soto-haito, more straight for uchi-haito ; use opponent's momentum through block as coiling for haito</li>
+<li>Yon-/shi-hon nukite: tate-nukite (thumb up, pinky down), yoko-nukite (palm down), ura- nukite (palm facing in)</li>
+Fingers (Kanazawa, Te Waza)</li>
+<li>Nihon nukite: ( \/ 2 fingers), ippon nukite (,|m 1 finger)</li>
+Elbows (Kanazawa, Te Waza)</li>
+<li>Mae enpi uchi (elbow): fist may separate from body, fist facing down, elbow comes to front</li>
+<li>Otoshi enpi uchi: elbow comes straight down, fist faces back</li>
+<li>Tate enpi uchi: elbow comes straight up, fist faces head</li>
+<li>Ushiro enpi uchi: forearm parallel with floor, elbow rubs against body</li>
+<li>Ushiro mawashi enpi uchi: fist separates from body (one fist away)</li>
+<li>Mae mawashi enpi uchi: fist diagonal between forwards and floor, around collarbone height, elbow at face level</li>
+<li>Yoko enpi uchi: hand starts open facing up, twisting to fist downwards as elbow goes to side
+
+
+<span id="#Blocks: General"><h3>General</h3></span>
+<ul>
+    <li>Use wrist pronation to guide arm movement</li>
+    <li>Utilize opposite side of body, ensure ribs pull towards prepping block arm rather than shoulders hunching in
+        <sup>1</sup></li>
+    <li>Use lats for pulling downwards (see jodan-uke, yamazuki pullback in <a "<?=$k?>10">Bassai</a><sup>1</sup>)</li>
+    <li>Keep shoulders down<sup>1</sup></li>
+</ul>
+
+Blocks
+- utilize opp. side of body, keep shoulder down
+- ensure ribs pull towards prepping block arm rather than shoulders hunching in;
+make sure use lats for pulling downwards (jodan uke, yamazuki pullback in Bassai);
+focus on using wrist pronation to guide arm movement
+
+- Jodan-uke: keep elbow at same line, block moves upward with body (low to middle feeling)
+- Soto-uke: roll block
+- Uchi-uke: keep fist close to body and not too high up; pronate wrist outwards while pulling to opposite body; focus on keeping momentum
+- Shuto uke / gedan barai: keep shoulders down and prep tight
+Shuto uke: contract chest for prep and legs at same time
+
+Uke (blocks)
+<li>Elbow remains at same 90 degree angle regardless of block. (Murakami seminar)
+<li>Use fleshy part of arm to block before twisting and blocking to prevent hurting bony parts. Hikite covers weak point on body between ribs and upper hip (Kanazawa, Te Waza)
+<li>Guiding blocks: twisting/sheer effect (e.g. age- and soto-uke ). Harai blocks: twist before impact (e.g. uchi-uke and gedan-barai) (Kanazawa, Te Waza)
+<li>For blocks supported with open hand at side of arm ( Enpi, Bassai Dai), tip of middle finger is always at wrist bone. For morote-uke-like movements ( Heians, Jion) hand is at the elbow. (Murakami seminar)
+<li>For grabbing techniques that extend outwards ( Kanku Sho, Bassai Dai/Sho), never go above shoulder height (always blocking chudan-zuki).
+5 basic blocks
+<li>Age-uke (high block): fist comes up in front of open vertical setup hand without twisting and without hips twsiting, then fist and hips twist on way up as setup hand becomes hikite fist (Kanazawa, Te Waza)
+○ Setting hand pulled straight back, controlling. Blocking hand can break, strike, uppercut, etc.; middle of block is midline; lateral side forearm & wrist straight. (Igor)
+<li>Soto-uke (inside block): starts with fist facing outside and hikite hand open and palm down, halfway no twisting and hikite hand vertical, then hips and fist twist to inside (Kanazawa, Te Waza)
+<li>Uchi-uke (outside block): hikite hand open and palm down, halfway point blocking fist still palm down and hikite hand vertical, then hips and fists twist(Kanazawa, Te Waza)
+○ Setting hand low for controlling. Blocking arm 90° between forearm & bicep. (Igor)
+<li>Gedan-barai (low block): at halfway point fist still facing up, hikite fist palm down, then rest twists (Kanazawa, Te Waza)
+○ Set elbow inside, past midline ½ way through block, sweep with whole arm. (Igor)
+<li>Shuto-uke: same as shuto-uchi: both hands twist at same time from halfway point on, elbow after initial descent retains same distance from body and angle, blocking hand can leave hikite arm during twisting phase, hikite palm is parallel is floor and is slightly beyond body line to protect stomach (Kanazawa, Te Waza)
+○ Setting hand low, withdraw hand straight back; only fingers beyond body line. Blocking elbow drops when fingers at shoulder height, sweep across elbow 90°; fingers shoulder height. (Igor)
+Other, 1-handed
+<li>Nagashi-uke: outside-in on horizontal or diagonal plane, open hand (e.g. kihon ippon kumite #6) (Kanazawa, Te Waza)
+<li>Sukui-uke: large circular scooping block to forward and side against kick, from outside body line to just within body line (Kanazawa, Te Waza)
+<li>Kake-uke: like bottom half of mawashi-uke (Kanazawa, Te Waza)
+Other, 2-handed
+<li>Morote-uchi-uke: x2 closed hand block (Igor)
+<li>Heiwan-uke: outer arm block, twist at end, fists or open hands facing outwards (e.g. first move of Heian Nidan/Yondan) (Kanazawa, Te Waza)
+<li>Open x block: going up to block jodan-zuki. Juji-uke: closed x block, both fists directed and facing down (Kanazawa, Te Waza).
+○ X-blocks from both sides of body end with both fists down ( Gankaku). X-blocks from one side of body are gedan-barai with vertical punch on top (Heian 4) (Murakami seminar).
+<li>Mawashi-uke : hands twist at armpit and hips; large to small circle, circle never goes outside of body line, hands aligned on top of each other, top arm/fist like uchi/soto-uke and hand like shuto, bottom hand palm heel (e.g. Unsu )
+○ Mawashi kake-uke, teisho awase-zuki: L soto-uke , R uchi-uke, L kizami, R gyaku-zuki. (Murakami seminar)
+
+
+<span id="#Jodan-uke"<h3>Jodan-uke</h3></span>
+    <ul>
+        <li>Keep elbow at same line</li>
+        <li>Block moves upward with body (low to middle feeling)</li>
+    </ul>
+
+<span id="#Soto-uke"><h3>Soto-uke</h3></span>
+<ul>
+    <li>Roll block</li>
+</ul>
+
+<span id="#Uchi-uke"><h3>Uchi-uke</h3></span>
+<ul>
+    <li>Pronate wrist outwards while pulling to opposite body</li>
+    <li>Keep fist close to body and not too high up</li>
+    <li>focus on keeping momentum</li>
+</ul>
+
+<span id="#Gedan-barai"><h3>Gedan-barai</h3></span>
+<ul>
+    <li>keep shoulders down and prep tight)</li>
+</ul>
+
+<span id="#Shuto-uke"><h3>Shuto-uke</h3></span>
+<ul>
+    <li>keep shoulders down and prep tight)</li>
+    <li>Contract chest for prep and legs at same time</li>
+</ul>
+
+<div align="right"><a href="#Top">Page Top</a></div>
+
+Lower Body
+
+<li><a href='#Kicks'>Kicks</a></li>
+<ul>
+    <li><a href='#stance1'>stance1</a></li>
+    - Maegeri: start from hip thrust, use crunch-like movement without leaning back; emphasis on high knee and whipping  kick out rather than thrusting it
+    - Maegeri on pullback should be with forward movement of hips
+    - Yokogeri: stretch, use hip, recoil knee sideways
+    - Yokogeri keage: push off of back foot; make sure body fully sideways and hip goes out sideways with kick
+    - Ushirogeri: don't use shoulders, keep knees together, use hip/center to aim and move through kick
+    - Count 1: practice turning about ~90 degrees and, leading with heel towards outside of knee, lift back leg in coiling for back kick. Count 2: repeat count 1. Count 3: complete movement as progressive ushirogeri towards front.
+    - emphasis is on having continuous movement from lifting of knee to snapping it back.
+
+
+    supporting knee compresses and points forward for pushing out kick: maegeri
+
+    Keri (kicks)
+    <li>Having hand facing up, contracting back muscles facilitates mawashi-geri (or yoko-geri ). (Murakami seminar)
+    Mae-geri (front kick): leg comes up, chambering as much as possible, hips forward and kick; not turning supporting foot, contract fast for power. (Igor)
+    <li>Keep hips in place for stationary mae-geri so that body does not meet opponent’s strike before foot does. Move knee and hips forward at same time for progressive mae-geri (keeping CoGM). (Murakami seminar)
+    <li>As if kicking two targets: striking target in front, and butt with hiki-ashi (George Sasano).
+    Mawashi-geri (roundhouse kick - koshi: ball; haisoku: snap): leg cocked 90°, fully contracted. (Igor)
+    Mawashi: try to keep opposite body from shifting outside; tuck inwards instead (amos)
+
+    Yoko-geri  keage (rising side kick) toes up at ridge position, kick flexible, leg ends straight; body straight; hip turned ½ way; supporting foot 45°. (Igor)
+    Yoko-geri kekomi (thrusting side kick): knee up, supporting foot 90°; hip turned then thrust. (Igor)
+    <li>In kiba-dachi: toes of crossing foot are even with toes of supporting foot, keep thighs together, time pushing down ball of crossing foot with thrust of kicking foot (Ohama, JKA-Osaka)
+    Ushiro-geri (back kick)
+    Uramawashi-geri (hook kick)
+    Mikazuki-geri: (Heian 5, Bassai Dai), land foot assertively in diagonal direction to floor. Not kick. (Murakami seminar)
+
+
+</ul>
+
+Jumps
+
+- don't look down, keep knees and calves together, don't lean or visibly push off first; it's about turning hips forward and squeezing legs together
+start low, corkscrew Instead of pushing off front leg, land softly
+
+<span id='#full body'><h2>Full Body</h2></span>
+
+<li>Turn hips sufficiently. When hips pull opposite of facing direction, snapping movement. When hips push in same direction, slamming movement. (Murakami seminar)
+
+<h3 id="#Progressive Movements">Progressive Movements</h3>
+
+<h4>Steps To Moving Forward<sup>1</sup></h4>
+<ol>
+    <li>Keep core tight to loosen limbs; </li>
+        <ul>
+            <li><strong>Hand technique begins with the step and with head movement</strong>, but avoid extra movement
+                with hands or flicking</li>
+        </ul>
+    <li>Make sure head / upper body / hands are synchronized with going forward/back; <strong>move and hit from the one
+        point</strong> (four points—hips and shoulders) and using the opposite body</li>
+        <ul>
+            <li>Use the lower body for going forwards and upper body for going backwards</li>
+        </ul>
+    <li>Forward momentum: <strong>Keep everything direct</strong></li>
+        <ul>
+            <li><i>Prep for technique should have large or "floating" movement while always squeezing and without
+                pausing</i>; hikite as if bouncing off body while going forward</li>
+            <li><i>Emphasize one point moving smoothly forward rather than pushing off of back leg suddenly</i><sup>1
+                </sup></li>
+        </ul>
+    <li>Advance or uncoil toward opponent on axis without pausing or losing forward momentum; expand back but
+        don't overextend shoulders or overturn</li>
+</ol>
+
+
+Stepping forward,
+transitive phase: breathe in, gravity up. Striking phase: breathe out, gravity down. Adjust feet in moving through stances to maintain centerline. (Murakami seminar)
+
+compress in middle of technique for setup
+
+<h3 id="#Turning">Turning</h3>
+<ul>
+    <li>As if presenting chest first (see gedan barai in <a href="<?=base_url()?>library/kata/17">Enpi</a>, manji-uke in
+        <a href="<?=base_url()?>library/kata/19">Gankaku</a>, Rika Usami's axis and rotation)</li>
+    <li>Shift weight slightly during prep to maximize shift back into final stance (See
+        <a href="<?=base_url()?>library/kata/14">Jion</a> manji-uke)</li>
+</ul>
+
+<div align="right"><a href="#Top">Page Top</a></div>
+
+<p id="#References"><small>References<br>
+    <ol>
+        <li id="citation_amos"><a href="<?=base_url()?>library/organizations/8">WTKO</a>:
+            <a href="<?=base_url()?>library/people/29">Richard Amos</a></li>
+        <li id="citation_dyachenko"><a href="karatecity.org">Karate City</a>:
+            <a href="<?=base_url()?>library/people/30">Igor Dyachenko</a></li>
+        <li id="citation_murakami"><a href="<?=base_url()?>library/organizations/2">SKIF</a>:
+            <a href="<?=base_url()?>library/people/27">Manabu Murakami</a></li>
+    </ol>
+</small></p>
+
+<div align="right"><a href="#Top">Page Top</a></div>
+
+<?php // endif; ?>
+
+{% endblock %}

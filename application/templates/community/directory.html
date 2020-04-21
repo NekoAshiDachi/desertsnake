@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<script src="<?=base_url()?>assets/js/filter.js"></script>
+
+<br><h1><?=$title?></h1>
+
+<p>A listing of the dojos of the major organizations.&nbsp;</p>
+
+<input type="search" class="light-table-filter" data-table="dojo" placeholder="Filter"><br><br>
+
+<table class="dojo table">
+
+<?php foreach($dojo as $d) : ?>
+    <tr><td>
+        <strong>
+            <?php echo (isset($d['orgID']) ? "<a href='".base_url()."library/organizations/".$d['orgID']."'>"
+                .$d['orgName']."</a>: " : NULL);?>
+            <a href="<?=$d['dojoURL'];?>"><?=$d['dojoName'];?>
+                <?php echo (($d['isCountryHQ'] == 1) ? ' (HQ)' : NULL);?></a>
+        </strong><br>
+
+        <?php echo (isset($d['instructorName']) ? 'Main instructor: '.$d['instructorName']."<br>" : NULL);
+        echo (isset($d['address']) ? 'Address: '.str_replace(' ,','',$d['address'])."<br>" : NULL);
+        echo (isset($d['email']) ? 'Email: '.$d['email']."<br>" : NULL);
+        echo (isset($d['phone']) ? 'Phone: '.$d['phone']."<br>" : NULL);
+        echo (isset($d['fax']) ? 'Fax: '.$d['fax']."<br>" : NULL);?>
+
+        <!-- echo (isset($d['address']) ? '<iframe width="300" height="225" frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCf0d44n0cyl9N1yYUyFlVekitvU86GwJc&q=
+                '.$d['orgName'].str_replace(' ', '+', $d['address']).'"
+                allowfullscreen></iframe>' : NULL);?> -->
+    </td></tr>
+<?php endforeach; ?>
+</table>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<h1><?=$title?></h1>
+
+<?php
+
+foreach ($training as $t) : ?>
+
+    <h3><a href='<?=base_url();?>community/training/<?=$t['trainingID']?>'><?=$t['title']?></a></h3>
+
+    <p><small>
+            Date: <?=str_replace('00:00:00', '', $t['date'])?>
+
+            <?php echo (isset($t['orgID'])
+                ? "<br>Organization: <a href='".base_url()."library/organizations/".$t['orgID']."'>".$t['orgName']."</a>"
+                : NULL);
+
+            if (isset($t['instructorName'])) :
+                echo "<br>Instructor: ";
+                echo (isset($t['instructorID']) ? "<a href='".base_url()."library/people/".$t['instructorID']."'>" : NULL);
+                echo $t['instructorName'];
+                echo (isset($t['instructorID']) ? "</a>" : NULL);
+            endif;
+
+            echo (isset($t['tagName']) ? "<br><i>".$t['tagName']."</i>" : NULL); ?>
+    </small></p>
+
+    <p><?=$t['text']?></p>
+
+    <?php endforeach;?>
+
+<?php foreach ($thoughts as $t): ?>
+    <h3><a href='".base_url()."community/thoughts/<?=$t['thoughtsID']?>'><?=$t['title']?></a></h3>
+
+    <p><small>
+            Date: <?=str_replace('00:00:00', '', $t['date'])?>
+    </small></p>
+
+    <p><?=$t['text']?></p>
+
+<?php endforeach; ?>
+
+{% endblock %}

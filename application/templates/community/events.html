@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<h1>{{ title }}</h1>
+
+<p>Here is a calendar of upcoming events: seminars, camps, tournaments, and other significant events you'll want to join
+    or spectate (we know that we want to!). The Agenda tab provides a compact list of these events.</p>
+
+<p>This page will later include a search function for finding specific people or organizations. If you know of an event
+    that should be up here, <a href="{{ url_for('main.contact') }}">contact us</a> and we'll put it up to share with others.</p>
+
+<iframe src="https://calendar.google.com/calendar/embed?height=500&amp;wkst=1&amp;bgcolor=%23ccccff&amp;src=vinal150lf1bcrt5ae9d0cl5n4%40group.calendar.google.com&amp;color=%23711616&amp;ctz=America%2FNew_York"
+    style="border-width:0" width="500" height="500" frameborder="0"></iframe>
+
+{% endblock %}

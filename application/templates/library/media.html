@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<script src="<?=base_url();?>assets/js/filter.js"></script>
+<script src="<?=base_url();?>assets/js/ss.js"></script>
+
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<?php function popup($url) {
+    return "<a href='".$url."' target='popup' onclick=\"window.open(".$url.", 'popup', 'width=600, height=600');
+            return false;\">";}
+
+foreach($media as $m) :
+    if (preg_match('/WEBSITE/', $m['format'])) :
+        $urls[] = $m;
+    elseif (preg_match('/WEBPAGE|ARTICLE/', $m['format'])) :
+        $articles[] = $m;
+    elseif (preg_match('/BOOK/', $m['format'])) :
+        $books[] = $m;
+    elseif (preg_match('/DVD/', $m['format'])) :
+        $dvds[] = $m;
+    endif;
+endforeach; ?>
+
+<!--TODO Amos and Ubl Course Highlights - videos - group_concat multiple performers (add Ubl)-->
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<p>Feel free to narrow your search by name, organization, or topic (e.g. kihon, kumite, kata, interview,
+    philosophy, etc.).<br>
+
+
+<!-- VIDEOS ----------------------------------------------------------------------------------------------------------->
+
+<p><button class="btn btn-primary btn-large dropdown-toggle" onclick="toggle_visibility('videos');">Videos</button></p>
+
+<div id="videos" style="display:none">
+
+    <p>These are online videos taken from seminars, tournaments, and DVDs. Some are on a range of subjects, while others
+        are quite specific. We will eventually have notes appended to the longer ones for content and timestamps.</p>
+
+    <input type="search" class="light-table-filter" data-table="videos" placeholder="Filter"><br>
+
+    <table class="videos table">
+
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Style</th>
+            <th>Organization</th>
+            <th>Performer</th>
+            <th>Tags</th>
+        </tr>
+
+    <?php foreach ($videos as $v) : ?>
+        <tr>
+    <?php # title, url, thumbnail
+        if (preg_match('/youtube.*=(.*)/', $v['url'], $youtube_id)) : ?>
+            <td width="50%"><div class="thumbnail" align="left">
+                    <?=popup($v['url']);?>
+                    <img src="https://img.youtube.com/vi/<?=$youtube_id[1];?>/0.jpg" style="width:120px; height:80px">
+                    <?=$v['title'];?></a></div></td>
+        <?php else: ?>
+            <td><?=popup($v['url']);?><?=$v['title'];?></a></td>
+        <?php endif;?>
+
+            <td><?=$v['date'];?>
+            <td><?php echo (isset($v['styleName']) ? $v['styleName'] : NULL);?></td>
+            <td><?php echo (isset($v['orgID'])
+                    ? "<a href='".base_url()."library/organizations/".$v['orgID']."'>".$v['orgName']."</a>" : NULL);?></td>
+            <td><?php echo (isset($v['perfID'])
+                    ? "<a href='".base_url()."library/people/".$v['perfID']."'>".$v['perfName']."</a>" : NULL);?></td>
+            <td><?php echo (isset($v['tagName']) ? ucwords($v['tagName'])."</a>" : NULL);?></td>
+        </tr>
+    <?php endforeach; ?>
+
+    </table>
+</div>
+
+
+<!-- URLS ------------------------------------------------------------------------------------------------------------->
+
+<p><button class="btn btn-primary btn-large dropdown-toggle" onclick="toggle_visibility('urls');">Useful Sites</button>
+</p>
+
+<div id="urls" style="display:none">
+
+    <p>These are a grab bag of various websites frequently used or stumbled across during research. Tags and short
+        descriptions of them will later follow.</p>
+
+    <input type="search" class="light-table-filter" data-table="articles" placeholder="Filter"><br>
+
+    <table class="urls table">
+        <tr>
+            <th>Title</th>
+            <th>Publisher, Year</th>
+            <th>Tags</th>
+        </tr>
+
+        <?php foreach ($urls as $u) : ?>
+        <tr>
+            <!-- title and name -->
+            <td width="50%"><?=popup($u['sourceLink']);?><?=$u['title'];?></a></td>
+            <td><?php echo (isset($u['pubYear']) ? $u['pubYear'] : NULL);?></td>
+        </tr>
+        <?php endforeach;?>
+    </table>
+</div>
+
+
+<!-- ARTICLES --------------------------------------------------------------------------------------------------------->
+
+<p><button class="btn btn-primary btn-large dropdown-toggle" onclick="toggle_visibility('articles');">Articles</button>
+</p>
+
+<div id="articles" style="display:none">
+
+    <p>These are interviews or essays about a specific subject. Some of them are argumentative, and so while together
+        they reflect our goal of representing many views at once, we do not officially espouse any individual point of
+        view.</p>
+
+    <input type="search" class="light-table-filter" data-table="articles" placeholder="Filter"><br>
+
+    <table class="articles table">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Organization</th>
+            <th>Publisher, Year</th>
+            <th>Tags</th>
+        </tr>
+
+    <?php foreach ($articles as $a) : ?>
+        <tr>
+        <!-- title and name -->
+        <?php if (preg_match('/(\w+), (\w+)\. \"(.+)\"/', $a['title'], $name)) : ?>
+            <td width="50%"><?=popup($a['sourceLink']);?><?=$name[3];?></a></td>
+            <td><?=$name[2]." ".$name[1];?></td>
+
+        <?php else : ?>
+            <td><?=popup($a['sourceLink']);?><?=str_replace('"', '', $a['title']);?></a></td>
+            <td><?php echo (isset($a['authorID']) ? "<a href='".base_url()."/people/".$a['authorID']."'>"
+                    .$a['authorName']."</a>": NULL);?></td>
+        <?php endif; ?>
+
+            <td><?php echo (isset($a['orgID'])
+                ? "<a href='".base_url()."library/organizations/".$a['orgID']."'>".$a['orgName']."</a>" : NULL);?></td>
+
+            <td><?=$a['pubYear'];?></td>
+            <td><?=$a['tagName'];?></td>
+        </tr>
+    <?php endforeach; ?>
+    </table>
+</div>
+
+
+<!-- BOOKS------------------------------------------------------------------------------------------------------------->
+
+<p><button class="btn btn-primary btn-large dropdown-toggle" onclick="toggle_visibility('books');">Books</button></p>
+
+<div id="books" style="display:none">
+
+    <p>These are texts by masters, experts, and biographers ranging from <a href="<?=base_url()?>library/people/1">
+       Gichin Funakoshi's</a> original writings to modern questioning of Shotokan karate's foundations.</p>
+
+    <input type="search" class="light-table-filter" data-table="books" placeholder="Filter"><br>
+
+    <table class="books table">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Organization</th>
+            <th>Publisher, Year</th>
+            <th>Tags</th>
+        </tr>
+
+    <?php foreach($books as $b) : ?>
+        <tr>
+            <td width="50%"><div class="thumbnail" align="left">
+                    <?=popup($b['sourceLink']);?><img src="<?=$b['coverLink'];?>" style="width:84px; height:120px">
+                        <?=$b['title'];?></a></div></td>
+
+            <td><a href="<?=base_url().'library/people/'.$b['authorID'];?>"><?=$b['authorName'];?></a></td>
+            <td><a href="<?=base_url().'library/organizations/'.$b['orgID'];?>"><?=$b['orgName'];?></a></td>
+            <td><?=$b['pubYear'];?></td>
+            <td><?=ucwords($b['tagName']);?></td>
+        </tr>
+    <?php endforeach; ?>
+    </table>
+</div>
+
+
+<!-- DVDS ------------------------------------------------------------------------------------------------------------->
+
+<p><button class="btn btn-primary btn-large dropdown-toggle" onclick="toggle_visibility('dvds');">DVDs</button></p>
+
+<div id="dvds" style="display:none">
+
+    <p>With YouTube, DVDs no longer have the appeal they used to for recorded instruction, yet many of these remain
+        canonical examples of karate masters on video.</p>
+
+    <input type="search" class="light-table-filter" data-table="dvds" placeholder="Filter"><br>
+
+    <table class="dvds table">
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Organization</th>
+            <th>Publisher, Year</th>
+            <th>Tags</th>
+        </tr>
+
+    <?php foreach($dvds as $d) : ?>
+        <tr>
+            <td width="50%"><div class="thumbnail" align="left">
+                    <?=popup($d['sourceLink']);?><img src="<?=$d['coverLink'];?>" style="width:84px; height:120px">
+                        <?=$d['title'];?></a></div></td>
+
+            <td><a href="<?=base_url().'library/people/'.$d['authorID'];?>"><?=$d['authorName'];?></a></td>
+            <td><a href="<?=base_url().'library/organizations/'.$d['orgID'];?>"><?=$d['orgName'];?></a></td>
+            <td><?=$d['pubYear'];?></td>
+            <td><?=ucwords($d['tagName']);?></td>
+        </tr>
+    <?php endforeach; ?>
+
+    </table>
+</div>
+
+
+<!--<hr style="clear:both;"/>-->
+
+{% endblock %}

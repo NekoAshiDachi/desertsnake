@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<h1>{{ o.name }} ({{ o.acronym }})</h1>
+
+<table>
+    <tr><td>Japanese name: {{ o.kanji }} - {{ o.japaneseName }}</td></tr>
+    <tr><td>Start date: {{ o.start_date }}</td></tr>
+    <tr><td>Style ID (in progress): {{ o.style_id }}</td></tr>
+    <tr><td>Instructor ID (in progress): {{ o.headInstructor_person_id }}</td></tr>
+    <tr><td>President ID (in progress): {{ o.president_person_id }}</td></tr>
+    <tr><td>Honbu dojo ID (in progress): {{ o.honbu_dojo_id }}</td></tr>
+    <tr><td>Logo (in progress): {{ o.logo }}</td></tr>
+</table>
+
+{% endblock %}

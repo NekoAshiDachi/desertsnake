@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<?php
+
+if (array_key_exists(0, $people)) : ?>
+<br><h1><?=$title?></h1>
+
+<p>These are profiles of significant karate-ka within Shotokan. At the least, they are biographies
+    containing the lives and influences of the individual, while others will include philosophical and
+    methodological approaches, publications, and/or related videos. Profiles are likely to change often
+    with updates and added information - very exciting!</p>
+
+<div class="row">
+
+    <?php $row_count = 0;
+
+    foreach($people as $p) :
+        if (isset($p['rank'])) : ?>
+        <div class="col-md-3">
+            <div class="thumbnail" align="center">
+                <a href="<?=base_url()?>library/people/<?=$p['id']?>">
+                    <img src="<?=base_url()?>assets/images/people/thumbnails/<?=$p['pic']?>" style="width:140px; height:200px"></a>
+            </div>
+            <h4 align="center"><?=$p['firstName']?> <?=$p['lastName']?></h4><br>
+        </div>
+        <?php endif;
+    $row_count++;
+
+    if ($row_count % 4 == 0) : ?>
+
+</div>  <!-- ends row -->
+<div class="row">
+
+    <?php endif;
+
+    endforeach; ?>
+
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+<?php else :
+
+    $row = $people; ?>
+        <h2><?php echo $row['firstName']." ".$row['lastName']; ?></h2>
+        Rank: <?php echo $row['rank']; ?><br>
+        Date of birth: <?php echo $row['DoB']; ?><br>
+        <?php echo (isset($row['DoD']) ? "Date of death: ".$row['DoD']."<br>" : NULL); ?>
+
+    <?php echo (isset($row['bio']) ? "<br><p>".$row['bio']."</p>" : NULL); ?>
+
+        <br>
+
+    <a href="<?=base_url()?>library/people">Back to People</a>
+
+<?php endif; ?>
+
+{% endblock %}

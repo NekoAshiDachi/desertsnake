@@ -103,6 +103,12 @@ def create_app(config_class=Config):
     from application.main import bp as main_bp
     app.register_blueprint(main_bp)
 
+    from application.library import bp as library_bp
+    app.register_blueprint(library_bp, url_prefix='/library')
+
+    from application.community import bp as community_bp
+    app.register_blueprint(community_bp, url_prefix='/community')
+
     from application.api import bp as api_bp
     app.register_blueprint(api_bp, url_prefix='/api')
 
@@ -145,7 +151,7 @@ HTTP Accept-Language header (specifies browser language and locale preferences
 as weighted list) that clients send with a request
 
 _(text) translates text in the language selected by localeselector to;
-lazy_gettext() provides lazy evaluation of text so that transalation occurs only
+lazy_gettext() provides lazy evaluation of text so that translation occurs only
 when text is used
 
 Once all the _() and _l() are in place and a babel.cfg (tells pybabel what
