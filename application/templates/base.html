@@ -9,6 +9,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
         crossorigin="anonymous">
+
+    <style>
+    .modal-content iframe{
+        margin: 0 auto;
+        display: block;
+    }
+    </style>
+
 {% endblock %}
 
 {% block title %}
@@ -67,6 +75,7 @@
                 <a class="dropdown-item" href="{{ url_for('library.kumite') }}">Kumite</a>
 
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ url_for('library.training') }}">Training</a>
                 <a class="dropdown-item" href="{{ url_for('library.media') }}">Media</a>
                 <!-- e.g., Enter the Dojo -->
                 <!--<div class="dropdown-divider"></div>-->
@@ -177,6 +186,28 @@ providing content; defines where derived templates can insert themselves; .-->
         {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
     </div>
+
+<!--<div class="bs-example">-->
+    <!-- Button HTML (to Trigger Modal) -->
+<!--    <a href="#modal_youtube" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a>-->
+
+    <!-- Modal HTML -->
+<!--    <div id="modal_youtube" class="modal fade">-->
+<!--        <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+<!--                    <h4 class="modal-title">YouTube Video</h4>-->
+<!--                </div>-->
+
+<!--                <div class="modal-body">-->
+<!--                    <iframe id="youtube_video" width="560" height="315" src="//www.youtube.com/embed/YE7VzlLtp-4" frameborder="0" allowfullscreen></iframe>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>     -->
+
 {% endblock %}
 
 <!--moment.include_moment() generates <script> tag for importing moment.js;
@@ -201,8 +232,76 @@ to rather than replaces block scripts-->
 
     <script>
         $(function () {
-            $('[data-toggle="popover"]').popover() })
-    </script>
+            $('[data-toggle="popover"]').popover({
+                animation: true, html: true, placement: 'auto', trigger: 'hover', delay: {show: 500, hide: 500},
+                template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'
+            });
+
+        	toggle_video_modal() {
+
+        	    // Click on video thumbnail or link
+        	    $(".js-trigger-video-modal").on("click", function(e){
+
+                  // prevent default behavior for a-tags, button tags, etc.
+        	        e.preventDefault();
+
+                  // Grab the video ID from the element clicked
+                  var id = $(this).attr('data-youtube-id');
+
+                  // Autoplay when the modal appears
+                  // Note: this is intetnionally disabled on most mobile devices
+                  // If critical on mobile, then some alternate method is needed
+                  var autoplay = '?autoplay=1';
+
+                  // Don't show the 'Related Videos' view when the video ends
+                  var related_no = '&rel=0';
+
+                  // String the ID and param variables together
+                  var src = '//www.youtube.com/embed/'+id+autoplay+related_no;
+
+                  // Pass the YouTube video ID into the iframe template...
+                  // Set the source on the iframe to match the video ID
+                  $("#youtube").attr('src', src);
+
+                  // Add class to the body to visually reveal the modal
+                  $("body").addClass("show-video-modal noscroll");
+
+              });
+
+        	    // Close and Reset the Video Modal
+              function close_video_modal() {
+
+                event.preventDefault();
+
+                // re-hide the video modal
+                $("body").removeClass("show-video-modal noscroll");
+
+                // reset the source attribute for the iframe template, kills the video
+                $("#youtube").attr('src', '');
+
+              }
+              // if the 'close' button/element, or the overlay are clicked
+        	    $('body').on('click', '.close-video-modal, .video-modal .overlay', function(event) {
+
+                  // call the close and reset function
+                  close_video_modal();
+
+              });
+              // if the ESC key is tapped
+              $('body').keyup(function(e) {
+                  // ESC key maps to keycode `27`
+                  if (e.keyCode == 27) {
+
+                    // call the close and reset function
+                    close_video_modal();
+
+                  }
+              });
+        	}
+        	toggle_video_modal();
+        });
+
+<!-- Mega Flask Tutorial -->
 
     <script>
         /* sourceElem=postID, destElem=translationID */

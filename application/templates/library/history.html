@@ -2,22 +2,229 @@
 
 {% block app_content %}
 
-<h2><?= $title ?></h2>
-
+<!-- To edit timeline, update Google Drive Chronology sheet and the rest will
+update automatically -->
 <iframe src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1O3fC3TuKyL-P2VG_5UoHEKkR4PifwTyCJUVOnEmFvvk&font=Default&lang=en&initial_zoom=2&height=650'
-        width='100%' height='650' webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder='0'></iframe>
+    width='100%' height='650' webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder='0'></iframe>
 
-<h3>Ryūha (Schools)</h3>
+<div class='w-50' style='border: 1px solid lightgray'>
+    <div class='row'>
+        <div class='span6'>
+            <h3 style='padding-left:25px'>History</h3></div>
+    </div>
+    <ul>
+        <li><a href='#origin'>Origin</a></li>
+        <ul>
+            <li><a href='#origin_chinese'>China</a></li>
+        </ul>
 
-<p>Okinawan karate (in Okinawan Toudi - for T’ang Dynasty and “hand”), was not based in city-centered (i.e. Shuri,
-    Tomari, Naha) systems. From Toudi came Shotokan, Shito-ryu, Goju-ryu, Shorin-ryu, and Uechi-ryu. The most famous men
-    came from Naha and Shuri, but most karate men in 19th C were Shuri government employees. Naha, Shuri, and Tomari are
-    also less than a 20 minute walk apart. The names Naha-Te, Shuri-Te, and Tomari-Te weren’t given until 1926 (Redmond
-    23-4).
+        <li><a href='#okinawa'>Okinawa</a></li>
+        <ul>
+            <li><a href="#okinawa_chinese">Chinese instructors</a></li>
+            <li><a href="#okinawa_instructors">Okinawan instructors</a></li>
+        </ul>
 
-<p>When Funakoshi learned Karate, his sensei Itosu and Azato only taught kata. Kihon and kumite drills as we know today
-    were nonexistent. It may have been Funakoshi exposure to kendo and its training method that would lead him to
-    introduce gohon kumite - kendo’s uchikomi.</p>
+        <li><a href='#Japan'>Japan</a></li>
+        <ul>
+            <li><a href="#FunakoshiJapan">Funakoshi, Kanno</a></li>
+            <li><a href="#Nakayama">Nakayama, Keio</a></li>
+            <li><a href="#JKA">JKA years and splintering</a></li>
+        </ul>
+
+        <ul>
+            <li><a href='#Today'>Today</a></li>
+            <ul>
+                <li><a href='#Tournaments'>Tournaments</a></li>
+            </ul>
+        </ul>
+
+    </ul>
+</div>
+<br>
+
+<h2 id='origin'>Origin</h2>
+
+<p>As Robert Redmond writes, karate originated in Okinawa centuries ago but its
+roots extend to China, Korea, Japan, Taiwan, and other Pacific Rim nations.
+Most of the exchange was from trade and diplomacy, but at times, visitors
+unintentionally washed ashore.
+<sup><a data-toggle="popover" href='#redmond' data-content="Redmond 17" >[1]</a></sup>
+</p>
+
+<h3 id='origin_chinese'>China</h3>
+
+<p>Oral histories and a few documents describe the strong influence of Chinese
+martial arts on Okinawa during the 18th and 19th centuries. Those arts
+historically center around the Shaolin temple in China's Henan province, where
+martial artists from different styles sought refuge when they were being hunted
+by the Qing Dynasty (which lasted from 1644-1912). Chinese boxing developed
+there and spread outwards; these systems, such as
+ <a href='#' data-toggle="modal" data-target="#modal_white_crane">White Crane</a>, Five Ancestors,
+Monk Fist, Dragon Fist, Lion Boxing, Dog Boxing, and Tiger Fist, were what was
+then transmitted to the Okinawans.
+<sup><a data-toggle="popover" href='#mccarthy' data-content="McCarthy 30, 38" >[2]</a></sup>
+</p>
+
+<div class="modal fade" id="modal_white_crane" tabindex="-1">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- substitute Google Drive ID into this format -->
+                <iframe width="100%" height='auto' src="https://www.youtube.com/embed/HsMCLWTXD_Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</p>
+
+<!-- Modal HTML -->
+<div id="modal_youtube" class="modal fade">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe id="youtube_video" width="100%" height="auto" src="//www.youtube.com/embed/" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class='modal_youtube' data-toggle='modal'>Test button</button><br>
+
+<h2 id='okinawa'>Okinawa</h2>
+
+<p>Over the centuries, Okinawans and Chinese freely visited and lived in China's
+southeastern Fujian province and Okinawa's Naha and Shuri cities. Especially in
+Fujian's capital Fuzhou, several forms of <i>gongfu</i> (skill through
+perseverance) or <i>quanfa</i> (literally, fist rule, and <i>kenpo</i> in
+Japanese) were taught. As Chinese martial artists freely trained under
+different systems and instructors, those arts evolved over time, while the
+Okinawans preserved the style they had learned within a given period.
+<sup><a data-toggle="popover" data-content="Redmond 23-24" href='#redmond'>[1]</a></sup>
+</p>
+
+<p>The styles of Okinawan <i>toudi</i> (literally, T’ang
+Dynasty hand) that emerged from this interaction came directly from the
+Chinese instructors and their time period, rather than specific Okinawan cities.
+While most famous toudi practitioners came from Naha (a major port city) and
+Shuri (the capital), most karate men by the 19th century were Shuri government
+employees, and the two cities were less than a 20-minute walk apart. Their
+differences more likely represent different points of time of the same Chinese
+martial art, rather than different martial arts altogether. The 1926 designation
+of toudi styles as Naha-Te, Shuri-Te, and Tomari-Te is then an anachronistic
+attempt to systematize those styles. This <a href='#' data-toggle="modal"
+data-target="#modal_genealogy">genealogical map</a> is a good illustration of this,
+with the individuals further detailed below.
+
+<!-- Modal -->
+<div class="modal fade" id="modal_genealogy" tabindex="-1"
+    role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- substitute Google Drive ID into this format -->
+                <img src="https://drive.google.com/uc?id=1dDKzoGOZs7kPo1bCZ_kV9bUlLkFC_uvd"
+                    style='width: 100%;'>
+                <small>(Redmond 26)</small>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</p>
+
+
+
+<h3 id="okinawa_chinese">Chinese instructors</h3>
+
+As Redmond writes, the Okinawans' Chinese martial arts instructors, with the
+exception of <a href="">Chinto</a>, were "government officials with diplomatic
+status [who] interacted with their high-ranking and wealthy counterparts from
+Okinawa." Below are a few influential instructors who contributed to the
+development of Okinawan martial arts. Those mainly known for contributions to
+kata, such as Chiang Nan (the <a href="">Heians</a>), Kung Hsiang-Chun (<a
+href=''>Kushanku</a>), and Chinto (<a href="">Gankaku</a>) are mentioned on
+their respective kata page.
+<sup><a data-toggle="popover" data-content="Redmond 18, 21" href='#redmond'>[1]</a></sup>
+<i>TODO - fix links once pages are up</i>
+</p>
+
+<h4 id='okinawa_chinese_xinxian'>Wai Xinxian</h4>
+
+<p>Redmond 20: "Not much is known about this man other than his name
+and that he wasa friend and associate of Xie Zhongxiang (below). He is thought
+to have taught Monk Fist Boxing in Fuzhou, China to a famous Okinawan instructor
+who moved there for a period,but no one is really sure. He is thought by some to
+be a little older than Xie Zhongxiang."
+<sup><a data-toggle="popover" href='#mccarthy' data-content="McCarthy 32">[2]</a></sup>
+</p>
+
+<h4 id='okinawa_chinese_zhongxiang'>Xie Zhongxian</h4>
+
+<p>Redmond 21: "Xie Zhongxiang (1852-1930). Known by the
+nickname Ryuru Ko, this man was afriend of Wai Xinxian's and taught Gongfu in
+Fuzhou as well to Okinawans who traveledto meet him. He was the founder of the
+Whooping Crane style of Gongfu and probablystudied White Crane and other systems
+- synthesizing them into his own method.
+<sup><a data-toggle="popover" href='#mccarthy' data-content="McCarthy 34-39">[2]</a></sup>
+</p>
+
+<h4 id='okinawa_chinese_iwah'>Iwah</h4>
+
+<p>Redmond 21: "Iwah. A military attaché like Ason [who taught
+the <a href="">Tekkis</a>], Iwah also lived in Fuzhou, China and taught Quanfa
+to Okinawans who traveled there."
+<sup><a data-toggle="popover" href='#cook' data-content="Cook 287">[3]</a></sup>
+</p>
+
+<h3 id='okinawa_instructors'>Okinawan instructors</h3>
+
+ colored the Chinese names so the injection of their knowledge and the flow of theirteachings by color would be obvious. As you can see, Matsumura Sokon is a nodethrough which all of the blue lines flowed. AragakiSeisho and Higaonna (or Higashionna
+ depending on who you read) Kanryo are both nodes for the red lines that formed so-called Naha style.
+redmond 26
+
+There are only four people on the chart who receive both flows: Matsumora Kosaku,Matsumura Sokon, Kenwa Mabuni, and then Nakayama Masatoshi.
+redmond 27
+
+The most important missing piece from this chart are the not-so-famous peers of themen listed here. It is the cross-pollination of information between peers, which is a veryreal learning experience for everyone who takes up the martial arts.
+redmond 27
+
+<h4 id='okinawa_instructors_funakoshi'>Gichin Funakoshi</h4>
+
+<p>When <a href="{{ url_for('library.person', id=1) }}">Funakoshi</a> learned
+Karate, his sensei Itosu and Azato only taught kata.
+Kihon and kumite drills as we know today were nonexistent.
+<i>TODO: develop further</i></p>
+
+<h2>Japan: Ryūha (Schools)</h2>
+
+During the era where Funakoshi, Mabuni, and Miyagi were in ascension in the early 20thCentury, the word Toudi was gradually replaced by the word Karate, which is a moreJapanese word. T'ang was replaced by the kanji meaning "void", "sky", or "empty."
+he kanji for "Kara-Te", which means Empty Hand. This way ofwriting it became fashionable in the early 20th Century as JapaneseNationalism was on the rise and interest in things from China wason the decline
+redmond 27
+
+Shotokan, Shito-ryu, Goju-ryu, Shorin-ryu, and Uechi-ryu
+styles,
+
+<p>It may have been Funakoshi exposure to kendo and its training method that
+would lead him to introduce gohon kumite - kendo’s uchikomi.</p>
 
 <p>During the early 20th C, the time of Funakoshi, Mabuni, and Miyagi, with the rise of imperialism and nationalism and
     the decline of interest in China, the word Toudi was gradually replaced by the word Karate, a more Japanese word.
@@ -34,18 +241,19 @@
 <p>Technique names were introduced by that time - there was no relationship between a technique and a single name.
     Okinawan masters didn’t want that because one movement could be more than one technique implied by the name[1].
 
-<p>This is a genealogical map of the major Shotokan organizations, along with their individual histories. As you can
-    see, from the organization JKA came the karate-ka who would later form their own organizations.</p>
 
-<img src="../assets/images/history/KataGenealogy_Redmond26.png"><br>
-<small>(Redmond 26)</small>
+
 
 <h4>References</h4>
-<p>[1] - “Shotokan Mysteries”, Kousaku Yokota, Xlibris 2013<br>
+<p id='redmond'>[1] - “Shotokan Mysteries”, Kousaku Yokota, Xlibris 2013<br>
     Redmond, Robert. The Folk Dances of Shotokan. N.p.: n.p., 2006. ebook.</p>
 
 <p>References to references:<br>
-Cook, Harry, Shotokan Karate A Precise History. (England: Cook, 2001)<br>
+
+<p id='#redmond'>1. Redmond, Robert. <i>Folk Dances of Shotokan.</i> Redmond, 2006.</p>
+<p id='#mccarthy'>2. McCarthy, Patrick. <i>The Bible of Karate Bubishi.</i> Charles E. Tuttle Company, Inc., 1995.</p>
+3. Cook, Harry, Shotokan Karate A Precise History. (England: Cook, 2001)<br>
     McCarthy, Patrick. The Bible of Karate Bubishi. (Tokyo, Japan: Charles E. Tuttle Company, Inc., 1995)</p>
+
 
 {% endblock %}

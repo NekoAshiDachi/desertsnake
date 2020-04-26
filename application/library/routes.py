@@ -42,6 +42,10 @@ def kata():
 def kumite():
     return render_template("library/kumite.html", title=_('Kumite'))
 
+@bp.route('/training')
+def training():
+    return render_template("library/training.html", title=_('Training'))
+
 @bp.route('/media')
 def media():
     return render_template("library/media.html", title=_('Media'))

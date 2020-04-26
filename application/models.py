@@ -422,31 +422,55 @@ class Task(db.Model):
 
 # ------------------------------------------------------------------------------
 
-class Chronology(db.Model):
+class Style(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    start_date = db.Column(db.DateTime)
-    end_date = db.Column(db.DateTime)
-    title = db.Column(db.String(30), nullable=False)
-    text = db.Column(db.Text)
-    media = db.Column(db.String(125))
-    media_credit = db.Column(db.String(125))
-    media_caption = db.Column(db.Text)
+    name = db.Column(db.String(25), nullable=False, unique=True)
+    kanji = db.Column(db.String(25), unique=True)
+    start_date = db.Column(db.String(25))
+    founder_person_id = db.Column(db.Integer)
+    notes= db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
 
-class Country(db.Model):
+    orgs = db.relationship('Org', backref='style')
+
+class Org(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(125), unique=True)
-    ISO = db.Column(db.String(3), unique=True)
-    ISO3 = db.Column(db.String(3), unique=True)
-    code = db.Column(db.String(3), unique=True)
-    phone_code = db.Column(db.String(4))
+    acronym = db.Column(db.String(25))
+    name = db.Column(db.String(50))
+    japaneseName = db.Column(db.String(50))
+    kanji = db.Column(db.String(25))
+    start_date = db.Column(db.DateTime)
+    headInstructor_person_id = db.Column(db.Integer)
+    president_person_id = db.Column(db.Integer)
+    honbu_dojo_id = db.Column(db.Integer)
+    logo = db.Column(db.String(25))
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
+
+    dojos = db.relationship('Dojo', backref='org')
+    style_id = db.Column(db.Integer, db.ForeignKey('style.id'))
+
+class Person(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    firstName = db.Column(db.String(25))
+    lastName = db.Column(db.String(25), nullable=False)
+    altLastName = db.Column(db.String(25))
+    DoB =db.Column(db.DateTime)
+    DoD =db.Column(db.DateTime)
+    org_id = db.Column(db.Integer)
+    rank = db.Column(db.Integer)
+    style_id = db.Column(db.Integer)
+    pic = db.Column(db.String(25))
+    bio = db.Column(db.Text)
+    created_date = db.Column(db.DateTime)
+    updated_date = db.Column(db.DateTime, nullable=False)
+
+o = lambda id: url_for('library.org', id=id)
+p = lambda id: url_for('library.person', id=id),
 
 class Dojo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    org_id = db.Column(db.Integer)
     headInstructor_person_id = db.Column(db.Integer)
     name = db.Column(db.String(125))
     street = db.Column(db.String(125))
@@ -463,6 +487,8 @@ class Dojo(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
 
+    org_id = db.Column(db.Integer, db.ForeignKey('org.id'))
+
 class Glossary(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.String(25))
@@ -473,58 +499,35 @@ class Glossary(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
 
+class Drill(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    category = db.Column(db.String(50))
+    created_date = db.Column(db.DateTime)
+    updated_date = db.Column(db.DateTime, nullable=False)
+
 class Kata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25), nullable=False)
     kanji = db.Column(db.String(25))
     parent_kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'))
     child_kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'))
+    history = db.Column(db.Text)
+    tips = db.Column(db.Text)
     creator_person_id = db.Column(db.Integer)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
 
-class Kata_style_org(db.Model):
+class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    style_id = db.Column(db.Integer)
-    org_id = db.Column(db.Integer)
+    table_id = db.Column(db.Integer, primary_key=True)
+    table_inner_id = db.Column(db.Integer, primary_key=True)
+    style_id = db.Column(db.Integer, primary_key=True)
+    org_id = db.Column(db.Integer, primary_key=True)
+    performer_person_id = db.Column(db.Integer, primary_key=True)
+    URL = db.Column(db.String(50), unique=True)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
-
-class Org(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    acronym = db.Column(db.String(25))
-    name = db.Column(db.String(50))
-    japaneseName = db.Column(db.String(50))
-    kanji = db.Column(db.String(25))
-    start_date = db.Column(db.DateTime)
-    style_id = db.Column(db.Integer)
-    headInstructor_person_id = db.Column(db.Integer)
-    president_person_id = db.Column(db.Integer)
-    honbu_dojo_id = db.Column(db.Integer)
-    logo = db.Column(db.String(25))
-    created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
-
-class Person(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    firstName = db.Column(db.String(25))
-    lastName = db.Column(db.String(25), nullable=False)
-    altLastName = db.Column(db.String(25))
-    DoB =db.Column(db.DateTime)
-    DoD =db.Column(db.DateTime)
-    style_id = db.Column(db.Integer)
-    org_id = db.Column(db.Integer)
-    rank = db.Column(db.Integer)
-    pic = db.Column(db.String(25))
-    bio = db.Column(db.Text)
-    created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
-
-def o(id):
-    return url_for('library.org', id=id)
-
-def p(id):
-    return url_for('library.person', id=id)
 
 class Publication(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -538,6 +541,18 @@ class Publication(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
 
+class Country(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(125), unique=True)
+    ISO = db.Column(db.String(3), unique=True)
+    ISO3 = db.Column(db.String(3), unique=True)
+    code = db.Column(db.String(3), unique=True)
+    phone_code = db.Column(db.String(4))
+    created_date = db.Column(db.DateTime)
+    updated_date = db.Column(db.DateTime, nullable=False)
+
+    states = db.relationship('State', backref='country')
+
 class State(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25), nullable=False)
@@ -546,29 +561,18 @@ class State(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
 
-class Style(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(25), nullable=False, unique=True)
-    kanji = db.Column(db.String(25), unique=True)
-    start_date = db.Column(db.String(25))
-    founder_person_id = db.Column(db.Integer)
-    notes= db.Column(db.Text)
-    created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    country_id = db.Column(db.Integer, db.ForeignKey('country.id'))
 
+# categories, or relational table cross-reference--necessary?
 class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25))
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
 
-class Video(db.Model):
+class Kata_style_org(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    table_id = db.Column(db.Integer, primary_key=True)
-    table_inner_id = db.Column(db.Integer, primary_key=True)
-    style_id = db.Column(db.Integer, primary_key=True)
-    org_id = db.Column(db.Integer, primary_key=True)
-    performer_person_id = db.Column(db.Integer, primary_key=True)
-    URL = db.Column(db.String(50), unique=True)
+    style_id = db.Column(db.Integer)
+    org_id = db.Column(db.Integer)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime, nullable=False)
