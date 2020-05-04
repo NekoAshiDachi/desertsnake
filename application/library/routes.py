@@ -10,7 +10,7 @@ def history():
 
 @bp.route('/orgs')
 def orgs():
-    return render_template("library/orgs.html", title=_('Organizations'))
+    return render_template("library/orgs.html", title=_('Organizations'), orgs=Org.query.all())
 
 @bp.route('/org/<int:id>')
 def org(id):

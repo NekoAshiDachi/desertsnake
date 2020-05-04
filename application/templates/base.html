@@ -187,26 +187,21 @@ providing content; defines where derived templates can insert themselves; .-->
         {% block app_content %}{% endblock %}
     </div>
 
-<!--<div class="bs-example">-->
-    <!-- Button HTML (to Trigger Modal) -->
-<!--    <a href="#modal_youtube" class="btn btn-lg btn-primary" data-toggle="modal">Launch Demo Modal</a>-->
-
-    <!-- Modal HTML -->
-<!--    <div id="modal_youtube" class="modal fade">-->
-<!--        <div class="modal-dialog">-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header">-->
-<!--                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-<!--                    <h4 class="modal-title">YouTube Video</h4>-->
-<!--                </div>-->
-
-<!--                <div class="modal-body">-->
-<!--                    <iframe id="youtube_video" width="560" height="315" src="//www.youtube.com/embed/YE7VzlLtp-4" frameborder="0" allowfullscreen></iframe>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>     -->
+<div class="modal fade" id="modal_custom" tabindex="-1">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 
@@ -232,74 +227,43 @@ to rather than replaces block scripts-->
 
     <script>
         $(function () {
-            $('[data-toggle="popover"]').popover({
-                animation: true, html: true, placement: 'auto', trigger: 'hover', delay: {show: 500, hide: 500},
-                template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-header"></h3><div class="popover-body"></div></div>'
+
+            $('.citation').each(function() {
+                $(this).attr({
+                    'data-toggle': "popover",
+                    'href': '#' + $(this).data('content').split(" ")[0].toLowerCase()
+                });
             });
 
-        	toggle_video_modal() {
+            $('[data-toggle="popover"]').popover({
+                animation: true, html: true, placement: 'auto', trigger: 'hover', delay: {show: 500, hide: 500},
+                template: '<div class="popover" role="tooltip"><div class="arrow"></div> \
+                    <h3 class="popover-header"></h3><div class="popover-body"></div></div>'
+            });
 
-        	    // Click on video thumbnail or link
-        	    $(".js-trigger-video-modal").on("click", function(e){
+            $('.modal_youtube').on('click', function() {
+                $(this).attr({'data-toggle': 'modal', 'data-target': '#modal_custom'});
+                var youtube_link = 'https://www.youtube.com/embed/' + $(this).data('youtube_id');
 
-                  // prevent default behavior for a-tags, button tags, etc.
-        	        e.preventDefault();
+                $('.modal-body').empty();
 
-                  // Grab the video ID from the element clicked
-                  var id = $(this).attr('data-youtube-id');
+                $('<iframe src=' + youtube_link + ' width="100%" height="auto" frameborder="0" \
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen> \
+                    </iframe>').appendTo('.modal-body');
+            });
 
-                  // Autoplay when the modal appears
-                  // Note: this is intetnionally disabled on most mobile devices
-                  // If critical on mobile, then some alternate method is needed
-                  var autoplay = '?autoplay=1';
+            $('.modal_img').on('click', function() {
+                $(this).attr({'data-toggle': 'modal', 'data-target': '#modal_custom'});
+                var img_link = 'https://drive.google.com/uc?id=' + $(this).data('src');
 
-                  // Don't show the 'Related Videos' view when the video ends
-                  var related_no = '&rel=0';
+                $('.modal-body').empty();
 
-                  // String the ID and param variables together
-                  var src = '//www.youtube.com/embed/'+id+autoplay+related_no;
-
-                  // Pass the YouTube video ID into the iframe template...
-                  // Set the source on the iframe to match the video ID
-                  $("#youtube").attr('src', src);
-
-                  // Add class to the body to visually reveal the modal
-                  $("body").addClass("show-video-modal noscroll");
-
-              });
-
-        	    // Close and Reset the Video Modal
-              function close_video_modal() {
-
-                event.preventDefault();
-
-                // re-hide the video modal
-                $("body").removeClass("show-video-modal noscroll");
-
-                // reset the source attribute for the iframe template, kills the video
-                $("#youtube").attr('src', '');
-
-              }
-              // if the 'close' button/element, or the overlay are clicked
-        	    $('body').on('click', '.close-video-modal, .video-modal .overlay', function(event) {
-
-                  // call the close and reset function
-                  close_video_modal();
-
-              });
-              // if the ESC key is tapped
-              $('body').keyup(function(e) {
-                  // ESC key maps to keycode `27`
-                  if (e.keyCode == 27) {
-
-                    // call the close and reset function
-                    close_video_modal();
-
-                  }
-              });
-        	}
-        	toggle_video_modal();
+                $('<img src=' + img_link + " style='width: 100%;'>").appendTo('.modal-body');
+                $('<small>(' + $(this).data('citation') + ')</small>').appendTo('.modal-body');
+            });
         });
+
+    </script>
 
 <!-- Mega Flask Tutorial -->
 
