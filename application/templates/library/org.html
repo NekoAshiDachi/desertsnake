@@ -2,7 +2,87 @@
 
 {% block app_content %}
 
-<h1>{{ o.name }} ({{ o.acronym }})</h1>
+<h1>{{ org.name }} ({{ org.acronym }})</h1>
+
+{% if org.kanji %}
+    Japanese name: {{ org.kanji }} ({{ org.japaneseName }})<br>
+{% endif %}
+
+Founded:
+{% if org.start_date.strftime('%m%d') != '0101' %}
+{{ org.start_date.strftime('%b %m, %Y') }}
+{% else %}
+{{ org.start_date.year }}
+{% endif %}
+<br>
+
+<!-- TODO: combine roles if same person -->
+
+Founder: <a href="{{ p(org.founder['id']?>"><?=$founder['firstName']?>
+    <?=$founder['lastName']?></a><br>
+
+<?php if (isset($o['president_people_id'])) :
+    $president = $this->ss_model->get_data('people', 'id', $o['president_people_id']); ?>
+President: <a href="<?=base_url()?>library/people/<?=$president['id']?>"><?=$president['firstName']?>
+    <?=$president['lastName']?></a><br>
+<?php endif;
+
+$instructor = $this->ss_model->get_data('people', 'id', $o['chiefInstructor_people_id']); ?>
+Chief instructor: <a href="<?=base_url()?>library/people/<?=$instructor['id']?>"><?=$instructor['firstName']?>
+    <?=$instructor['lastName']?></a><br><br>
+
+<!----------------------------------------------------------------------------------------------------------------->
+
+<?php $honbu = $this->ss_model->get_data("dojo", 'id', $o['honbu_dojo_id']);
+
+echo "<h5><a href=\"".$honbu['siteURL']."\">Honbu Dojo</a></h5>";
+
+if (isset($honbu['mainInstructor_people_id'])) {
+$honbu_instructor = $this->ss_model->get_data('people', 'id', $honbu['mainInstructor_people_id']);
+echo "Main instructor: <a href=\"".base_url()."library/people/".$honbu_instructor['id']."\">"
+    .$honbu_instructor['firstName'].' '.$honbu_instructor['lastName']."</a><br>";
+} ?>
+
+Address:<br>
+<div class="container">
+    <div style="margin-right: auto">
+        <?= $honbu['name']."<br>".
+        $honbu['street']."<br>";
+
+        $country = $this->ss_model->get_data('country', 'id', $honbu['country_id']); ?>
+
+        <?php if (isset($honbu['state'])) {
+            $state = $this->ss_model->get_data('state', 'id', $honbu['state_id']);
+        echo $honbu['city'].", ".$state['name'].", ".$honbu['zip'].", ".$country['name'];
+        }
+        else {
+        echo $honbu['city'].", ".$honbu['zip'].", ".$country['name'];
+        }; ?>
+        <br><br>
+    </div>
+</div>
+
+Email: <?=$honbu['email']; ?><br>
+Phone: <?=$honbu['phone']; ?><br>
+
+<?php if (isset($honbu['fax'])) : ?>
+Fax: <?=$honbu['fax']; ?><br><br>
+<?php endif; ?>
+
+<!-- TODO embed so map is right of address and contact info; add Read More button -->
+<!-- TODO map/filter by city -->
+<?=$honbu['mapURL']?><br><br>
+
+<!-- echo (isset($d['address']) ? '<iframe width="300" height="225" frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCf0d44n0cyl9N1yYUyFlVekitvU86GwJc&q=
+        '.$d['orgName'].str_replace(' ', '+', $d['address']).'"
+        allowfullscreen></iframe>' : NULL);?> -->
+
+<a href="<?=base_url()?>library/organizations">Back to Organizations</a>
+
+<?php endif;
+
+?>
 
 <table>
     <tr><td>Japanese name: {{ o.kanji }} - {{ o.japaneseName }}</td></tr>

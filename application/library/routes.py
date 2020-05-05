@@ -14,8 +14,8 @@ def orgs():
 
 @bp.route('/org/<int:id>')
 def org(id):
-    o = Org.query.filter_by(id=id).first_or_404()
-    return render_template("library/org.html", o=o)
+    org = Org.query.filter_by(id=id).first_or_404()
+    return render_template("library/org.html", org=org, o=o, p=p)
 
 @bp.route('/people')
 def people():

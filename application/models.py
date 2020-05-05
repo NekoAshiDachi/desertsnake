@@ -441,6 +441,7 @@ class Org(db.Model):
     japaneseName = db.Column(db.String(50))
     kanji = db.Column(db.String(25))
     start_date = db.Column(db.DateTime)
+    founder_person_id = db.Column(db.Integer)
     headInstructor_person_id = db.Column(db.Integer)
     president_person_id = db.Column(db.Integer)
     honbu_dojo_id = db.Column(db.Integer)
