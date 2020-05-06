@@ -430,7 +430,7 @@ class Style(db.Model):
     founder_person_id = db.Column(db.Integer)
     notes= db.Column(db.Text)
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
     orgs = db.relationship('Org', backref='style')
 
@@ -445,9 +445,9 @@ class Org(db.Model):
     headInstructor_person_id = db.Column(db.Integer)
     president_person_id = db.Column(db.Integer)
     honbu_dojo_id = db.Column(db.Integer)
-    logo = db.Column(db.String(25))
+    logo = db.Column(db.String(100))
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
     dojos = db.relationship('Dojo', backref='org')
     style_id = db.Column(db.Integer, db.ForeignKey('style.id'))
@@ -465,7 +465,7 @@ class Person(db.Model):
     pic = db.Column(db.String(25))
     bio = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
 o = lambda id: url_for('library.org', id=id)
 p = lambda id: url_for('library.person', id=id),
@@ -486,7 +486,7 @@ class Dojo(db.Model):
     mapURL = db.Column(db.String(125))
     isCountryHQ = db.Column(db.Integer)
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
     org_id = db.Column(db.Integer, db.ForeignKey('org.id'))
 
@@ -498,14 +498,14 @@ class Glossary(db.Model):
     type = db.Column(db.String(25))
     notes= db.Column(db.Text)
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
 class Drill(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     category = db.Column(db.String(50))
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
 class Kata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -517,7 +517,7 @@ class Kata(db.Model):
     tips = db.Column(db.Text)
     creator_person_id = db.Column(db.Integer)
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
 class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -528,7 +528,7 @@ class Video(db.Model):
     performer_person_id = db.Column(db.Integer, primary_key=True)
     URL = db.Column(db.String(50), unique=True)
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
 class Publication(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -540,7 +540,7 @@ class Publication(db.Model):
     store_link = db.Column(db.String(50))
     cover_link = db.Column(db.String(50))
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
 class Country(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -550,7 +550,7 @@ class Country(db.Model):
     code = db.Column(db.String(3), unique=True)
     phone_code = db.Column(db.String(4))
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
     states = db.relationship('State', backref='country')
 
@@ -560,7 +560,7 @@ class State(db.Model):
     country_id = db.Column(db.Integer)
     code = db.Column(db.String(2))
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
     country_id = db.Column(db.Integer, db.ForeignKey('country.id'))
 
@@ -569,11 +569,11 @@ class Table(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25))
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
 
 class Kata_style_org(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     style_id = db.Column(db.Integer)
     org_id = db.Column(db.Integer)
     created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime, nullable=False)
+    updated_date = db.Column(db.DateTime)
