@@ -483,7 +483,7 @@ class Dojo(db.Model):
     email = db.Column(db.String(125), unique=True)
     phone = db.Column(db.Integer, unique=True)
     fax = db.Column(db.Integer, unique=True)
-    mapURL = db.Column(db.String(125))
+    mapURL = db.Column(db.Text)
     isCountryHQ = db.Column(db.Integer)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
