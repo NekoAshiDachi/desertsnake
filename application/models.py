@@ -500,10 +500,12 @@ class Glossary(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
-class Drill(db.Model):
+class Tech(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
-    category = db.Column(db.String(50))
+    glossary_id = db.Column(db.Integer, nullable=False)
+    source_type = db.Column(db.String(50))
+    source_id = db.Column(db.Integer)
+    text = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
