@@ -468,7 +468,7 @@ class Person(db.Model):
     updated_date = db.Column(db.DateTime)
 
 o = lambda id: url_for('library.org', id=id)
-p = lambda id: url_for('library.person', id=id),
+p = lambda id: url_for('library.person', id=id)
 
 class Dojo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
