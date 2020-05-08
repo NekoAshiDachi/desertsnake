@@ -505,6 +505,7 @@ class Tech(db.Model):
     glossary_id = db.Column(db.Integer, nullable=False)
     source_type = db.Column(db.String(50))
     source_id = db.Column(db.Integer)
+    category = db.Column(db.String(25))
     text = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
