@@ -75,41 +75,6 @@ class SearchableMixin(object):
         return cls.query.filter(cls.id.in_(ids)).order_by(
             db.case(when, value=cls.id)), total
 
-"""for SQLAlchemy-Elasticsearch integration; replaces list of object IDs with
-actual objects"""
-
-#     @classmethod
-#     def before_commit(cls, session):
-#         # saves session objects before they are committed and disappear
-#         session._changes = {
-#             'add': list(session.new),
-#             'update': list(session.dirty),
-#             'delete': list(session.deleted)
-#         }
-
-#     # updates Elasticsearch index
-#     @classmethod
-#     def after_commit(cls, session):
-#         for obj in session._changes['add']:
-#             if isinstance(obj, SearchableMixin):
-#                 add_to_index(obj.__tablename__, obj)
-#         for obj in session._changes['update']:
-#             if isinstance(obj, SearchableMixin):
-#                 add_to_index(obj.__tablename__, obj)
-#         for obj in session._changes['delete']:
-#             if isinstance(obj, SearchableMixin):
-#                 remove_from_index(obj.__tablename__, obj)
-#         session._changes = None
-
-      # add all data from db
-#     @classmethod
-#     def reindex(cls):
-#         for obj in cls.query:
-#             add_to_index(cls.__tablename__, obj)
-
-# db.event.listen(db.session, 'before_commit', SearchableMixin.before_commit)
-# db.event.listen(db.session, 'after_commit', SearchableMixin.after_commit)
-
 
 class PaginatedAPIMixin(object):
     @staticmethod
@@ -500,9 +465,11 @@ class Glossary(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
+    techs = db.relationship('Tech', backref='term', lazy='dynamic')
+
 class Tech(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    glossary_id = db.Column(db.Integer, nullable=False)
+    glossary_id = db.Column(db.Integer, db.ForeignKey('glossary.id'), nullable=False)
     source_type = db.Column(db.String(50))
     source_id = db.Column(db.Integer)
     category = db.Column(db.String(25))
