@@ -393,11 +393,12 @@ class Style(db.Model):
     kanji = db.Column(db.String(25), unique=True)
     start_date = db.Column(db.String(25))
     founder_person_id = db.Column(db.Integer)
-    notes= db.Column(db.Text)
+    notes = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
     orgs = db.relationship('Org', backref='style')
+    people = db.relationship('Person', backref='style')
 
 class Org(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -414,8 +415,10 @@ class Org(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
-    dojos = db.relationship('Dojo', backref='org')
     style_id = db.Column(db.Integer, db.ForeignKey('style.id'))
+
+    people = db.relationship('Person', backref='style')
+    dojos = db.relationship('Dojo', backref='org')
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -424,13 +427,14 @@ class Person(db.Model):
     altLastName = db.Column(db.String(25))
     DoB =db.Column(db.DateTime)
     DoD =db.Column(db.DateTime)
-    org_id = db.Column(db.Integer)
     rank = db.Column(db.Integer)
-    style_id = db.Column(db.Integer)
     pic = db.Column(db.String(25))
     bio = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
+
+    style_id = db.Column(db.Integer, db.ForeignKey('style.id'))
+    org_id = db.Column(db.Integer, db.ForeignKey('org.id'))
 
 o = lambda id: url_for('library.org', id=id)
 p = lambda id: url_for('library.person', id=id)
