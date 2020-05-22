@@ -73,7 +73,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ url_for('library.glossary') }}">Glossary</a>
                 <a class="dropdown-item" href="{{ url_for('library.kihon') }}">Kihon</a>
-                <a class="dropdown-item" href="{{ url_for('library.kata') }}">Kata</a>
+                <a class="dropdown-item" href="{{ url_for('library.kata_all') }}">Kata</a>
                 <a class="dropdown-item" href="{{ url_for('library.kumite') }}">Kumite</a>
 
                 <div class="dropdown-divider"></div>
@@ -237,12 +237,17 @@ to rather than replaces block scripts-->
                 });
             });
 
+            $('.cite_person').each(function() {
+                $(this).attr({'href': '#', 'data-toggle': "popover"});
+            });
+
             $('[data-toggle="popover"]').popover({
-                animation: true, html: true, placement: 'auto', trigger: 'hover', delay: {show: 500, hide: 500},
+                animation: true, html: true, placement: 'auto', trigger: 'hover', delay: {show: 500, hide: 1500},
                 template: '<div class="popover" role="tooltip"><div class="arrow"></div> \
                     <h3 class="popover-header"></h3><div class="popover-body"></div></div>'
             });
 
+            // should add option if youtube ID not passed
             $('.modal_youtube').on('click', function() {
                 $(this).attr({'data-toggle': 'modal', 'data-target': '#modal_custom'});
                 var youtube_link = 'https://www.youtube.com/embed/' + $(this).data('youtube_id');
@@ -264,6 +269,48 @@ to rather than replaces block scripts-->
                 $('<small>(' + $(this).data('citation') + ')</small>').appendTo('.modal-body');
             });
         });
+
+        (function(document) {
+            'use strict';
+
+            let LightTableFilter = (function(Arr) {
+
+                let _input;
+
+                function _onInputEvent(e) {
+                    _input = e.target;
+                    let tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                    Arr.forEach.call(tables, function(table) {
+                        Arr.forEach.call(table.tBodies, function(tbody) {
+                            Arr.forEach.call(tbody.rows, _filter);
+                        });
+                    });
+                }
+
+                function _filter(row) {
+                    let text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+                    text = text.replace('ō', 'o');
+                    text = text.replace('ū', 'u');
+                    row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+                }
+
+                return {
+                    init: function() {
+                        var inputs = document.getElementsByClassName('light-table-filter');
+                        Arr.forEach.call(inputs, function(input) {
+                            input.oninput = _onInputEvent;
+                        });
+                    }
+                };
+            })(Array.prototype);
+
+            document.addEventListener('readystatechange', function() {
+                if (document.readyState === 'complete') {
+                    LightTableFilter.init();
+                }
+            });
+
+        })(document);
 
     </script>
 

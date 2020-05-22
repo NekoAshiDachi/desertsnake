@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+<h1>{{ term.word }} ({{ term.kanji}}) - {{ term.translation }}</h1>
+
+{% if term.notes %}{{ term.notes }}{% endif %}
+
+{% if term.techs.first() %}
+<table class="table">
+    <tr>
+        <th>Category</th>
+        <th>Text</th>
+        <th>Source</th>
+    </tr>
+
+    {% for t in term.techs %}
+    <tr>
+        <td>{% if t.category %}{{ t.category.title() }}{% endif %}</td>
+        <td>{{ t.text | safe }}</td>
+        <td>{% if t.person %}
+            <a href="{{ url_for('library.person', id=t.person.id) }}">{{ t.person.firstName }} {{ t.person.lastName }}</a>
+            {% endif %}
+            {% if t.video %}<a href='#' class="modal_youtube" data-youtube_id="{{ t.video.URL }}">{{ t.video.name }}</a>{% endif %}
+            {% if t.pub %}{{ t.pub.title }}{% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+{% endblock %}

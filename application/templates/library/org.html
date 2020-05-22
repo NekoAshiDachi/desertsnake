@@ -28,7 +28,7 @@
 
 <ul class="list-unstyled">
     <li><span class="oi oi-home" style="width: 20px;"></span>&nbsp;{{ honbu.street }}, {{ honbu.city }},
-        {% if honbu_state %}{{ honbu_state.name }},{% endif %} {{ honbu.zip }}, {{ honbu_country.name }}</li>
+        {{ honbu_state.name }}, {{ honbu.zip }}, {{ honbu_state.country.name }}</li>
     <li><span class="oi oi-envelope-closed" style="width: 20px;"></span>&nbsp;{{ honbu.email }}</li>
     <li><span class="oi oi-phone" style="width: 20px;"></span>&nbsp;{{ honbu.phone }}</li>
     <li><span class="oi oi-print" style="width: 20px;"></span>&nbsp;{{ honbu.fax }}</li>

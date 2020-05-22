@@ -391,13 +391,13 @@ class Style(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25), nullable=False, unique=True)
     kanji = db.Column(db.String(25), unique=True)
-    start_date = db.Column(db.String(25))
     founder_person_id = db.Column(db.Integer)
+    start_date = db.Column(db.String(25))
     notes = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
-    orgs = db.relationship('Org', backref='style')
+    orgs = db.relationship('Org',backref='style')
     people = db.relationship('Person', backref='style')
 
 class Org(db.Model):
@@ -417,7 +417,7 @@ class Org(db.Model):
 
     style_id = db.Column(db.Integer, db.ForeignKey('style.id'))
 
-    people = db.relationship('Person', backref='style')
+    people = db.relationship('Person', backref='org')
     dojos = db.relationship('Dojo', backref='org')
 
 class Person(db.Model):
@@ -436,18 +436,19 @@ class Person(db.Model):
     style_id = db.Column(db.Integer, db.ForeignKey('style.id'))
     org_id = db.Column(db.Integer, db.ForeignKey('org.id'))
 
+    techs = db.relationship('Tech', backref='person')
+
 o = lambda id: url_for('library.org', id=id)
 p = lambda id: url_for('library.person', id=id)
 
 class Dojo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    headInstructor_person_id = db.Column(db.Integer)
+    headInstructor_person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
     name = db.Column(db.String(125))
     street = db.Column(db.String(125))
     city = db.Column(db.String(125))
     zip = db.Column(db.String(125))
-    country_id = db.Column(db.Integer)
-    state_id = db.Column(db.Integer)
+    state_id = db.Column(db.Integer, db.ForeignKey('state.id'))
     siteURL = db.Column(db.String(125), unique=True)
     email = db.Column(db.String(125), unique=True)
     phone = db.Column(db.Integer, unique=True)
@@ -473,13 +474,15 @@ class Glossary(db.Model):
 
 class Tech(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    glossary_id = db.Column(db.Integer, db.ForeignKey('glossary.id'), nullable=False)
-    source_type = db.Column(db.String(50))
-    source_id = db.Column(db.Integer)
     category = db.Column(db.String(25))
     text = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
+
+    glossary_id = db.Column(db.Integer, db.ForeignKey('glossary.id'), nullable=False)
+    person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
+    video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
+    pub_id = db.Column(db.Integer, db.ForeignKey('publication.id'))
 
 class Kata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -495,14 +498,15 @@ class Kata(db.Model):
 
 class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    table_id = db.Column(db.Integer, primary_key=True)
-    table_inner_id = db.Column(db.Integer, primary_key=True)
-    style_id = db.Column(db.Integer, primary_key=True)
-    org_id = db.Column(db.Integer, primary_key=True)
-    performer_person_id = db.Column(db.Integer, primary_key=True)
+    style_id = db.Column(db.Integer)
+    org_id = db.Column(db.Integer)
+    performer_person_id = db.Column(db.Integer)
+    name = db.Column(db.Text)
     URL = db.Column(db.String(50), unique=True)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
+
+    techs = db.relationship('Tech', backref='video')
 
 class Publication(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -516,12 +520,13 @@ class Publication(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
+    techs = db.relationship('Tech', backref='pub')
+
 class Country(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(125), unique=True)
-    ISO = db.Column(db.String(3), unique=True)
+    ISO_number = db.Column(db.Integer, unique=True, primary_key=True)
+    ISO = db.Column(db.String(2), unique=True)
     ISO3 = db.Column(db.String(3), unique=True)
-    code = db.Column(db.String(3), unique=True)
+    name = db.Column(db.String(125), unique=True)
     phone_code = db.Column(db.String(4))
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
@@ -529,14 +534,14 @@ class Country(db.Model):
     states = db.relationship('State', backref='country')
 
 class State(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, unique=True, primary_key=True)
+    ISO = db.Column(db.String(2), unique=True)
     name = db.Column(db.String(25), nullable=False)
-    country_id = db.Column(db.Integer)
-    code = db.Column(db.String(2))
+
+    country_ISO_number = db.Column(db.String(5), db.ForeignKey('country.ISO_number'))
+
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
-
-    country_id = db.Column(db.Integer, db.ForeignKey('country.id'))
 
 # categories, or relational table cross-reference--necessary?
 class Table(db.Model):
