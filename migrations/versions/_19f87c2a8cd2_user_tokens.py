@@ -1,7 +1,7 @@
 """user tokens
 
 Revision ID: 19f87c2a8cd2
-Revises: 57f9da94bb8a
+Revises: _57f9da94bb8a
 Create Date: 2020-04-15 02:11:10.479472
 
 """
