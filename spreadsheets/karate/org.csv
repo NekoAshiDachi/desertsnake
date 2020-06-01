@@ -1,8 +1,10 @@
-id,acronym,name,japaneseName,kanji,founded,chiefInstructor_people_id,president_people_id,founder_people_id,hombu_dojo_id,logo
-1,JKA,Japan Karate Association,Nihon Karate Kyokai,??????,1949-05-27,12,1,3,2,
-2,SKIF,Shotokan Karate-Do International Federation,Kokusai Shotokan Karate Do Renmei,??????????,1978-10-01,2,2,2,1,
-3,ISKF,International Shotokan Karate Federation,Kokusai Shotokan Karate Renmei,?????????,1977-09-01,6,6,6,3,
-4,ITKF,International Traditional Karate Federation,Kokusai Dent? Karate Renmei,????????,1986-05-01,15,1,4,4,
-5,KWF,Karatenomichi World Federation,Karate No Michi Sekai Renmei,????????,2000-04-01,5,5,5,5,
-6,JKS,Japan Karate Shoto Federation,Nihon Karate Shotorenmei,????????,,14,1,7,6,
-7,WSKF,World Shotokan Karate Federation,World Shotokan,???????,1990-06-01,16,1,16,7,
+id,acronym,name,japaneseName,kanji,start_date,style_id,founder_person_id,headInstructor_person_id,president_person_id,honbu_dojo_id,logo,created_date,updated_date
+1,JKA,Japan Karate Association,Nihon Karate Kyokai,日本空手協会,1949-05-27,1,1,12,,2,1rEr_TOJFcVfu80PZX0pNmUXaGWUJDzah,02/02/20 07:11 PM,02/02/20 07:11 PM
+2,SKIF,Shotokan Karate-Do International,Kokusai Shotokan Karate-Do,國際松濤館空手道連盟,1978-10-01,1,2,29,,1,1XUzzO4j4vPOd__-SfbYkmLAFO3Z-WU7h,02/02/20 07:11 PM,02/02/20 07:11 PM
+3,ISKF,International Shotokan Karate Federation,Kokusai Shotokan Karate Renmei,国際松濤館空手連盟,1977-09-01,1,6,,,3,1GZQJjyTL9V9smJpMKJYHhtRIAD27ZAlV,02/02/20 07:11 PM,02/02/20 07:11 PM
+4,ITKF,International Traditional,Kokusai Dentō Karate Renmei,國際伝統空手連盟,1986-05-01,1,4,,,4,10Yb-7LkdiLsgIUnqk1sqOvgwXrLWyURU,02/02/20 07:11 PM,02/02/20 07:11 PM
+5,KWF,Karatenomichi World Federation,Karate No Michi Sekai Renmei,空手之道世界連盟,2000-04-01,1,5,5,,5,10JK9mdt4UsUOYsZ8Zz97orFg-H_pTxNR,02/02/20 07:11 PM,02/02/20 07:11 PM
+6,JKS,Japan Karate Shoto Federation,Nihon Karate Shotorenmei,日本空手松涛連盟,2000-07-01,1,7,14,,6,1HmUTNEArkoRDBkacr7lXNGEMTjOXwp6Q,02/02/20 07:11 PM,02/02/20 07:11 PM
+7,WSKF,World Shotokan Karate Federation,World Shotokan,ワールド松濤舘,1990-06-01,1,16,16,,7,1YKyR-ki06M4VFvPBcKp8KRab8Xk7td3d,02/02/20 07:11 PM,02/02/20 07:11 PM
+8,WTKO,World Traditional Karate Organization,,,2001-01-01,1,32,32,,8,1aPsHLDi75qU3LwMnqaugbco_TqaxrfHu,04/21/20 02:11 AM,04/21/20 02:11 AM
+9,KUGB,Karate Union of Great Britain,,,1966-01-01,1,2,24,,9,1V3h2ZQMgb8qkMeJV0wIxxm4XneMycR4R,04/22/20 02:49 AM,04/22/20 02:49 AM

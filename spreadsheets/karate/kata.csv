@@ -1,39 +1,40 @@
-id,name,nameKanji,ancestor_kata_id,descendent_kata_id,creator_people_id
-1,Taikyoku Shodan,????,,,
-2,Heian Shodan,????,39,,
-3,Heian Nidan,????,39,,
-4,Heian Sandan,????,39,,
-5,Heian Yondan,????,39,,
-6,Heian Godan,????,39,,
-7,Tekki Shodan,????,40,,
-8,Tekki Nidan,????,40,,
-9,Tekki Sandan,????,,,
-10,Bassai Dai,???,,,
-11,Bassai Sh?,???,,,
-12,Kanku Dai,???,,,
-13,Kanku Sh?,???,,,
-14,Jion,??,,,
-15,Jiin,??,,,
-16,Jitte,??,,,
-17,Enpi,??,,,
-18,Hangetsu,??,,,
-19,Gankaku,??,,,
-20,Nijushiho,????,,,
-21,Chinte,??,,,
-22,S?chin,??,,,
-23,Meiky?,??,,,
-24,Unsu,??,,,
-25,Wankan,??,,,
-26,Gojushiho Dai,?????,,,
-27,Gojushiho Sh?,?????,,,
-30,Gankaku Sh?,???,,,
-31,Nijuhachiho,????,,,
-32,Seinchin,???,,,
-33,Seipai,???,,,
-34,Junro Shodan,????,,,
-35,Junro Nidan,????,,,
-36,Junro Sandan,????,,,
-37,Junro Yondan,????,,,
-38,Junro Godan,????,,,
-39,Channan Sho/Dai,,,"2, 3, 4, 5, 6",
-40,Naifanchi,,,"7, 8, 9",
+id,name,kanji,creator_person_id,history,created_date,updated_date
+1,Taikyoku Shodan,太極初段,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+2,Heian Shodan,平安初段,,"Chiang Nanis the source of the two Channan kata. He was a diplomat sent from Fukienprovince in China out to Okinawa. While living there, he taught Matsumura Sokon twokata. Matsumura taught them as Channan Sho and Channan Dai, but changed the nameto Ping An. Eventually, they were broken up into five kata called the Pinan by ItosuYasutsune. We know them today in Shotokan as the Heian and teach them as basic kata. Internet: Shito-Kai.com. Others disagree about the existence of Ch'ang An, and think that this is actually the nameof a city, perhaps a one-time capital of China. everything above:redmond 21",05/03/20 11:01 AM,05/03/20 11:01 AM
+3,Heian Nidan,平安二段,,"Chiang Nanis the source of the two Channan kata. He was a diplomat sent from Fukienprovince in China out to Okinawa. While living there, he taught Matsumura Sokon twokata. Matsumura taught them as Channan Sho and Channan Dai, but changed the nameto Ping An. Eventually, they were broken up into five kata called the Pinan by ItosuYasutsune. We know them today in Shotokan as the Heian and teach them as basic kata. Internet: Shito-Kai.com. Others disagree about the existence of Ch'ang An, and think that this is actually the nameof a city, perhaps a one-time capital of China. everything above:redmond 21",05/03/20 11:01 AM,05/03/20 11:01 AM
+4,Heian Sandan,平安三段,,"Chiang Nanis the source of the two Channan kata. He was a diplomat sent from Fukienprovince in China out to Okinawa. While living there, he taught Matsumura Sokon twokata. Matsumura taught them as Channan Sho and Channan Dai, but changed the nameto Ping An. Eventually, they were broken up into five kata called the Pinan by ItosuYasutsune. We know them today in Shotokan as the Heian and teach them as basic kata. Internet: Shito-Kai.com. Others disagree about the existence of Ch'ang An, and think that this is actually the nameof a city, perhaps a one-time capital of China. everything above:redmond 21",05/03/20 11:01 AM,05/03/20 11:01 AM
+5,Heian Yondan,平安四段,,"Chiang Nanis the source of the two Channan kata. He was a diplomat sent from Fukienprovince in China out to Okinawa. While living there, he taught Matsumura Sokon twokata. Matsumura taught them as Channan Sho and Channan Dai, but changed the nameto Ping An. Eventually, they were broken up into five kata called the Pinan by ItosuYasutsune. We know them today in Shotokan as the Heian and teach them as basic kata. Internet: Shito-Kai.com. Others disagree about the existence of Ch'ang An, and think that this is actually the nameof a city, perhaps a one-time capital of China. everything above:redmond 21",05/03/20 11:01 AM,05/03/20 11:01 AM
+6,Heian Godan,平安五段,,"Chiang Nanis the source of the two Channan kata. He was a diplomat sent from Fukienprovince in China out to Okinawa. While living there, he taught Matsumura Sokon twokata. Matsumura taught them as Channan Sho and Channan Dai, but changed the nameto Ping An. Eventually, they were broken up into five kata called the Pinan by ItosuYasutsune. We know them today in Shotokan as the Heian and teach them as basic kata. Internet: Shito-Kai.com. Others disagree about the existence of Ch'ang An, and think that this is actually the nameof a city, perhaps a one-time capital of China. everything above:redmond 21",05/03/20 11:01 AM,05/03/20 11:01 AM
+7,Tekki Shodan,鉄騎初段,,"Ason. Very little is known about this man, but he is credited with teaching the Naifanchikata to a famous Okinawan. Some believe that the kata was originally one single unit, buthas since been broken into two parts, had a third part added, and is now called Tekki inShotokan. Ason taught in Fuzhou, China. The Okinawans that studied under himtraveled there to learn. Redmond 21",05/03/20 11:01 AM,05/03/20 11:01 AM
+8,Tekki Nidan,鉄騎二段,,"Ason. Very little is known about this man, but he is credited with teaching the Naifanchikata to a famous Okinawan. Some believe that the kata was originally one single unit, buthas since been broken into two parts, had a third part added, and is now called Tekki inShotokan. Ason taught in Fuzhou, China. The Okinawans that studied under himtraveled there to learn. Redmond 21",05/03/20 11:01 AM,05/03/20 11:01 AM
+9,Tekki Sandan,鉄騎三段,,"Ason. Very little is known about this man, but he is credited with teaching the Naifanchikata to a famous Okinawan. Some believe that the kata was originally one single unit, buthas since been broken into two parts, had a third part added, and is now called Tekki inShotokan. Ason taught in Fuzhou, China. The Okinawans that studied under himtraveled there to learn. Redmond 21",05/03/20 11:01 AM,05/03/20 11:01 AM
+10,Bassai Dai,披塞大,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+11,Bassai Shō,披塞小,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+12,Kanku Dai,観空大,,"""Kung Hsiang-Chun (circa 1730~1800). This man, called Kushanku in the dialect ofOkinawa and Kosokun in mainland Japanese, is thought to have been an envoy toOkinawa during the late 18th and early 19th Century. His arrival in Okinawa resulted inour practicing the kata known as Kanku-Dai today. Whether Kung Hsiang-Chun broughtthis quan to Okinawa or the Okinawans created it from elements they had learned fromhim is unknown. He was apparently from Fuzhou, China, brought many of his discipleswith him, and stayed in Okinawa some time.3 (Bubishi 32) This is thought to have happened in 1756.4 Cook, Harry, Shotokan Karate A Precise History. (England: Cook, 2001) 9 ",,
+"The name Kung Hsiang-Chun is more of a title than a real name and means somethinglike """"envoy."""" It is possible that he never existed and is merely a symbolic metaphor forother people or a group of people, but that seems unlikely.This is not implausible since many Chinese from Fuzhou stayed in Okinawa for extendedtimes on matters of business or government. Given that Shuri was the seat ofgovernment in Okinawa, and Naha the largest port city, it is not unlikely that theOkinawans would have a lot of contact with such people. What style of Chinese boxingKung Hsiang-Chun studied is unknown. everything above: Redmond 20""",,05/03/20 11:01 AM,05/03/20 11:01 AM,,,
+13,Kanku Shō,観空小,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+14,Jion,慈恩,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+15,Jiin,慈陰,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+16,Jitte,十手,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+17,Enpi,燕飛,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+18,Hangetsu,半月,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+19,Gankaku,岩鶴,,"Chinto. This man is more myth than reality, but it is told that Chinto, a Chinese pirate,washed up on Okinawa's shores with his crew. A famous Okinawan expert in martial artswas sent to clobber him, and when they fought, the match was a tie. Chinto remained onOkinawa for a period and taught the principles behind the Chinto kata - or perhaps thekata itself. Chinto is called Gankaku in Shotokan.7 7Internet: Shito-Kai.com, found July 29, 2003. This article provides an excellent summary of the life and times ofMatsumura Sokon, probably the central historical figure in the development of Shuri style karate which we nowpractice in Japanified form as Shotokan. everything above:redmond 21",05/03/20 11:01 AM,05/03/20 11:01 AM
+20,Nijushiho,二十四步,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+21,Chinte,珍手,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+22,Sōchin,壯鎭,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+23,Meikyō,明鏡,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+24,Unsu,雲手,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+25,Wankan,王冠,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+26,Gojushiho Dai,五十四歩大,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+27,Gojushiho Shō,五十四歩小,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+30,Gankaku Shō,岩鶴小,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+31,Nijuhachiho,二十八步,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+32,Seinchin,制引戦,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+33,Seipai,十八手,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+34,Junro Shodan,順路初段,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+35,Junro Nidan,順路二段,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+36,Junro Sandan,順路三段,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+37,Junro Yondan,順路四段,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+38,Junro Godan,順路五段,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+39,Channan Sho/Dai,,,,05/03/20 11:01 AM,05/03/20 11:01 AM
+40,Naifanchi,,,,05/03/20 11:01 AM,05/03/20 11:01 AM

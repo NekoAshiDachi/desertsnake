@@ -1,337 +1,347 @@
-id,term,translation,kanji,type,notes
-1,D?j?,Training Hall,??,GENERAL,
-2,Sensei,Instructor,??,GENERAL,
-3,Senpai,Senior Student; Mentor,??,GENERAL,
-4,K?hai,Junior Student; Mentee,??,GENERAL,
-5,Rei,Bow,?,GENERAL,
-6,Migi,Right,?,GENERAL,
-7,Kamae,Base; Posture; Waiting or Ready position,??,GENERAL,
-8,Mawatte,Turn,???,GENERAL,
-9,Gi,Karate uniform,?; ?,GENERAL,"This is usualy short fort the correct form ""Karate-gi"""""
-10,Kime,Focus,??,GENERAL,
-11,Kihon,Basic techniques; Fundamentals,??,GENERAL,
-12,Kumite,Sparring,??,GENERAL,
-13,J?dan,Upper Level,??,GENERAL,
-14,Ch?dan,Middle body,??,GENERAL,
-15,Gedan,Lower body,??,GENERAL,
-16,Dojo Kun,Dojo code,???,GENERAL,
-17,Seiza,Proper sitting,??,GENERAL,
-18,Yoi,Ready,??,GENERAL,
-19,Hidari,Left,?,GENERAL,
-20,Hajime,Start/begin,??; ??,GENERAL,
-21,Yame,Finish/stop,??,GENERAL,
-22,Obi,Belt; Sash,?,GENERAL,
-23,Kiai,Martial shout,??,GENERAL,
-24,Kata,Form,?; ?,GENERAL,
-25,Zanshin,Martial state of mind; Awareness,??,GENERAL,
-26,Osu,Respectful greeting;,??,GENERAL,"Also pronounced ""Oss""; Multiple meanings depending on the context, usually with the connotation of ""I aknowledge""."
-27,Dan,Level; Grade; Rank,?,GENERAL,
-28,Heik?-dachi,Parallel stance,???,TACHI,
-29,Musubi-dachi,Connected stance,???,TACHI,
-30,Kiba-dachi,Horse-ridding stance,???,TACHI,
-31,K?kutsu-dachi,Back stance,???,TACHI,
-32,Heisoku-dachi,Feet together stance,???,TACHI,
-33,Zenkutsu-dachi,Front stance,???,TACHI,
-34,Shiko-dachi,Square stance,???,TACHI,
-35,Hachiji-dachi,,???,TACHI,Used interchangeably with Shizentai; shaped like number eight (?).
-36,Shizentai,Natural stance,???,TACHI,Used interchangeably with Hachiji-dachi
-37,Nekoashi-dachi,Cat foot stance,???,TACHI,
-38,Fud?-dachi,Immovable stance,???,TACHI,Used interchangeably with S?chin-dachi
-39,S?chin-dachi,Immovable stance,???,TACHI,Used interchangeably with Fud?-dachi; from the S?chin kata
-40,Sanchin-dachi,Three Battles stance,???,TACHI,
-41,Hangetsu-dachi,Halfmoon stance,???,TACHI,
-42,Moto-dachi,Foundational stance,??,TACHI,
-43,Kosa-dachi,Crossing stance,???,TACHI,
-44,Renoji-dachi,Character ? [Re] stance,????,TACHI,
-45,Tsuruashi-dachi,Crane-foot stance,???,TACHI,
-46,J?dan uke,Upper level blocks,????,UKE,
-47,Hirate sukui age uke,Scooping palm block,????????,UKE,
-48,J?h? uke,Upward blocks,????,UKE,
-49,Age uke,Rising block,????,UKE,
-50,Kakut? uke,Crane head block,????,UKE,
-51,Keit? uke,Chicken head block,????,UKE,
-52,Age teish? uke,Rising palm heel block,??????,UKE,
-53,Sh? age uke,Rising palm block,?????,UKE,
-54,Shut? j?ji uke,Sword hand cross block,??????,UKE,
-55,Magetori barai uke,Grabbing topknot block,?????,UKE,
-56,Morote koken uke,Two-handed back of wrist block,????????,UKE,
-57,Ry? ko uke,Two-handed arc block,????,UKE,
-58,Morote age uke,Double rising block,??????,UKE,
-59,Ry? ken j?ji uke,Cross block with fists,??????,UKE,
-60,Morote teish? uke,Double palm heel block,??????,UKE,
-61,Shoken sukui age uke,First knuckle fist scooping rising block,????????,UKE,
-62,Taihineri ko uke,Body twisting arc block,??????,UKE,
-63,Naih? uke,Inward blocks,????,UKE,
-64,Uchi ude uke,Inward forearm block,????,UKE,
-65,Mawashi teish? uke,Roundhouse palm heel block,??????,UKE,
-66,Te nagashi uke,Flowing hand block,?????,UKE,
-67,Mawashi keit? uke,Roundhouse chicken head block,??????,UKE,
-68,Morote tsukami uke,Two-handed grasping block,??????,UKE,
-69,Rasen uke,Spiral block,????,UKE,
-70,Ry? wan hasami uke,Scissor block,?????,UKE,
-71,Tekubi yoko uchi barai,Side-sweeping block with wrist,????????,UKE,
-72,Gaih? uke,Outward blocks,????,UKE,
-73,Soto ude uke,Outward forearm block,????,UKE,
-74,Shut? uke,Sword hand block,????,UKE,
-75,Kake shut? uke,Hooking sword hand block,??????,UKE,
-76,Tate shut? uke,Vertical sword hand block,?????,UKE,
-77,Haishu uke,Back of hand block,????,UKE,
-78,Gaiwan nagashi uke,Outer forearm block,??????,UKE,
-79,Haiwan nagashi uke,Back of forearm block,??????,UKE,
-80,Naiwan nagashi uke,Inner forearm block,??????,UKE,
-81,Morote uke,Augmented block,????,UKE,
-82,Sokumen awase uke,Side combined block,??????,UKE,
-83,Oshi uke,Pushing block,????,UKE,
-84,Yama uke,Mountain block,???,UKE,
-85,Morote tensh? uke,Double rolling hand block,??????,UKE,
-86,Wari uke,Split block,???,UKE,
-87,Morote nagashi uke,Augmented flowing block,??????,UKE,
-88,Seiry?t? awase uke,Combined ox-jaw hand block,???????,UKE,
-89,Ry? sh? yoko barai,Side block,?????,UKE,
-90,Ry? ken sokumen uke,Block to side with both fists,??????,UKE,
-91,Kaishu haiwan uke,Open hand back hand block,??????,UKE,
-92,Yoko uke,Side block,???,UKE,
-93,Ry?te uke,Two-handed block,????,UKE,
-94,Tsuki uke,Punch block,????,UKE,
-95,Haishu sasae uke,Supported backhand block,??????,UKE,
-96,J?dan haiwan uke,Back of arm block,??????,UKE,
-97,Tome uke,Stopping block,????,UKE,
-98,Morote kake uke,Augmented hooking block,????????,UKE,
-99,Ry? ude ni yoru burokku,Block with two arms,?????????,UKE,
-100,Otoshi uke,Dropping blocks,?????,UKE,
-101,Otoshi ude uke,Dropping forearm,??????,UKE,
-102,Maeude deai osae uke,Forearm pressing,?????????,UKE,
-103,Otoshi teish? uke,Dropping palm heel block,???????,UKE,
-104,Te osae uke,Pressing hand block,?????,UKE,
-105,Seiry?t? uke,Ox-jaw hand block,?????,UKE,
-106,Tekubi kake uke,Bent wrist block,?????,UKE,
-107,Tettsui otoshi uke,Hammerfist dropping block,???????,UKE,
-108,Hai tekubi osae uke,Pressing block with,????????,UKE,
-109,Morote tettsui otoshi uke,Double hammerfist dropping block,?????????,UKE,
-110,Morote otoshi ude uke,Double arm middle level dropping block,????????,UKE,
-111,Ry? sh? osae uke,Two-handed pressing block,??????,UKE,
-112,Ch?dan otoshi uke,Middle level dropping block,???????,UKE,
-113,Haishu otoshi uke,Back of hand dropping block,???????,UKE,
-114,Haishu osae uke,Back of hand pressing block,??????,UKE,
-115,Otoshi nekote uke,Dropping cat-paw block,???????,UKE,
-116,Naih? uke,Inward blocks,????,UKE,
-117,Uchi ude uke,Inward forearm block,????,UKE,
-118,Mawashi teish? uke,Roundhouse palm heel block,??????,UKE,
-119,Te nagashi uke,Flowing hand block,?????,UKE,
-120,Morote tsukami uke,Two-handed grasping block,??????,UKE,
-121,Mawashi empi uke,Roundhouse elbow block,??????,UKE,
-122,Hirabasami uke,Scissor hand block,????,UKE,
-123,Nekozeken uchi age uke,Inside rising cat back fist block,????????,UKE,
-124,Hasami uke,Scissor block,???,UKE,
-125,Yoko ude hasami uke,Side forearm scissor block,?????,UKE,
-126,Tekubi nagashi uke,Flowing wrist block,??????,UKE,
-127,Soto haiwan uke,Outside back of arm block,???????,UKE,
-128,Soto nagashi,Outside parry,?????,UKE,
-129,Soto ude uke,Outward forearm block,????,UKE,
-130,Shut? uke,Sword hand block,????,UKE,
-131,Tate shut? uke,Vertical sword hand block,?????,UKE,
-132,Kake shut? uke,Hooking sword hand block,??????,UKE,
-133,Haishu uke,Back hand block,????,UKE,
-134,Kakut? uke,Crane head block,????,UKE,
-135,Kote uke,Circular upward block,????,UKE,
-136,Hangetsu uke,Crescent moon block,????,UKE,
-137,Kaishu yoko uke,Open hand side block,???????,UKE,
-138,Yoko j?ji uke,Side cross block,?????,UKE,
-139,Keit? uke,Chicken head block,????,UKE,
-140,Morote uke,Augmented block,????,UKE,
-141,Hait? uke,Ridge hand block,????,UKE,
-142,Sasae uke,Supported block,????,UKE,
-143,Kakiwake uke,Reverse wedge block,??????,UKE,
-144,Morote yoko uke,Double side block,?????,UKE,
-145,Yoko ude hasami uke,Side forearm scissors block,?????,UKE,
-146,Kuri uke,Coiling elbow block,????,UKE,
-147,Makite uke,Winding block,????,UKE,
-148,Morote de wa uke,Two-handed circle block,??????,UKE,
-149,Morote teish? harai uke,Augmented palm heel sweeping block,???? ????,UKE,
-150,Ry?un no uke,Flowing cloud block,?????,UKE,
-151,Seiry?t? awse uke,Combined ox-jaw hand block,???????,UKE,
-152,Tsuki uke,Punch block,????,UKE,
-153,Soto kake uke,Outside hooking block,?????,UKE,
-154,Sokumen uke,Side block,????,UKE,
-155,Taihineri ura uke,Body twisting hooking block,??????,UKE,
-156,Teish? hasami uke,Palm heel scissor block,?????,UKE,
-157,Tekubi sokumen,???????,kake uke,UKE,
-158,Ura gake uke,Backhand hooking block,?????,UKE,
-159,Morote kakete,Double hooking hands,???????,UKE,
-160,Soto mawashi uke,Sideways roundhouse block,?????,UKE,
-161,Fumikomi ude uke,Stepping in forearm block,???????,UKE,
-162,Harai uke,Sweeping block,????,UKE,
-163,Hait? morote uchi uke,Augmented inside ridgehand block,??? ??,UKE,
-164,Gedan uke,Lower level blocks,????,UKE,
-165,Otoshi teish? uke,Dropping palm heel block,???????,UKE,
-166,Otoshi seiry?t? uke,Dropping ox-jaw hand block,????????,UKE,
-167,Ken j?ji uke,Cross block with fists,?????,UKE,
-168,Teish? awase uke,Combined palm heel block,??????,UKE,
-169,Uchi otoshi uke,Inside dropping block,??????,UKE,
-170,Ken uke,Fist block,???,UKE,
-171,Morote seiken otoshi uke,Two-fisted combined dropping block,?????????,UKE,
-172,Ry? sh?tei osae uke,Two-handed palm heel pressing block,???????,UKE,
-173,Seiken uke,Punch block,????,UKE,
-174,Sh?tei barai uke,Palm heel sweeping block,??????,UKE,
-175,Taihineri barai uke,Body twisting down block,???????,UKE,
-176,Haishu otoshi uke,Back of hand dropping block,????????,UKE,
-177,Harai osae uke,Sweeping pressing block,??????,UKE,
-178,Hiji uke,Elbow block,???,UKE,
-179,Koken uke,Arc fist block,????,UKE,
-180,Suri otoshi uke,Dropping scraping block,???????,UKE,
-181,Gaiwan gedan uke,Downward outer forearm block,??????,UKE,
-182,Uchi shut? uke,Inward sword hand block,??????,UKE,
-183,Uchi sukui uke,Inward scooping block,?????,UKE,
-184,Morote sukui uke,Two-handed scooping block,??????,UKE,
-185,Gedan barai,Downward sweep,????,UKE,
-186,Soto shut? uke,Outward sword hand block,??????,UKE,
-187,Tekubi kake uke,Bent wrist block,?????,UKE,
-188,Soto sukui uke,Outward,?????,UKE,
-189,Morote gedan barai,Lower level reverse wedge block,??????,UKE,
-190,Sasae gedan barai,Supported lower sweep,??????,UKE,
-191,Tsuki uke,Punch block,????,UKE,
-192,Gedan uke nagashi,Lower level flowing block,??????,UKE,
-193,Harai sukui uke,Sweeping scooping block,??????,UKE,
-194,Morote shut? gedan barai,Lower-level double sword-hand sweep,????????,UKE,
-195,J?ge uke,High-low blocks,????,UKE,
-196,K?sa uke,Cross block,????,UKE,
-197,Manji uke,Swastika block,???,UKE,
-198,Mus? uke,Incomparable block,????,UKE,
-199,Hari uke,Archer block,????,UKE,
-200,Morote kok? uke,Double tiger mouth block,??????,UKE,
-201,Ry? ude mawashi uke,Two-armed circular block,??????,UKE,
-202,Gyaku empi uchi,Reverse elbow strike,?????,UCHI,
-203,Oi empi uchi,Non-reverse elbow strike,??????,UCHI,
-204,Mae empi uchi,Front elbow strike,?????,UCHI,
-205,Ushiro empi uchi,Backward elbow strike,??????,UCHI,
-206,Yoko empi uchi,Side elbow strike,?????,UCHI,
-207,Tate empi uchi,Vertical elbow strike,?????,UCHI,
-208,Otoshi empi uchi,Dropping elbow strike,???????,UCHI,
-209,Yoko mawashi empi uchi,Side roundhouse elbow strike,???????,UCHI,
-210,Soete mawashi empi uchi,Attached hand side elbow strike,????????,UCHI,
-211,Kaiten hiji ate,Spinning elbow strike,?????,UCHI,
-212,Choku zuki,Straight punch,???,TSUKI,
-213,Gyaku zuki,Reverse punch,???,TSUKI,
-214,Nobashi gyaku zuki,Extended reverse punch,??????,TSUKI,
-215,Oi zuki,Lunge  punch,????,TSUKI,
-216,Nobashi oi zuki,Extended lunge punch,???????,TSUKI,
-217,Age zuki,Rising punch,????,TSUKI,
-218,Ago zuki,Punch to the chin,???,TSUKI,
-219,Soko zuki,Bottom thrust,???,TSUKI,
-220,Ura zuki,Inverted punch,???,TSUKI,
-221,Tate zuki,Vertical punch,???,TSUKI,
-222,Yoko zuki,Side punch,???,TSUKI,
-223,Yumi zuki,Bow punch,???,TSUKI,
-224,Otoshi zuki,Dropping punch,?????,TSUKI,
-225,Kizami zuki,Jab,????,TSUKI,
-226,Kagi zuki,Hook punch,???,TSUKI,
-227,Mawashi zuki,Roundhouse punch,????,TSUKI,
-228,Uchi oroshi zuki,Overhand punch,???????,TSUKI,
-229,Sasae zuki,Supported punch,????,TSUKI,
-230,Ry?sui zuki,Flowing water punch,????,TSUKI,
-231,Soete ura zuki,Attached hand inverted punch,??????,TSUKI,
-232,Okuri zuki,Sliding punch,????,TSUKI,
-233,Kusshin zuki,Drop dodge punch,????,TSUKI,
-234,Wari uke zuki,Circle block punch,?????,TSUKI,
-235,Hineri zuki,Twisting punch,????,TSUKI,
-236,Ry?ky? zuki,� twisting punch,????,TSUKI,
-237,Nagashi zuki,Flowing punch,????,TSUKI,
-238,Junzuki tsukkomi,Leaning lunge punch,???????,TSUKI,
-239,Gyaku zuki tsukkomi,Leaning reverse punch,???????,TSUKI,
-240,K?h? tsuki age,Uppercut to rear,??????,TSUKI,
-241,Kawashi zuki,Evasion punch,????,TSUKI,
-242,Shoken zuki,First knuckle punch,????,TSUKI,
-243,Boshiken zuki,Thumb punch,?????,TSUKI,
-244,Kaku zuki,Square punch,???,TSUKI,
-245,Kakushi zuki,Hidden fist punch,????,TSUKI,
-246,Dak? zuki,Crawling punch,????,TSUKI,
-247,Mawashi gyaku zuki,Roundhouse reverse punch,?????,TSUKI,
-248,Sokumen gyaku zuki,Roundhouse reverse punch,?????,TSUKI,
-249,Sun  zuki,One inch punch,???,TSUKI,
-250,Sh?tei zuki,Palm heel thrust,????,TSUKI,
-251,Keik? ken zuki,Chicken beak fist punch,?????,TSUKI,
-252,Ushiro zuki,Backward punch,????,TSUKI,
-253,Tobi zuki,Jumping punch,????,TSUKI,
-254,Hiraken zuki,Flat fist punch,????,TSUKI,
-255,Ura hiraken zuki,Inverted flat fist punch,?????,TSUKI,
-256,Shihon nukite,Four-finger spear-hand,????,TSUKI,
-257,Nihon nukite,Two-finger spear-hand,???? T,TSUKI,
-258,Ippon nukite,One-finger spear-hand,????,TSUKI,
-259,Tate Nukite,Vertical sword-hand,???,TSUKI,
-260,Ura nukite,Inverted spear-hand,???,TSUKI,
-261,Awase zuki,Combined punch,????,TSUKI,
-262,Yama zuki,Mountain punch,???,TSUKI,
-263,Kasane zuki,Double punch,????,TSUKI,
-264,Heik? zuki|,Parallel punch,????,TSUKI,
-265,Heik? tate zuki,Parallel standing fist thrust,??????,TSUKI,
-266,Morote hiraken zuki,Double flat fist punch,??????,TSUKI,
-267,J?ji zuki,Cross thrust,????,TSUKI,
-268,Morote ura zuki,Double inverted punch,?????,TSUKI,
-269,Morote kizami ura zuki,Double jabbing inverted punch,???????,TSUKI,
-270,Ry? ippon ken choku zuki,Double one-knuckle punch,???????,TSUKI,
-271,Hasami zuki,Scissor punch,???,TSUKI,
-272,Tate ken shita zuki,Downward punch with standing fists,?????,TSUKI,
-273,Kaiun no te,Parting the clouds,????,TSUKI,
-274,Shut? j?ji uchi,Sword hand cross strike,??????,TSUKI,
-275,Morote sh?tei zuki,Double palm heel thrust,??????,TSUKI,
-276,Tora guchi,Tiger's mouth,??,TSUKI,
-277,Morote nuki zuki,Double spear hand thrust,?????,TSUKI,
-278,Say? zuki,Left-right thrust,????,TSUKI,
-279,Washide zuki age,Rising punch with eagle hand,??????,TSUKI,
-280,Ippon nukite ch?dan otoshi zuki,Middle level one-finger spear-hand dropping thrust,???????????,TSUKI,
-281,Uwa uke zuki,Upward block punch,?????,TSUKI,
-282,Soto uke zuki,Outside block punch,?????,TSUKI,
-283,Morote shita zuki,Double low punch,?????,TSUKI,
-284,Oshi zuki,Push thrust,????,TSUKI,
-285,Mae geri,Front kick,???,KERI,
-286,Mae kekomi,Front thrust kick,???,KERI,
-287,Mae keage,Front rising kick,????,KERI,
-288,Tobi mae geri,Flying front kick,????,KERI,
-289,Mae taore geri,Falling front kick,?????,KERI,
-290,Fumikomi,Stamping kick,????,KERI,
-291,Uchi momo geri,Inside thigh kick,????,KERI,
-292,Yoko geri,Side kick,???,KERI,
-293,Yoko kekomi,Side thrust kick,???,KERI,
-294,Yoko keage,Side rising kick,????,KERI,
-295,Tobi yoko geri,Flying side kick,?????,KERI,
-296,Yoko taore geri,Falling side kick,?????,KERI,
-297,Fumi kiri,Cutting kick,????,KERI,
-298,Kaiten yoko geri,Spinning side kick,?????,KERI,
-299,Mawashi geri,Roundhouse kick,????,KERI,
-300,Gyaku mawashi geri,Reverse roundhouse kick,?????,KERI,
-301,Yoko mawashi geri,Side roundhouse kick,?????,KERI,
-302,Tobi mawashi geri,Jumping roundhouse kick,??????,KERI,
-303,Mawashi taore geri,Falling roundhouse kick,??????,KERI,
-304,Gedan mawashi geri,Low roundhouse kick,??????,KERI,
-305,Kaiten mawashi geri,Spinning roundhouse kick,??????,KERI,
-306,Ushiro geri,Back kick,????,KERI,
-307,Kaiten ushiro geri,Spinning back kick,??????,KERI,
-308,Semp? tobi geri,Whirlwind kick,??????,KERI,
-309,Tobi ushiro geri,Jumping back kick,??????,KERI,
-310,Ebi geri,Shrimp kick,????,KERI,
-311,Sasori geri,Scorpion kick,???,KERI,
-312,D? mawashi kaiten geri,Rolling kick,???????,KERI,
-313,Ura mawashi geri,Hook kick,?????,KERI,
-314,Ushiro mawashi geri,Spinning hook kick,??????,KERI,
-315,Tobi ura mawashi geri,Jumping hook kick,???????,KERI,
-316,Tobi ushiro mawashi geri,Jumping spinning hook kick,????????,KERI,
-317,Kensei yuka geri,Diversion by kicking the floor,?????,KERI,
-318,Namigaeshi,Returning wave kick,???,KERI,
-319,Mikazuki geri,Crescent kick,?????,KERI,
-320,Gyaku mikazuki geri,Reverse crescent kick,??????,KERI,
-321,Tsumasaki geri,Toe kick,????,KERI,
-322,Kingeri,Groin kick,???,KERI,
-323,Ushiro kingeri,Back groin kick,?????,KERI,
-324,Ushiro kake geri,Backward hooking kick,??????,KERI,
-325,Kaiten ushiro mawashi geri,Turning back roundhouse kick,????????,KERI,
-326,Nidan geri,Double kick,????,KERI,
-327,Mae s?soku geri,Simultaneous kick to the front,?????,KERI,
-328,Say? geri,Simultaneous kick to the sides,????,KERI,
-329,Hasami geri,Scissor kick,???,KERI,
-330,Ry? mae taore geri,Twin front falling kick,??????,KERI,
-331,Ry? ashi mawashi taore geri,Double falling roundhouse kick,????????,KERI,
-332,Kakato otoshi geri,Axe kick,??????,KERI,
-333,Zageri,Seated kick,???,KERI,
-334,Uchi haisoku geri,Inside kick with instep,?????,KERI,
-335,Mae sokut? geri,Front kick with foot sword,?????,KERI,
-336,?b?heddo kikku,Overhead kick,??????????,KERI,
+id,term,translation,kanji,type,notes,created_date,updated_date
+1,Dōjō,Training Hall,道場,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+2,Sensei,Instructor,先生,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+3,Senpai,Senior Student; Mentor,先輩,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+4,Kōhai,Junior Student; Mentee,後輩,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+5,Rei,Bow,礼,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+6,Migi,Right,右,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+7,Kamae,Base; Posture; Waiting or,構え,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+8,Mawatte,Turn,回って,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+9,Gi,Karate uniform,着; 衣,GENERAL,"""This is usually short for """"karate-gi""""""",02/02/20 06:52 PM,02/02/20 06:52 PM
+10,Kime,Focus,決め,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+11,Kihon,Basic techniques; Fundame,基本,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+12,Kumite,Sparring,組手,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+13,Jōdan,Upper Level,上段,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+14,Chūdan,Middle body,中段,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+15,Gedan,Lower body,下段,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+16,Dojo Kun,Dojo code,道場訓,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+17,Seiza,Proper sitting,正座,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+18,Yoi,Ready,用意,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+19,Hidari,Left,左,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+20,Hajime,Start/begin,初め; 始め,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+21,Yame,Finish/stop,止め,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+22,Obi,Belt; Sash,帯,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+23,Kiai,Martial shout,気合,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+24,Kata,Form,型; 形,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+25,Zanshin,Martial state of mind; Aw,残心,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+26,Osu,Respectful greeting;,押忍,GENERAL,"""Also spelled """"Oss""""; multiple meanings depending on the context, usually with the connotation of """"I acknowledge"""". Use osu only when acknowledging another person (not for bowing to shomen).<sup><a href=""""#"""" data-toggle=""""popover"""" data-title=""""<a href='/library/person/32'>Richard Amos</a>"""" data-content=""""<a href='/library/org/8'>WTKO</a>"""">RA</a></sup> """,02/02/20 06:52 PM,02/02/20 06:52 PM
+27,Dan,Level; Grade; Rank,段,GENERAL,,02/02/20 06:52 PM,02/02/20 06:52 PM
+28,Heikō-dachi,Parallel stance,平行立,TACHI,"Feet shoulder width, outer edges parallel",02/02/20 06:52 PM,02/02/20 06:52 PM
+29,Musubi-dachi,Connected stance,結び立,TACHI,Toes at 45 degrees,02/02/20 06:52 PM,02/02/20 06:52 PM
+30,Kiba-dachi,Horse-riding stance,騎馬立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+31,Kōkutsu-dachi,Back stance,閉足立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+32,Heisoku-dachi,Feet together stance,閉足立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+33,Zenkutsu-dachi,Front stance,前屈立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+34,Shiko-dachi,Square stance,四股立,TACHI,Kiba-dachi with toes at 45 degrees ,02/02/20 06:52 PM,02/02/20 06:52 PM
+35,Hachiji-dachi,Character 8 stance,八字立,TACHI,Used interchangeably with Shizentai; natural stance; feet shoulder width; toes at 45 degrees; shaped like number eight (八).,02/02/20 06:52 PM,02/02/20 06:52 PM
+36,Shizentai,Natural stance,自然体,TACHI,Used interchangeably with Hachiji-dachi,02/02/20 06:52 PM,02/02/20 06:52 PM
+37,Nekoashi-dachi,Cat foot stance,猫足立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+38,Fudō-dachi,Immovable stance,不動立,TACHI,Used interchangeably with Sōchin-dachi,02/02/20 06:52 PM,02/02/20 06:52 PM
+39,Sōchin-dachi,Immovable stance,壯鎭立,TACHI,Used interchangeably with Fudō-dachi; from the Sōchin kata,02/02/20 06:52 PM,02/02/20 06:52 PM
+40,Sanchin-dachi,Three Battles stance,三戦立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+41,Hangetsu-dachi,Halfmoon stance,半月立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+42,Moto-dachi,Foundational stance,基立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+43,Kosa-dachi,Crossing stance,交差立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+44,Renoji-dachi,Character レ [Re] stance,レの字立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+45,Tsuruashi-dachi,Crane-foot stance,鶴足立,TACHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+46,Jōdan uke,Upper level blocks,上段受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+47,Hirate sukui age uke,Scooping palm block,平手掬い揚げ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+48,Jōhō uke,Upward blocks,上方受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+49,Age uke,Rising block,揚げ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+50,Kakutō uke,Crane head block,鶴頭受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+51,Keitō uke,Chicken head block,鶏頭受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+52,Age teishō uke,Rising palm heel block,揚げ底掌受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+53,Shō age uke,Rising palm block,掌揚げ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+54,Shutō jūji uke,Sword hand cross block,手刀十字受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+55,Magetori barai uke,Grabbing topknot block,髷取払受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+56,Morote koken uke,Two-handed back of wrist ,諸手上段弧拳受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+57,Ryō ko uke,Two-handed arc block,両弧受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+58,Morote age uke,Double rising block,諸手揚げ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+59,Ryō ken jūji uke,Cross block with fists,両拳十字受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+60,Morote teishō uke,Double palm heel block,諸手底掌受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+61,Shoken sukui age uke,First knuckle fist scoopi,初拳掬い揚げ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+62,Taihineri ko uke,Body twisting arc block,体捻り弧受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+63,Naihō uke,Inward blocks,内方受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+64,Uchi ude uke,Inward forearm block,內腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+65,Mawashi teishō uke,Roundhouse palm heel bloc,回し底掌受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+66,Te nagashi uke,Flowing hand block,手流し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+67,Mawashi keitō uke,Roundhouse chicken head b,回し鶏頭受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+68,Morote tsukami uke,Two-handed grasping block,諸手掴み受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+69,Rasen uke,Spiral block,螺旋受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+70,Ryō wan hasami uke,Scissor block,両腕鋏受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+71,Tekubi yoko uchi barai,Side-sweeping block with ,手首上段横内払い,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+72,Gaihō uke,Outward blocks,外方受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+73,Soto ude uke,Outward forearm block,外腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+74,Shutō uke,Sword hand block,手刀受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+75,Kake shutō uke,Hooking sword hand block,掛け手刀受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+76,Tate shutō uke,Vertical sword hand block,縦手刀受え,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+77,Haishu uke,Back of hand block,背手受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+78,Gaiwan nagashi uke,Outer forearm block,外腕流し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+79,Haiwan nagashi uke,Back of forearm block,背腕流し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+80,Naiwan nagashi uke,Inner forearm block,内腕流し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+81,Morote uke,Augmented block,諸手受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+82,Sokumen awase uke,Side combined block,側面合せ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+83,Oshi uke,Pushing block,押し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+84,Yama uke,Mountain block,山受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+85,Morote tenshō uke,Double rolling hand block,諸手転掌受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+86,Wari uke,Split block,割受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+87,Morote nagashi uke,Augmented flowing block,諸手流し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+88,Seiryūtō awase uke,Combined ox-jaw hand bloc,青竜刀合せ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+89,Ryō shō yoko barai,Side block,両掌横払い,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+90,Ryō ken sokumen uke,Block to side with both f,両拳側面受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+91,Kaishu haiwan uke,Open hand back hand block,開手背腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+92,Yoko uke,Side block,横受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+93,Ryōte uke,Two-handed block,両手受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+94,Tsuki uke,Punch block,突き受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+95,Haishu sasae uke,Supported backhand block,背手支え受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+96,Jōdan haiwan uke,Back of arm block,上段背腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+97,Tome uke,Stopping block,止め受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+98,Morote kake uke,Augmented hooking block,上段諸手掛け受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+99,Ryō ude ni yoru burokku,Block with two arms,両腕によるブロック,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+100,Otoshi uke,Dropping blocks,落とし受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+101,Otoshi ude uke,Dropping forearm,落とし腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+102,Maeude deai osae uke,Forearm pressing,前腕出会い押え受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+103,Otoshi teishō uke,Dropping palm heel block,落とし底掌受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+104,Te osae uke,Pressing hand block,手押え受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+105,Seiryūtō uke,Ox-jaw hand block,青竜刀受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+106,Tekubi kake uke,Bent wrist block,手首掛受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+107,Tettsui otoshi uke,Hammerfist dropping block,鉄槌落とし受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+108,Hai tekubi osae uke,Pressing block with,背手首押さえ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+109,Morote tettsui otoshi uke,Double hammerfist droppin,諸手鉄槌落とし受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+110,Morote otoshi ude uke,Double arm middle level d,諸手落とし腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+111,Ryō shō osae uke,Two-handed pressing block,両掌押え受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+112,Chūdan otoshi uke,Middle level dropping blo,中段落とし受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+113,Haishu otoshi uke,Back of hand dropping blo,背手落とし受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+114,Haishu osae uke,Back of hand pressing blo,背手押え受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+115,Otoshi nekote uke,Dropping cat-paw block,落とし猫手受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+116,Naihō uke,Inward blocks,内方受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+117,Uchi ude uke,Inward forearm block,內腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+118,Mawashi teishō uke,Roundhouse palm heel bloc,回し底掌受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+119,Te nagashi uke,Flowing hand block,手流し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+120,Morote tsukami uke,Two-handed grasping block,諸手掴み受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+121,Mawashi empi uke,Roundhouse elbow block,回し猿臂受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+122,Hirabasami uke,Scissor hand block,平挟受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+123,Nekozeken uchi age uke,Inside rising cat back fi,猫脊拳内揚げ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+124,Hasami uke,Scissor block,鋏受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+125,Yoko ude hasami uke,Side forearm scissor bloc,横腕鋏受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+126,Tekubi nagashi uke,Flowing wrist block,手首流し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+127,Soto haiwan uke,Outside back of arm block,中段外背腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+128,Soto nagashi,Outside parry,中段外流し,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+129,Soto ude uke,Outward forearm block,外腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+130,Shutō uke,Sword hand block,手刀受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+131,Tate shutō uke,Vertical sword hand block,縦手刀受え,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+132,Kake shutō uke,Hooking sword hand block,掛け手刀受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+133,Haishu uke,Back hand block,背手受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+134,Kakutō uke,Crane head block,鶴頭受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+135,Kote uke,Circular upward block,小手受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+136,Hangetsu uke,Crescent moon block,半月受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+137,Kaishu yoko uke,Open hand side block,開手中段横受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+138,Yoko jūji uke,Side cross block,横十字受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+139,Keitō uke,Chicken head block,鶏頭受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+140,Morote uke,Augmented block,諸手受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+141,Haitō uke,Ridge hand block,背刀受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+142,Sasae uke,Supported block,支え受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+143,Kakiwake uke,Reverse wedge block,掻き分け受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+144,Morote yoko uke,Double side block,諸手横受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+145,Yoko ude hasami uke,Side forearm scissors blo,横腕鋏受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+146,Kuri uke,Coiling elbow block,繰り受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+147,Makite uke,Winding block,巻手受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+148,Morote de wa uke,Two-handed circle block,諸手で輪受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+149,Morote teishō harai uke,Augmented palm heel sweep,諸手底掌 払い受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+150,Ryūun no uke,Flowing cloud block,流雲の受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+151,Seiryūtō awse uke,Combined ox-jaw hand bloc,青竜刀合せ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+152,Tsuki uke,Punch block,突き受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+153,Soto kake uke,Outside hooking block,外掛け受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+154,Sokumen uke,Side block,側面受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+155,Taihineri ura uke,Body twisting hooking blo,体捻り裏受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+156,Teishō hasami uke,Palm heel scissor block,底掌鋏受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+157,Tekubi sokumen,手首側面掛受け,kake uke,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+158,Ura gake uke,Backhand hooking block,裏掛け受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+159,Morote kakete,Double hooking hands,中段諸手掛け手,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+160,Soto mawashi uke,Sideways roundhouse block,外回し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+161,Fumikomi ude uke,Stepping in forearm block,踏み込み腕受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+162,Harai uke,Sweeping block,払い受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+163,Haitō morote uchi uke,Augmented inside ridgehan,背刀内 受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+164,Gedan uke,Lower level blocks,下段受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+165,Otoshi teishō uke,Dropping palm heel block,落とし底掌受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+166,Otoshi seiryūtō uke,Dropping ox-jaw hand bloc,落とし青竜刀受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+167,Ken jūji uke,Cross block with fists,拳十字受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+168,Teishō awase uke,Combined palm heel block,底掌合せ受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+169,Uchi otoshi uke,Inside dropping block,内落とし受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+170,Ken uke,Fist block,拳受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+171,Morote seiken otoshi uke,Two-fisted combined dropp,諸手正拳落とし受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+172,Ryō shōtei osae uke,Two-handed palm heel pres,両掌底押え受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+173,Seiken uke,Punch block,正拳受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+174,Shōtei barai uke,Palm heel sweeping block,掌底払い受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+175,Taihineri barai uke,Body twisting down block,体捻り払い受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+176,Haishu otoshi uke,Back of hand dropping blo,右背手落とし受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+177,Harai osae uke,Sweeping pressing block,払い押え受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+178,Hiji uke,Elbow block,肘受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+179,Koken uke,Arc fist block,弧拳受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+180,Suri otoshi uke,Dropping scraping block,擦リ落とし受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+181,Gaiwan gedan uke,Downward outer forearm bl,外腕下段受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+182,Uchi shutō uke,Inward sword hand block,內腕手刀受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+183,Uchi sukui uke,Inward scooping block,內掬い受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+184,Morote sukui uke,Two-handed scooping block,諸手掬い受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+185,Gedan barai,Downward sweep,下段払い,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+186,Soto shutō uke,Outward sword hand block,外腕手刀受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+187,Tekubi kake uke,Bent wrist block,手首掛受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+188,Soto sukui uke,Outward,外掬い受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+189,Morote gedan barai,Lower level reverse wedge,諸手下段払い,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+190,Sasae gedan barai,Supported lower sweep,支え下段払い,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+191,Tsuki uke,Punch block,突き受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+192,Gedan uke nagashi,Lower level flowing block,下段受け流し,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+193,Harai sukui uke,Sweeping scooping block,払い掬い受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+194,Morote shutō gedan barai,Lower-level double sword-,諸手手刀下段払い,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+195,Jōge uke,High-low blocks,上下受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+196,Kōsa uke,Cross block,交差受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+197,Manji uke,Swastika block,卍受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+198,Musō uke,Incomparable block,無双受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+199,Hari uke,Archer block,張り受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+200,Morote kokō uke,Double tiger mouth block,諸手虎口受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+201,Ryō ude mawashi uke,Two-armed circular block,両腕回し受け,UKE,,02/02/20 06:52 PM,02/02/20 06:52 PM
+202,Gyaku empi uchi,Reverse elbow strike,逆猿臂打ち,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+203,Oi empi uchi,Non-reverse elbow strike,追い猿臂打ち,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+204,Mae empi uchi,Front elbow strike,前猿臂打ち,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+205,Ushiro empi uchi,Backward elbow strike,後ろ猿臂打ち,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+206,Yoko empi uchi,Side elbow strike,横猿臂打ち,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+207,Tate empi uchi,Vertical elbow strike,縦猿臂打ち,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+208,Otoshi empi uchi,Dropping elbow strike,落とし猿臂打ち,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+209,Yoko mawashi empi uchi,Side roundhouse elbow str,横回し猿臂打ち,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+210,Soete mawashi empi uchi,Attached hand side elbow ,添え手回し臂打ち,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+211,Kaiten hiji ate,Spinning elbow strike,回転肘当て,UCHI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+212,Choku zuki,Straight punch,直突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+213,Gyaku zuki,Reverse punch,逆突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+214,Nobashi gyaku zuki,Extended reverse punch,伸ばし逆突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+215,Oi zuki,Lunge punch,追い突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+216,Nobashi oi zuki,Extended lunge punch,伸ばし追い突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+217,Age zuki,Rising punch,揚げ突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+218,Ago zuki,Punch to the chin,顎突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+219,Soko zuki,Bottom thrust,底突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+220,Ura zuki,Inverted punch,裏突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+221,Tate zuki,Vertical punch,縦突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+222,Yoko zuki,Side punch,横突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+223,Yumi zuki,Bow punch,弓交き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+224,Otoshi zuki,Dropping punch,落とし交き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+225,Kizami zuki,Jab,刻み突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+226,Kagi zuki,Hook punch,鉤突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+227,Mawashi zuki,Roundhouse punch,回し突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+228,Uchi oroshi zuki,Overhand punch,打ち下ろし突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+229,Sasae zuki,Supported punch,支え突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+230,Ryūsui zuki,Flowing water punch,流水突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+231,Soete ura zuki,Attached hand inverted pu,添え手裏突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+232,Okuri zuki,Sliding punch,送リ突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+233,Kusshin zuki,Drop dodge punch,屈伸突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+234,Wari uke zuki,Circle block punch,割受け突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+235,Hineri zuki,Twisting punch,捻り突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+236,Ryūkyū zuki,¾ twisting punch,琉球突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+237,Nagashi zuki,Flowing punch,流し突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+238,Junzuki tsukkomi,Leaning lunge punch,順突き突っ込み,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+239,Gyaku zuki tsukkomi,Leaning reverse punch,逆突き突っ込み,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+240,Kōhō tsuki age,Uppercut to rear,後方突き揚げ,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+241,Kawashi zuki,Evasion punch,躱し突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+242,Shoken zuki,First knuckle punch,初拳突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+243,Boshiken zuki,Thumb punch,拇指拳突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+244,Kaku zuki,Square punch,角突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+245,Kakushi zuki,Hidden fist punch,隠し突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+246,Dakō zuki,Crawling punch,蛇行突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+247,Mawashi gyaku zuki,Roundhouse reverse punch,回し逆突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+248,Sokumen gyaku zuki,Roundhouse reverse punch,側面逆突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+249,Sun  zuki,One inch punch,寸突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+250,Shōtei zuki,Palm heel thrust,掌底突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+251,Keikō ken zuki,Chicken beak fist punch,鶏口拳突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+252,Ushiro zuki,Backward punch,後ろ突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+253,Tobi zuki,Jumping punch,飛び突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+254,Hiraken zuki,Flat fist punch,平拳突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+255,Ura hiraken zuki,Inverted flat fist punch,裏平拳突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+256,Shihon nukite,Four-finger spear-hand,四本贯手,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+257,Nihon nukite,Two-finger spear-hand,二本貫手,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+258,Ippon nukite,One-finger spear-hand,一本貫手,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+259,Tate Nukite,Vertical sword-hand,縦貫手,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+260,Ura nukite,Inverted spear-hand,裏貫手,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+261,Awase zuki,Combined punch,合せ突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+262,Yama zuki,Mountain punch,山突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+263,Kasane zuki,Double punch,重ね突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+264,Heikō zuki|,Parallel punch,並行突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+265,Heikō tate zuki,Parallel standing fist th,並行縦手突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+266,Morote hiraken zuki,Double flat fist punch,諸手平拳突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+267,Jūji zuki,Cross thrust,十字突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+268,Morote ura zuki,Double inverted punch,諸手裏突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+269,Morote kizami ura zuki,Double jabbing inverted p,諸手刻み裏突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+270,Ryō ippon ken choku zuki,Double one-knuckle punch,両一本拳直突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+271,Hasami zuki,Scissor punch,鋏突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+272,Tate ken shita zuki,Downward punch with stand,縦拳下突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+273,Kaiun no te,Parting the clouds,開雲の手,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+274,Shutō jūji uchi,Sword hand cross strike,手刀十字打ち,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+275,Morote shōtei zuki,Double palm heel thrust,諸手掌底突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+276,Tora guchi,Tiger's mouth,虎口,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+277,Morote nuki zuki,Double spear hand thrust,諸手貫突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+278,Sayū zuki,Left-right thrust,左右突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+279,Washide zuki age,Rising punch with eagle h,鷲手突き揚げ,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+280,Ippon nukite chūdan otosh,Middle level one-finger s,一本貫手中段落とし突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+281,Uwa uke zuki,Upward block punch,上受け突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+282,Soto uke zuki,Outside block punch,外受け突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+283,Morote shita zuki,Double low punch,両手裏突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+284,Oshi zuki,Push thrust,押し突き,TSUKI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+285,Mae geri,Front kick,前蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+286,Mae kekomi,Front thrust kick,前蹴込,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+287,Mae keage,Front rising kick,前蹴上げ,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+288,Tobi mae geri,Flying front kick,飛び前蹴,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+289,Mae taore geri,Falling front kick,前倒れ蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+290,Fumikomi,Stamping kick,踏み込み,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+291,Uchi momo geri,Inside thigh kick,内股蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+292,Yoko geri,Side kick,横蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+293,Yoko kekomi,Side thrust kick,横蹴込,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+294,Yoko keage,Side rising kick,横蹴上げ,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+295,Tobi yoko geri,Flying side kick,飛び横蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+296,Yoko taore geri,Falling side kick,横倒れ蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+297,Fumi kiri,Cutting kick,踏み切り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+298,Kaiten yoko geri,Spinning side kick,回転横蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+299,Mawashi geri,Roundhouse kick,回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+300,Gyaku mawashi geri,Reverse roundhouse kick,逆回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+301,Yoko mawashi geri,Side roundhouse kick,横回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+302,Tobi mawashi geri,Jumping roundhouse kick,飛び回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+303,Mawashi taore geri,Falling roundhouse kick,回し倒れ蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+304,Gedan mawashi geri,Low roundhouse kick,下段回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+305,Kaiten mawashi geri,Spinning roundhouse kick,回転回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+306,Ushiro geri,Back kick,後ろ蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+307,Kaiten ushiro geri,Spinning back kick,回転後ろ蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+308,Sempū tobi geri,Whirlwind kick,旋風飛び蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+309,Tobi ushiro geri,Jumping back kick,飛び後ろ蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+310,Ebi geri,Shrimp kick,海老蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+311,Sasori geri,Scorpion kick,蠍蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+312,Dō mawashi kaiten geri,Rolling kick,胴廻し回転蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+313,Ura mawashi geri,Hook kick,裏回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+314,Ushiro mawashi geri,Spinning hook kick,後ろ回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+315,Tobi ura mawashi geri,Jumping hook kick,飛び裏回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+316,Tobi ushiro mawashi geri,Jumping spinning hook kic,飛び後ろ回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+317,Kensei yuka geri,Diversion by kicking the ,牽制床蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+318,Namigaeshi,Returning wave kick,波返し,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+319,Mikazuki geri,Crescent kick,三日月蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+320,Gyaku mikazuki geri,Reverse crescent kick,逆三日月蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+321,Tsumasaki geri,Toe kick,爪先蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+322,Kingeri,Groin kick,金蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+323,Ushiro kingeri,Back groin kick,後ろ金蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+324,Ushiro kake geri,Backward hooking kick,後ろ掛け蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+325,Kaiten ushiro mawashi ger,Turning back roundhouse k,回転後ろ回し蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+326,Nidan geri,Double kick,二段蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+327,Mae sōsoku geri,Simultaneous kick to the ,前双足蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+328,Sayū geri,Simultaneous kick to the ,左右蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+329,Hasami geri,Scissor kick,鋏蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+330,Ryō mae taore geri,Twin front falling kick,両前倒れ蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+331,Ryō ashi mawashi taore ge,Double falling roundhouse,両足回し倒れ蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+332,Kakato otoshi geri,Axe kick,踵落とし蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+333,Zageri,Seated kick,座蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+334,Uchi haisoku geri,Inside kick with instep,內背足蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+335,Mae sokutō geri,Front kick with foot swor,前足刀蹴り,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+336,Ōbāheddo kikku,Overhead kick,オーバーへッドキック,KERI,,02/02/20 06:52 PM,02/02/20 06:52 PM
+337,Yoko uraken,Horizontal backhand,横裏拳,UCHI,,05/08/20 11:52 AM,05/08/20 11:52 AM
+338,Tate uraken,Vertical backhand,縦裏拳,UCHI,,05/08/20 11:52 AM,05/08/20 11:52 AM
+339,Tettsui uraken,Hammer backhand,金槌裏拳,UCHI,,05/08/20 11:52 AM,05/08/20 11:52 AM
+340,Ippon ken,One-knuckle punch,一本剣,TSUKI,,05/08/20 12:00 PM,05/08/20 12:00 PM
+341,Hia ken,Bear claw,,UCHI,,05/08/20 12:00 PM,05/08/20 12:00 PM
+342,Yoko nukite,Horizontal spear hand,横貫手,TSUKI,,05/08/20 12:31 PM,05/08/20 12:31 PM
+343,Ushiro mawashi enpi uchi,Back round elbow strike,後ろ回し猿臂打ち,UCHI,,05/08/20 12:38 PM,05/08/20 12:38 PM
+344,Mae mawashi enpi uchi,Front round elbow strike,前回し猿臂打ち,UCHI,,05/08/20 01:02 PM,05/08/20 01:02 PM
+345,Shōmen,Front,正面,GENERAL,"""Also """"zenmi""""""",05/08/20 06:03 PM,05/08/20 06:03 PM
+346,Hanmi,Half stance,半身 ,GENERAL,"Especially in zenkutsu-dachi, with hips turned to open side 45 degrees.",05/08/20 06:06 PM,05/08/20 06:06 PM
