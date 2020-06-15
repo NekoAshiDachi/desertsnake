@@ -40,16 +40,26 @@
 </div>
 <br>
 
+{% set ns = namespace() %}
+
+{% for i in r %}
+    {% if i.id == 85 %}
+        {% set ns.redmond = i %}{% set ns.redmond_n = 1 %}
+    {% elif i.id == 87 %}
+        {% set ns.mccarthy = i %}{% set ns.mccarthy_n = 2 %}
+    {% elif i.id == 88 %}
+        {% set ns.cook = i %}{% set ns.cook_n = 3 %}
+    {% endif %}
+{% endfor %}
+
 <h2 id='origin'>Origin</h2>
 
 <p>As Robert Redmond writes, karate originated in Okinawa centuries ago but its
     roots extend to China, Korea, Japan, Taiwan, and other Pacific Rim nations.
     Most of the exchange was from trade and diplomacy, but at times, visitors
     unintentionally washed ashore.
-    <sup><a class='citation' data-content="Redmond 17">[1]</a></sup>
+    <sup><a class='citation' data-content="Redmond 17">[{{ ns.redmond_n }}]</a></sup>
 </p>
-
-{{ r[0] }}
 
 <h3 id='origin_chinese'>China</h3>
 
@@ -67,7 +77,7 @@
     <a href='#' class="modal_youtube" data-youtube_id="G90RpGs_ajs">Dog Boxing</a>, and
     <a href='#' class="modal_youtube" data-youtube_id="qCnZRW7IWoE">Tiger Fist</a>,
     were what was then transmitted to the Okinawans.
-    <sup><a class="citation" data-content="McCarthy 30, 38">[2]</a></sup>
+    <sup><a class="citation" data-content="McCarthy 30, 38">[{{ ns.mccarthy_n }}]</a></sup>
 </p>
 
 <p><small>
@@ -85,7 +95,7 @@
     Japanese) were taught. As Chinese martial artists freely trained under
     different systems and instructors, those arts evolved over time, while the
     Okinawans preserved the style they had learned within a given period.
-    <sup><a class="citation" data-content="Redmond 23-24">[1]</a></sup>
+    <sup><a class="citation" data-content="Redmond 23-24">[{{ ns.redmond_n }}]</a></sup>
 </p>
 
 <p>The styles of Okinawan <i>toudi</i> (literally, T’ang
@@ -98,7 +108,7 @@
     martial art, rather than different martial arts altogether. The 1926 designation
     of toudi styles as Naha-Te, Shuri-Te, and Tomari-Te is then an anachronistic
     attempt to systematize those styles.
-    <sup><a class="citation" data-content="Redmond 23-24">[1]</a></sup>
+    <sup><a class="citation" data-content="Redmond 23-24">[{{ ns.redmond_n }}]</a></sup>
     This
     <a href='#' class="modal_img" data-src='1dDKzoGOZs7kPo1bCZ_kV9bUlLkFC_uvd'
        data-citation="Redmond 26">
@@ -119,7 +129,7 @@
     Kung Hsiang-Chun (<a href=''>Kushanku</a>), and
     Chinto (<a href="">Gankaku</a>)
     are mentioned on their respective kata page.
-    <sup><a class="citation" data-content="Redmond 18, 21">[1]</a></sup><br>
+    <sup><a class="citation" data-content="Redmond 18, 21">[{{ ns.redmond_n }}]</a></sup><br>
     <small><i>TODO - fix links once pages are up</i></small>
 </p>
 
@@ -130,7 +140,7 @@
     to have taught Monk Fist Boxing in Fuzhou, China to a famous Okinawan instructor
     who moved there for a period,but no one is really sure. He is thought by some to
     be a little older than Xie Zhongxiang."
-    <sup><a class="citation" data-content="McCarthy 32">[2]</a></sup>
+    <sup><a class="citation" data-content="McCarthy 32">[{{ ns.mccarthy_n }}]</a></sup>
 </p>
 
 <h4 id='okinawa_chinese_zhongxiang'>Xie Zhongxian</h4>
@@ -140,7 +150,7 @@
     Fuzhou as well to Okinawans who traveledto meet him. He was the founder of the
     Whooping Crane style of Gongfu and probably studied White Crane and other systems
     - synthesizing them into his own method.
-    <sup><a class="citation" data-content="McCarthy 34-39">[2]</a></sup>
+    <sup><a class="citation" data-content="McCarthy 34-39">[{{ ns.mccarthy_n }}]</a></sup>
 </p>
 
 <h4 id='okinawa_chinese_iwah'>Iwah</h4>
@@ -149,7 +159,7 @@
     Redmond 21: "Iwah. A military attaché like Ason [who taught
     the <a href="">Tekkis</a>], Iwah also lived in Fuzhou, China and taught Quanfa
     to Okinawans who traveled there."
-    <sup><a class="citation" data-content="Cook 287">[3]</a></sup>
+    <sup><a class="citation" data-content="Cook 287">[{{ ns.cook_n }}]</a></sup>
 </p>
 
 <h3 id='okinawa_instructors'>Okinawan instructors</h3>
@@ -166,7 +176,7 @@
     <a href="{{ url_for('library.person', id=3) }}">Masatoshi Nakayama</a>
     received both. Though this is a map of the major toudi and karate instructors, of course, there
     are many other contributors that are important but have gone unnamed.
-    <sup><a class="citation" data-content="Redmond 26-7">[1]</a></sup><br>
+    <sup><a class="citation" data-content="Redmond 26-7">[{{ ns.redmond_n }}]</a></sup><br>
 </p>
 
 <p>
@@ -193,13 +203,14 @@
     in China on the decline, the Japanese term <i>karate</i> gradually replaced the Okinawan term
     <i>toudi</i>. <i>T'ang Dynasty hand</i>, which was implied in the Okinawan term, became
     "void", "sky", or "empty". Thus, 空手 (karate) means <i>empty hand</i>.
-    <sup><a class="citation" data-content="Redmond 27">[1]</a></sup><br>
+    <sup><a class="citation" data-content="Redmond 27">[{{ ns.redmond_n }}]</a></sup><br>
 </p>
 
 <p>
     In this period, technique names were also introduced. Previously, there was no relationship
     between a technique and a single name, as Okinawan masters did not want the application of a
-    given movement to be constrained by a single name.<sup>[1]</sup><br>
+    given movement to be constrained by a single name.
+    <sup><a class="citation" data-content="Redmond n">[{{ ns.redmond_n }}]</a></sup><br>
     <small><i>TODO: add citation</i></small>
 </p>
 
@@ -223,7 +234,7 @@
     Gichin Funakoshi, for bringing Shotokan karate to Japan and establishing the first karate dojo,
     is its greatest influence.<sup>[0]</sup> He made the Okinawan art more Japanese by incorporating
     elements from the Japanese arts judo and kendo.
-    <sup><a class="citation" data-content="Redmond 30">[1]</a></sup>
+    <sup><a class="citation" data-content="Redmond 30">[{{ ns.redmond_n }}]</a></sup>
 
     From kendo, he absorbed its competition style, and it may have been Funakoshi's exposure to
     kendo's training method that would lead him to introduce <i>gohon kumite</i> (five-step sparring)--
@@ -233,7 +244,7 @@
     Most of his Japanese students were kendo experts, too, like
     <a href="{{ url_for('library.person', id=3) }}">Masatoshi Nakayama</a>,
     who would become the second greatest influence on Shotokan karate.
-    <sup><a class="citation" data-content="Redmond 30">[1]</a></sup><br>
+    <sup><a class="citation" data-content="Redmond 30">[{{ ns.redmond_n }}]</a></sup><br>
     <small><i>TODO: add [0] citations; add summary of Funakoshi's contributions to bringing karate
         to Japan and developing it; Jigoro Kanno and Funakoshi.</i></small>
 </p>
@@ -247,28 +258,15 @@
 </p>
 
 
-<!-- TODO proper biblio fields to publications; update references in history and in kihon to reflect
-publication table; update JS in base.html if necessary -->
-
-{% set ns = namespace() %}
-
-{% for i in r %}
-    {% if i.id == 85 %}
-        {% set ns.redmond = i %}
-    {% elif i.id == 87 %}
-        {% set ns.mccarthy = i %}
-    {% elif i.id == 88 %}
-        {% set ns.cook = i %}
-    {% endif %}
-{% endfor %}
+<!-- TODO update references in history and in kihon to reflect publication table; update JS in base.html if necessary -->
 
 <h4>References</h4>
 <span id='redmond'>
-    1. Redmond, Robert. <i><a href="{{ ns.redmond.store_link }}" target="_blank">The Folk Dances of Shotokan</a></i>. N.p.: n.p., 2006. ebook.</span><br>
+    {{ ns.redmond_n }}. Redmond, Robert. <i><a href="{{ ns.redmond.store_link }}" target="_blank">The Folk Dances of Shotokan</a></i>. N.p.: n.p., 2006. ebook.</span><br>
 <span id='mccarthy'>
-    2. McCarthy, Patrick. <i>The Bible of Karate Bubishi</i>. Tokyo: Charles E. Tuttle Company, Inc., 1995.</span><br>
+    {{ ns.mccarthy_n }}. McCarthy, Patrick. <i>The Bible of Karate Bubishi</i>. Tokyo: Charles E. Tuttle Company, Inc., 1995.</span><br>
 <span id="cook">
-    3. Cook, Harry. <i>Shotokan Karate A Precise History</i>. England: Cook, 2001.</span><br>
+    {{ ns.cook_n }}. Cook, Harry. <i>Shotokan Karate A Precise History</i>. England: Cook, 2001.</span><br>
 <!-- - “Shotokan Mysteries”, Kousaku Yokota, Xlibris 2013<br>-->
 
 {% endblock %}

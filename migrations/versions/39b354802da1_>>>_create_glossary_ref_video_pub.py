@@ -68,7 +68,7 @@ def upgrade():
         sa.Column('publisher', sa.String(25), nullable=True),
         sa.Column('format', sa.String(25), nullable=True),
         sa.Column('year', sa.Date(), nullable=True),
-        sa.Column('store_link', sa.String(50), nullable=True),
+        sa.Column('store_link', sa.Text(), nullable=True),
         sa.Column('cover_link', sa.String(50), nullable=True),
         sa.Column('created_date', mysql.TIMESTAMP(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.Column('updated_date', mysql.TIMESTAMP(), server_default=sa.text('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'), nullable=True),

@@ -469,8 +469,8 @@ class Person(db.Model):
     DoD =db.Column(db.DateTime)
     rank = db.Column(db.Integer)
     pic = db.Column(db.String(25))
+    persons_hide = db.Column(db.Integer, nullable=True)
     bio = db.Column(db.Text)
-    persons_show = db.Column(db.Integer, nullable=True)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
@@ -522,7 +522,6 @@ class Video(db.Model):
 class Publication(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    author_person_id = db.Column(db.String(25))
     publisher = db.Column(db.String(25))
     format = db.Column(db.String(25))
     year = db.Column(db.String(25))
@@ -532,6 +531,13 @@ class Publication(db.Model):
     updated_date = db.Column(db.DateTime)
 
     refs = db.relationship('Reference', backref='pub')
+
+class Pub_rel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    pub_id = db.Column(db.Integer, db.ForeignKey('publication.id'), nullable=False)
+    author_person_id = db.Column(db.Integer, db.ForeignKey('publication.id'), nullable=True)
+    created_date = db.Column(db.DateTime)
+    updated_date = db.Column(db.DateTime)
 
 class Kata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
