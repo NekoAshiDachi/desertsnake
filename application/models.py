@@ -519,7 +519,7 @@ class Video(db.Model):
 
 class Publication(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(50), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
     author_person_id = db.Column(db.String(25))
     publisher = db.Column(db.String(25))
     format = db.Column(db.String(25))

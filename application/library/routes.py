@@ -5,11 +5,13 @@ from flask_babel import _
 from application import db
 
 from application.library import bp
-from application.models import Org, Person, Dojo, Country, State, Glossary, Tech, Video, o, p
+from application.models import Org, Person, Dojo, Country, State, Glossary, Tech, Video, Kata, Publication, \
+    o, p
 
 @bp.route('/history')
 def history():
-    return render_template("library/history.html", title=_('History'))
+    r = Publication.query.all()
+    return render_template("library/history.html", title=_('History'), r=r)
 
 @bp.route('/orgs')
 def orgs():
@@ -35,7 +37,8 @@ def people():
 @bp.route('/person/<int:id>')
 def person(id):
     p = Person.query.filter_by(id=id).first_or_404()
-    return render_template("library/person.html", p=p)
+    r = Publication.query.all()
+    return render_template("library/person.html", p=p, r=r)
 
 @bp.route('/glossary')
 def glossary():
@@ -57,7 +60,9 @@ def kata_all():
 
 @bp.route('/kata/<int:id>')
 def kata(id):
-    return render_template("library/kata.html", title=_('Kata'))
+    k = Kata.query.filter_by(id=id).first_or_404()
+    creator = Person.query.filter_by(id=k.creator_person_id).first()
+    return render_template("library/kata.html", title=_('Kata'), k=k, creator=creator)
 
 @bp.route('/kumite')
 def kumite():

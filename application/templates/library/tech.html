@@ -4,7 +4,7 @@
 
 <h1>{{ term.word }} ({{ term.kanji}}) - {{ term.translation }}</h1>
 
-{% if term.notes %}{{ term.notes }}{% endif %}
+{% if term.notes %}{{ term.notes | safe }}{% endif %}
 
 {% if term.techs.first() %}
 <table class="table">
@@ -30,3 +30,23 @@
 {% endif %}
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

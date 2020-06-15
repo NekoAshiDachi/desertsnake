@@ -49,6 +49,8 @@
     <sup><a class='citation' data-content="Redmond 17">[1]</a></sup>
 </p>
 
+{{ r[0] }}
+
 <h3 id='origin_chinese'>China</h3>
 
 <p>Oral histories and a few documents describe the strong influence of Chinese
@@ -245,12 +247,24 @@
 </p>
 
 
+<!-- TODO proper biblio fields to publications; update references in history and in kihon to reflect
+publication table; update JS in base.html if necessary -->
 
+{% set ns = namespace() %}
 
+{% for i in r %}
+    {% if i.id == 85 %}
+        {% set ns.redmond = i %}
+    {% elif i.id == 87 %}
+        {% set ns.mccarthy = i %}
+    {% elif i.id == 88 %}
+        {% set ns.cook = i %}
+    {% endif %}
+{% endfor %}
 
 <h4>References</h4>
 <span id='redmond'>
-    1. Redmond, Robert. <i>The Folk Dances of Shotokan</i>. N.p.: n.p., 2006. ebook.</span><br>
+    1. Redmond, Robert. <i><a href="{{ ns.redmond.store_link }}" target="_blank">The Folk Dances of Shotokan</a></i>. N.p.: n.p., 2006. ebook.</span><br>
 <span id='mccarthy'>
     2. McCarthy, Patrick. <i>The Bible of Karate Bubishi</i>. Tokyo: Charles E. Tuttle Company, Inc., 1995.</span><br>
 <span id="cook">

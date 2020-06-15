@@ -2,17 +2,20 @@
 
 {% block app_content %}
 
-<h1>{{ p.firstName }} {{ p.lastName }} ({{ p.altLastName }})</h1>
-<p>{{ p.DoB }} - {% if p.DoD %}{{p.DoD}}{% endif %}</p>
+<h1>{{ p.firstName }} {{ p.lastName }} {% if p.altLastName %}}({{ p.altLastName }}){% endif %}</h1>
+<ul class="list-unstyled">
+    {% if p.DoB or p.DoD %}
+        <li>{% if p.DoB %}{{ p.DoB }}{% endif %} -
+        {% if p.DoD %}{{ p.DoD }}</li>{% endif %}
+    {% endif %}
+    {% if p.style %}<li>Style: {{ p.style.name }}</li>{% endif %}
+    {% if p.rank %}<li>Rank: {{ p.rank }}</li>{% endif %}
+    <li>Pic: In progress</li>
+    <li>Last updated: {{ p.updated_date }}</li>
+</ul>
 
-<table>
-    <tr><td>Style ID (in progress): {{ p.style_id }}</td></tr>
-    <tr><td>Org ID (in progress): {{ p.org_id }}</td></tr>
-    <tr><td>Rank (in progress): {{ p.rank }}</td></tr>
-    <tr><td>Pic (in progress): {{ p.pic }}</td></tr>
-    <tr><td>Last updated: {{ p.updated_date }}</td></tr>
 </table>
 
-Bio (in progress): {{ p.bio }}
+{{ p.bio | safe}}
 
 {% endblock %}
