@@ -6,7 +6,7 @@
 
 {% if term.notes %}{{ term.notes | safe }}{% endif %}
 
-{% if term.techs.first() %}
+{% if term.refs.first() %}
 <table class="table">
     <tr>
         <th>Category</th>
@@ -14,7 +14,7 @@
         <th>Source</th>
     </tr>
 
-    {% for t in term.techs %}
+    {% for t in term.refs %}
     <tr>
         <td>{% if t.category %}{{ t.category.title() }}{% endif %}</td>
         <td>{{ t.text | safe }}</td>

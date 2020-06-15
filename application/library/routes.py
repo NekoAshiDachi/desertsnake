@@ -5,7 +5,7 @@ from flask_babel import _
 from application import db
 
 from application.library import bp
-from application.models import Org, Person, Dojo, Country, State, Glossary, Tech, Video, Kata, Publication, \
+from application.models import Org, Person, Dojo, Country, State, Glossary, Reference, Video, Kata, Publication, \
     o, p
 
 @bp.route('/history')

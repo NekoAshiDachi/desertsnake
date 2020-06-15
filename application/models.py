@@ -470,13 +470,14 @@ class Person(db.Model):
     rank = db.Column(db.Integer)
     pic = db.Column(db.String(25))
     bio = db.Column(db.Text)
+    persons_show = db.Column(db.Integer, nullable=True)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
     style_id = db.Column(db.Integer, db.ForeignKey('style.id'))
     org_id = db.Column(db.Integer, db.ForeignKey('org.id'))
 
-    techs = db.relationship('Tech', backref='person')
+    refs = db.relationship('Reference', backref='person')
 
 o = lambda id: url_for('library.org', id=id)
 p = lambda id: url_for('library.person', id=id)
@@ -491,16 +492,17 @@ class Glossary(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
-    techs = db.relationship('Tech', backref='term', lazy='dynamic')
+    refs = db.relationship('Reference', backref='term', lazy='dynamic')
 
-class Tech(db.Model):
+class Reference(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(25))
     text = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
-    glossary_id = db.Column(db.Integer, db.ForeignKey('glossary.id'), nullable=False)
+    glossary_id = db.Column(db.Integer, db.ForeignKey('glossary.id'), nullable=True)
+    kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'), nullable=True)
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
     video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
     pub_id = db.Column(db.Integer, db.ForeignKey('publication.id'))
@@ -515,7 +517,7 @@ class Video(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
-    techs = db.relationship('Tech', backref='video')
+    refs = db.relationship('Reference', backref='video')
 
 class Publication(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -529,7 +531,7 @@ class Publication(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
-    techs = db.relationship('Tech', backref='pub')
+    refs = db.relationship('Reference', backref='pub')
 
 class Kata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -542,6 +544,7 @@ class Kata(db.Model):
 
 class Kata_rel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'), nullable=False)
     style_id = db.Column(db.Integer, db.ForeignKey('style.id'))
     parent_kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'))
     child_kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'))
