@@ -110,7 +110,6 @@ followers = db.Table('followers',
     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id')) )
 
-
 class User(PaginatedAPIMixin, UserMixin, db.Model):
     # unique/index flags optimize db searches
     id = db.Column(db.Integer, primary_key=True)
@@ -418,7 +417,7 @@ class Style(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
-    orgs = db.relationship('Org',backref='style')
+    orgs = db.relationship('Org', backref='style')
     people = db.relationship('Person', backref='style')
 
 class Org(db.Model):
@@ -519,6 +518,12 @@ class Video(db.Model):
 
     refs = db.relationship('Reference', backref='video')
 
+pub_rel = db.Table('pub_rel',
+    db.Column('pub_id', db.Integer, db.ForeignKey('publication.id')),
+    db.Column('author_person_id', db.Integer, db.ForeignKey('person.id')),
+    db.Column('subject_person_id', db.Integer, db.ForeignKey('person.id'))
+)
+
 class Publication(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -532,12 +537,18 @@ class Publication(db.Model):
 
     refs = db.relationship('Reference', backref='pub')
 
-class Pub_rel(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    pub_id = db.Column(db.Integer, db.ForeignKey('publication.id'), nullable=False)
-    author_person_id = db.Column(db.Integer, db.ForeignKey('publication.id'), nullable=True)
-    created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime)
+    author = db.relationship('Person',
+        secondary=pub_rel,
+        primaryjoin=id==pub_rel.c.pub_id,
+        secondaryjoin=pub_rel.c.author_person_id==Person.id,
+        backref=db.backref('author'))
+
+kata_rel = db.Table('kata_rel',
+    db.Column('kata_id', db.Integer, db.ForeignKey('kata.id')),
+    db.Column('style_id', db.Integer, db.ForeignKey('style.id')),
+    db.Column('parent_kata_id', db.Integer, db.ForeignKey('kata.id')),
+    db.Column('child_kata_id', db.Integer, db.ForeignKey('kata.id'))
+    )
 
 class Kata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -548,11 +559,8 @@ class Kata(db.Model):
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
 
-class Kata_rel(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'), nullable=False)
-    style_id = db.Column(db.Integer, db.ForeignKey('style.id'))
-    parent_kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'))
-    child_kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'))
-    created_date = db.Column(db.DateTime)
-    updated_date = db.Column(db.DateTime)
+    styles = db.relationship('Style',
+        secondary=kata_rel,
+        primaryjoin=id==kata_rel.c.kata_id,
+        secondaryjoin=kata_rel.c.style_id==Style.id,
+        backref=db.backref('styles'))

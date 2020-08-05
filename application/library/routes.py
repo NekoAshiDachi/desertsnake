@@ -10,8 +10,8 @@ from application.models import Org, Person, Dojo, Country, State, Glossary, Refe
 
 @bp.route('/history')
 def history():
-    r = Publication.query.all()
-    return render_template("library/history.html", title=_('History'), r=r)
+    pubs = Publication.query.join()
+    return render_template("library/history.html", title=_('History'), pubs=pubs)
 
 @bp.route('/orgs')
 def orgs():
