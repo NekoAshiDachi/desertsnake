@@ -22,12 +22,16 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('pub_id', sa.Integer(), nullable=False),
     sa.Column('author_person_id', sa.Integer(), nullable=True),
+    sa.Column('subject_person_id', sa.Integer(), nullable=True),
     sa.Column('created_date', sa.DateTime(), nullable=True),
     sa.Column('updated_date', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['author_person_id'], ['publication.id'], ),
-    sa.ForeignKeyConstraint(['pub_id'], ['publication.id'], ),
-    sa.PrimaryKeyConstraint('id')
+
+    sa.PrimaryKeyConstraint('id'),
+    sa.ForeignKeyConstraint(['pub_id'], ['publication.id']),
+    sa.ForeignKeyConstraint(['author_person_id'], ['person.id']),
+    sa.ForeignKeyConstraint(['subject_person_id'], ['person.id'])
     )
+
     op.drop_column('publication', 'author_person_id')
     # ### end Alembic commands ###
 
