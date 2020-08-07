@@ -4,5 +4,29 @@
 
 <h1>{{ title }}</h1>
 
+<input type="search" class="light-table-filter" data-table="training" placeholder="Filter"><br>
+
+<table class="training table">
+    <tr>
+        <th>Term</th>
+        <th>Text</th>
+        <th>Source</th>
+    </tr>
+
+    {% for t in drills %}
+    <tr>
+        <td><a href="{{ url_for('library.tech', id=t.glossary_id) }}">{{ t.ref_term.word }}</a></td>
+        <td>{{ t.text | safe }}</td>
+        <td>{% if t.person %}
+            <a href="{{ url_for('library.person', id=t.person.id) }}">{{ t.person.firstName }} {{ t.person.lastName }}</a>
+            {% endif %}
+            {% if t.video %}<a href='#' class="modal_youtube" data-youtube_id="{{ t.video.URL }}">{{ t.video.name }}</a>{% endif %}
+            {% if t.pub %}{{ t.pub.title }}{% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
 {% endblock %}
 

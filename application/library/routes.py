@@ -70,7 +70,8 @@ def kumite():
 
 @bp.route('/training')
 def training():
-    return render_template("library/training.html", title=_('Training'))
+    drills = Reference.query.filter_by(category='drill').all()
+    return render_template("library/training.html", title=_('Training'), drills=drills)
 
 @bp.route('/media')
 def media():

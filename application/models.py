@@ -506,6 +506,8 @@ class Reference(db.Model):
     video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
     pub_id = db.Column(db.Integer, db.ForeignKey('publication.id'))
 
+    ref_term = db.relationship('Glossary', backref='ref')
+
 class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     style_id = db.Column(db.Integer)
