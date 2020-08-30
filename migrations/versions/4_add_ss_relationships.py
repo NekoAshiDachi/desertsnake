@@ -1,7 +1,7 @@
 """add ss unique, rels
 
-Revision ID: ccdade22c9b1
-Revises: 39b354802da1
+Revision ID: 4_add_ss_relationships
+Revises: 3_create_glossary_ref_video_pub
 Create Date: 2020-04-23 01:51:21.272121
 
 """
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'ccdade22c9b1'
-down_revision = '39b354802da1'
+revision = '4_add_ss_relationships'
+down_revision = '3_create_glossary_ref_video_pub'
 branch_labels = None
 depends_on = None
 

@@ -1,6 +1,7 @@
 import os
 from time import time
 from datetime import datetime, timedelta
+import re
 
 from hashlib import md5
 import json
@@ -333,7 +334,7 @@ class Post(SearchableMixin, db.Model):
     body = db.Column(db.String(140))
     # can set default time zone to UTC in MySQL config
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), index=True)
     language = db.Column(db.String(5))
 
     def __repr__(self):
@@ -420,6 +421,9 @@ class Style(db.Model):
     orgs = db.relationship('Org', backref='style')
     people = db.relationship('Person', backref='style')
 
+    def __repr__(self):
+        return self.name
+
 class Org(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     acronym = db.Column(db.String(25))
@@ -439,6 +443,9 @@ class Org(db.Model):
 
     people = db.relationship('Person', backref='org')
     dojos = db.relationship('Dojo', backref='org')
+
+    def __repr__(self):
+        return self.acronym
 
 class Dojo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -478,6 +485,10 @@ class Person(db.Model):
 
     refs = db.relationship('Reference', backref='person')
 
+    def __repr__(self):
+        return '{}'.format(', '.join([self.lastName, self.firstName]))
+
+
 o = lambda id: url_for('library.org', id=id)
 p = lambda id: url_for('library.person', id=id)
 
@@ -493,9 +504,24 @@ class Glossary(db.Model):
 
     refs = db.relationship('Reference', backref='term', lazy='dynamic')
 
+
+ref_rel = db.Table('ref_rel',
+    db.Column('ref_id', db.Integer, db.ForeignKey('reference.id')),
+    db.Column('ref_category_id', db.Integer, db.ForeignKey('ref_category.id'))
+)
+
+
+class Ref_category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(25))
+
+    def __repr__(self):
+        return self.name.title()
+
+
 class Reference(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    category = db.Column(db.String(25))
+#     category = db.Column(db.String(25))
     text = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
@@ -507,6 +533,13 @@ class Reference(db.Model):
     pub_id = db.Column(db.Integer, db.ForeignKey('publication.id'))
 
     ref_term = db.relationship('Glossary', backref='ref')
+
+    category = db.relationship('Ref_category',
+        secondary=ref_rel,
+        primaryjoin=id==ref_rel.c.ref_id,
+        secondaryjoin=Ref_category.id==ref_rel.c.ref_category_id,
+        backref=db.backref('category'))
+
 
 class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -520,10 +553,14 @@ class Video(db.Model):
 
     refs = db.relationship('Reference', backref='video')
 
+
 pub_rel = db.Table('pub_rel',
-    db.Column('pub_id', db.Integer, db.ForeignKey('publication.id')),
+    db.Column('id', db.Integer, primary_key=True),
+    db.Column('pub_id', db.Integer, db.ForeignKey('publication.id'), nullable=False),
     db.Column('author_person_id', db.Integer, db.ForeignKey('person.id')),
-    db.Column('subject_person_id', db.Integer, db.ForeignKey('person.id'))
+    db.Column('subject_person_id', db.Integer, db.ForeignKey('person.id')),
+    db.Column('created_date', db.DateTime),
+    db.Column('updated_date', db.DateTime)
 )
 
 class Publication(db.Model):
@@ -545,12 +582,22 @@ class Publication(db.Model):
         secondaryjoin=pub_rel.c.author_person_id==Person.id,
         backref=db.backref('author'))
 
+    def __repr__(self):
+        title = re.sub('(^(?:(?:the)|(?:a)) )(.*)', r'\2, \1', self.title, flags=re.I)
+        title = title[:40] + '...' if len(title) > 40 else title
+        return '{}'.format(title)
+
+
 kata_rel = db.Table('kata_rel',
-    db.Column('kata_id', db.Integer, db.ForeignKey('kata.id')),
+    db.Column('id', db.Integer, nullable=False),
+    db.Column('kata_id', db.Integer, db.ForeignKey('kata.id'), nullable=False),
     db.Column('style_id', db.Integer, db.ForeignKey('style.id')),
     db.Column('parent_kata_id', db.Integer, db.ForeignKey('kata.id')),
-    db.Column('child_kata_id', db.Integer, db.ForeignKey('kata.id'))
+    db.Column('child_kata_id', db.Integer, db.ForeignKey('kata.id')),
+    db.Column('created_date', db.DateTime),
+    db.Column('updated_date', db.DateTime)
     )
+
 
 class Kata(db.Model):
     id = db.Column(db.Integer, primary_key=True)

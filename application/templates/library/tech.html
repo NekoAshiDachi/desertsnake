@@ -1,13 +1,13 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
 
 <h1>{{ term.word }} ({{ term.kanji}}) - {{ term.translation }}</h1>
-
 {% if term.notes %}{{ term.notes | safe }}{% endif %}
 
 {% if term.refs.first() %}
-<table class="table">
+<table class="table table-hover">
     <tr>
         <th>Category</th>
         <th>Text</th>
@@ -16,37 +16,134 @@
 
     {% for t in term.refs %}
     <tr>
-        <td>{% if t.category %}{{ t.category.title() }}{% endif %}</td>
+        <td>{% if t.category %}{{ t.category[0].name.title() }}{% endif %}</td>
         <td>{{ t.text | safe }}</td>
-        <td>{% if t.person %}
-            <a href="{{ url_for('library.person', id=t.person.id) }}">{{ t.person.firstName }} {{ t.person.lastName }}</a>
+        <td>{% if t.person and t.person.id != 99999 %}
+                <a href="{{ url_for('library.person', id=t.person.id) }}">
+                    {{ t.person.firstName }} {{ t.person.lastName }}</a>
             {% endif %}
+
+            {% if t.person and t.person.id != 99999 and (t.video or t.pub) %} &bull; {% endif %}
+
             {% if t.video %}<a href='#' class="modal_youtube" data-youtube_id="{{ t.video.URL }}">{{ t.video.name }}</a>{% endif %}
-            {% if t.pub %}{{ t.pub.title }}{% endif %}
+
+            {% if t.pub %}
+                <a href="{{ url_for('library.person', id=t.pub.author[0].id) }}">
+                {{ t.pub.author[0].firstName }} {{t.pub.author[0].lastName }}</a>
+                &bull;
+                <a href="{{ t.pub.store_link }}" target="_blank">{{ t.pub.title }}</a>
+            {% endif %}
         </td>
     </tr>
     {% endfor %}
 </table>
 {% endif %}
 
+<!-- Button trigger modal -->
+<button id="add_src_btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSource">
+    Add source
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addSource" tabindex="-1" role="dialog" aria-labelledby="addSourceLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addSourceLabel">{{ term.word }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" method="post">
+                <div class="modal-body">
+                    {{ form.hidden_tag() }}
+
+                    <div class="row">
+                        <span class="col-2">{{ form.training_add_source.label }}</span>
+                        <span class="col-3">{{ form.training_add_source }}</span>
+                        <span class="col-3">{{ form.category.label }}</span>
+                       <span class="col-4">{{ form.category }}<br></span>
+                    </div>
+
+                    <div id="training_publication" class="d-none">{{ form.pub.label }}&nbsp;{{ form.pub }}<br></div>
+
+                    <div id="training_style_org" class="row d-none">
+                        <span class="col-2">{{ form.style.label }}</span>
+                        <span class="col-3">{{ form.style }}</span>
+                        <span class="col-3">{{ form.org.label }}</span>
+                        <span class="col-4">{{ form.org }}<br></span>
+                    </div>
+
+                    <div id="training_person" class="row d-none">
+                        <span class="col-2">{{ form.person.label }}</span>
+                        <span class="col-10">{{ form.person }}</span>
+                    </div>
+
+                    <div id="training_video" class="row d-none">
+                        <span class="col">{{ form.video_id }}</span>
+                        <span class="col">{{ form.video_name }}</span>
+                    </div>
+
+                    <div id="training_text">
+                        {{ form.text_field(cols="48", rows="5", id="training_textarea") }}
+                    <br></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="training_cancel" data-dismiss="modal">
+                        Cancel</button>
+                    <button type="button" class="btn" id="training_submit">{{ form.submit() }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let options = document.querySelectorAll('#training_add_source option');
+    for (let o of options) {
+        o.onclick = function() {
+
+            // hide add_source options
+            for (let o of options) {
+                document.getElementById('training_' + o.textContent.toLowerCase()).classList.add('d-none');
+            }
+            document.querySelector('#training_style_org').classList.add('d-none');
+
+            // show selected add_source option and textarea
+            document.getElementById('training_' + o.textContent.toLowerCase()).classList.remove('d-none');
+            document.querySelector('#training_text').classList.remove('d-none');
+
+            // exceptions
+            switch (o.textContent) {
+                case 'Video':
+                    document.querySelector('#training_style_org').classList.remove('d-none');
+                    document.querySelector('#training_person').classList.remove('d-none');
+
+                    // remove placeholder allowing form validation and replace with input placeholders
+                    document.querySelector('#video_id').value = '';
+                    document.querySelector('#video_id').placeholder = '11-character ID after "v="';
+                    document.querySelector('#video_name').value = '';
+                    document.querySelector('#video_name').placeholder = 'Video name';
+                }
+            }
+        }
+
+    // clear training form text field and set defaults
+    document.querySelector('#add_src_btn').onclick = function() {
+        document.querySelector('#training_add_source').selectedIndex = 3;
+        document.querySelector('#category').selectedIndex = 0;
+        document.querySelector('#person').selectedIndex = 0;
+        document.querySelector('#style').selectedIndex = 1;
+        document.querySelector('#org').selectedIndex = 0;
+
+        document.querySelector('#training_textarea').placeholder = 'Description';
+        document.querySelector('#training_textarea').value = '';
+    };
+
+    console.log('Form errors: {{ form.errors }}');
+
+</script>
+
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

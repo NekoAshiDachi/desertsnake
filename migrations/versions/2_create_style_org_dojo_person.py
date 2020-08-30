@@ -1,7 +1,7 @@
 """create style, org, dojo, person - add data after
 
-Revision ID: 30daa80c1018
-Revises: 23504c949e40
+Revision ID: 2_create_style_org_dojo_person
+Revises: 1_create_country_state
 Create Date: 2020-04-23 00:45:04.751337
 
 """
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '30daa80c1018'
-down_revision = '23504c949e40'
+revision = '2_create_style_org_dojo_person'
+down_revision = '1_create_country_state'
 branch_labels = None
 depends_on = None
 

@@ -1,6 +1,6 @@
 """create ss country, state - add table data after
 
-Revision ID: 23504c949e40
+Revision ID: 1_create_country_state
 Revises: 19f87c2a8cd2
 Create Date: 2020-04-23 00:31:33.174673
 
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '23504c949e40'
+revision = '1_create_country_state'
 down_revision = '19f87c2a8cd2'
 branch_labels = None
 depends_on = None

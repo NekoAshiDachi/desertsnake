@@ -1,7 +1,7 @@
 """add_person_ref_cols
 
-Revision ID: 367f6b03d031
-Revises: b6a4845f04a2
+Revision ID: 6_add_person_ref_cols
+Revises: 5_create_kata_kata_rel
 Create Date: 2020-06-15 00:02:33.563474
 
 """
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '367f6b03d031'
-down_revision = 'b6a4845f04a2'
+revision = '6_add_person_ref_cols'
+down_revision = '5_create_kata_kata_rel'
 branch_labels = None
 depends_on = None
 

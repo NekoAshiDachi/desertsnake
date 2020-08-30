@@ -1,7 +1,7 @@
 """create kata - add data after
 
-Revision ID: b6a4845f04a2
-Revises: ccdade22c9b1
+Revision ID: 5_create_kata_kata_rel
+Revises: 4_add_ss_relationships
 Create Date: 2020-05-27 13:09:42.333212
 
 """
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'b6a4845f04a2'
-down_revision = 'ccdade22c9b1'
+revision = '5_create_kata_kata_rel'
+down_revision = '4_add_ss_relationships'
 branch_labels = None
 depends_on = None
 

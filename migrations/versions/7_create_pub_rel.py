@@ -1,7 +1,7 @@
 """create pub_rel
 
-Revision ID: f4d5875703d3
-Revises: 367f6b03d031
+Revision ID: 7_create_pub_rel
+Revises: 6_add_person_ref_cols
 Create Date: 2020-06-15 01:13:04.612928
 
 """
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'f4d5875703d3'
-down_revision = '367f6b03d031'
+revision = '7_create_pub_rel'
+down_revision = '6_add_person_ref_cols'
 branch_labels = None
 depends_on = None
 

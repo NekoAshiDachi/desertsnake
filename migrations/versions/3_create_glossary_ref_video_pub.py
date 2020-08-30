@@ -1,7 +1,7 @@
 """create glossary, reference, video, publication - add data after
 
-Revision ID: 39b354802da1
-Revises: 30daa80c1018
+Revision ID: 3_create_glossary_ref_video_pub
+Revises: 2_create_style_org_dojo_person
 Create Date: 2020-04-23 01:39:05.648920
 
 """
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '39b354802da1'
-down_revision = '30daa80c1018'
+revision = '3_create_glossary_ref_video_pub'
+down_revision = '2_create_style_org_dojo_person'
 branch_labels = None
 depends_on = None
 
