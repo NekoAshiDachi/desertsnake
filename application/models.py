@@ -404,6 +404,7 @@ class State(db.Model):
     name = db.Column(db.String(25), nullable=False)
 
     country_ISO_number = db.Column(db.String(5), db.ForeignKey('country.ISO_number'), nullable=False)
+    dojos = db.relationship('Dojo', backref='state')
 
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
@@ -454,7 +455,6 @@ class Dojo(db.Model):
     street = db.Column(db.String(125))
     city = db.Column(db.String(125))
     zip = db.Column(db.String(125))
-    state_id = db.Column(db.Integer, db.ForeignKey('state.id'))
     siteURL = db.Column(db.String(125), unique=True)
     email = db.Column(db.String(125), unique=True)
     phone = db.Column(db.Integer, unique=True)
@@ -465,6 +465,7 @@ class Dojo(db.Model):
     updated_date = db.Column(db.DateTime)
 
     org_id = db.Column(db.Integer, db.ForeignKey('org.id'))
+    state_id = db.Column(db.Integer, db.ForeignKey('state.id'))
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -484,6 +485,7 @@ class Person(db.Model):
     org_id = db.Column(db.Integer, db.ForeignKey('org.id'))
 
     refs = db.relationship('Reference', backref='person')
+    dojos = db.relationship('Dojo', backref='head_instructor')
 
     def __repr__(self):
         return '{}'.format(', '.join([self.lastName, self.firstName]))
@@ -613,3 +615,4 @@ class Kata(db.Model):
         primaryjoin=id==kata_rel.c.kata_id,
         secondaryjoin=kata_rel.c.style_id==Style.id,
         backref=db.backref('styles'))
+

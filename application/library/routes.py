@@ -48,7 +48,8 @@ def person(id):
 
 @bp.route('/glossary')
 def glossary():
-    return render_template("library/glossary.html", title=_('Glossary'), glossary=Glossary.query.all())
+    glossary = Glossary.query.order_by(Glossary.type).all()
+    return render_template("library/glossary.html", title=_('Glossary'), glossary=glossary)
 
 @bp.route('/tech/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -63,10 +64,6 @@ def tech(id):
 #         flash(f"""raw submission:
 #             {[k + ' - ' + v for k, v in submission.items() if k not in ('csrf_token', 'submit')]}
 #             """, 'info')
-
-# on YT modal click:
-# div id='modal custom'
-    # div class='modal-body'
 
         src = submission.get('training_add_source')
 
