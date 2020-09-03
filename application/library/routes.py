@@ -157,7 +157,9 @@ def kumite():
 
 @bp.route('/training')
 def training():
-    drills = Reference.query.filter_by(category='drill').all()
+    drills = Reference.query \
+        .join(Ref_category, Reference.category).filter_by(name='drill') \
+        .join(Glossary, Reference.term).order_by(Glossary.word).all()
     return render_template("library/training.html", title=_('Training'), drills=drills)
 
 @bp.route('/media')
