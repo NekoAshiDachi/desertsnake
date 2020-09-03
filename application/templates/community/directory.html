@@ -18,7 +18,7 @@
                     {{ d.org.acronym }}</a>{% endif %}
 
             <!-- dojo URL, name, HQ -->
-            {% if d.siteURL %}<a href="{{ d.siteURL }}">{% endif %}
+            {% if d.siteURL %}<a href="{{ d.siteURL }}" target="_blank">{% endif %}
                 {{ d.name }}
                 {% if d.isCountryHQ == 1 %} (HQ) {% endif %}
             {% if d.siteURL %}</a>{% endif %}<br>
@@ -97,9 +97,6 @@
 </table>
 
 {% endblock %}
-
-<!-- set dojo phone to varchar(11) -->
-<!-- non-unique email, siteURL, phone, fax -->
 
 <!--// # tifa NV conversion: 50 shards, 4 pearls; tifa ex+3: 100 shards, 3 ascension, 1 transcension-->
 <!--// needed: 50 shards-->
