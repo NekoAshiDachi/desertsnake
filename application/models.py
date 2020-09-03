@@ -455,10 +455,10 @@ class Dojo(db.Model):
     street = db.Column(db.String(125))
     city = db.Column(db.String(125))
     zip = db.Column(db.String(125))
-    siteURL = db.Column(db.String(125), unique=True)
-    email = db.Column(db.String(125), unique=True)
-    phone = db.Column(db.Integer, unique=True)
-    fax = db.Column(db.Integer, unique=True)
+    siteURL = db.Column(db.String(125))
+    email = db.Column(db.String(125))
+    phone = db.Column(db.String(25))
+    fax = db.Column(db.Integer)
     mapURL = db.Column(db.Text)
     isCountryHQ = db.Column(db.Integer)
     created_date = db.Column(db.DateTime)
@@ -508,7 +508,7 @@ class Glossary(db.Model):
 
 
 ref_rel = db.Table('ref_rel',
-    db.Column('ref_id', db.Integer, db.ForeignKey('reference.id')),
+    db.Column('ref_id', db.Integer, db.ForeignKey('reference.id'), nullable=False),
     db.Column('ref_category_id', db.Integer, db.ForeignKey('ref_category.id'))
 )
 
