@@ -143,7 +143,9 @@ def kihon():
 
 @bp.route('/kata_all')
 def kata_all():
-    return render_template("library/kata_all.html", title=_('Kata'))
+    pubs = Publication.query.join()
+    kata = Kata.query.all()
+    return render_template("library/kata_all.html", pubs=pubs, kata=kata, enumerate = enumerate, title=_('Kata'))
 
 @bp.route('/kata/<int:id>')
 def kata(id):

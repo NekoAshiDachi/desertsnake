@@ -10,11 +10,40 @@
     </li>
 </ul>
 
-{% if k.history %}{{ k.history }}{% endif %}
+{% if k.history %}{{ k.history }}<br>{% endif %}
+
+{% if k.creator_person_id %}
+    Creator: <a href='{$p}{$creator[' id']}'>{$creator['firstName']} {$creator['lastName']}</a><br>";
+{% endif %}
+
+if (isset($K['ancestor_kata_id'])){
+$anc_kata = $this->ss_model->get_data('kata', 'id', $K['ancestor_kata_id']);
+echo "Ancestor Kata: <a href='{$k}{$anc_kata[' id']}'>{$anc_kata['name']}</a><br>";
+}
+
+if (isset($K['descendent_kata_id'])){
+if (strlen($K['descendent_kata_id']) > 1):{
+$desc_str = explode(',', $K['descendent_kata_id']);}
+else: {
+$desc_str = array($K['descendent_kata_id']);}
+endif;
+
+$desc_katas = array();
+foreach ($desc_str as $ds):
+$ds = $this->ss_model->get_data('kata', 'id', $ds);
+$desc_katas[] = "<a href='".$k.$ds[' id']."'>".$ds['name']."</a>";
+endforeach;
+
+echo "Descendent Kata: ".join(', ', $desc_katas)."<br>";
+
+<p><a href="{{ url_for('library.kata_all') }}#Kata List">Back to Kata list</a></p>
 
 <!-- TODO add creator altName, add parent/child kata, add kata sidebar
-
     echo "<p><a href='".base_url()."library/kata/#Kata List'>Back to Kata List</a></p>";
 -->
+
+<!--// TODO related kata-->
+<!--// TODO sidebar of kata-->
+<!--// TODO created by-->
 
 {% endblock %}
