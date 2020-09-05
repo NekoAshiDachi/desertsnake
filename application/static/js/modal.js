@@ -46,3 +46,46 @@ for (let trigger of document.querySelectorAll('.modal_map_trigger')) {
     }
 }
 
+// NEW REFERENCE FORM ==================================================================================================
+
+let options = document.querySelectorAll('#training_add_source option');
+for (let o of options) {
+    o.onclick = function() {
+
+        // hide add_source options
+        for (let o of options) {
+            document.getElementById('training_' + o.textContent.toLowerCase()).classList.add('d-none');
+        }
+        document.querySelector('#training_style_org').classList.add('d-none');
+
+        // show selected add_source option and textarea
+        document.getElementById('training_' + o.textContent.toLowerCase()).classList.remove('d-none');
+        document.querySelector('#training_text').classList.remove('d-none');
+
+        // exceptions
+        switch (o.textContent) {
+            case 'Video':
+                document.querySelector('#training_style_org').classList.remove('d-none');
+                document.querySelector('#training_person').classList.remove('d-none');
+
+                // remove placeholder allowing form validation and replace with input placeholders
+                document.querySelector('#video_id').value = '';
+                document.querySelector('#video_id').placeholder = '11-character ID after "v="';
+                document.querySelector('#video_name').value = '';
+                document.querySelector('#video_name').placeholder = 'Video name';
+        }
+        console.log('Form errors: {{ form.errors }}');
+    }
+}
+
+// clear training form text field and set defaults
+document.querySelector('#add_src_btn').onclick = function() {
+    document.querySelector('#training_add_source').selectedIndex = 3;
+    document.querySelector('#category').selectedIndex = 0;
+    document.querySelector('#person').selectedIndex = 0;
+    document.querySelector('#style').selectedIndex = 1;
+    document.querySelector('#org').selectedIndex = 0;
+
+    document.querySelector('#training_textarea').placeholder = 'Description';
+    document.querySelector('#training_textarea').value = '';
+};

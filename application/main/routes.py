@@ -268,6 +268,10 @@ def export_posts():
 
 # SHOTOKAN SCHOLAR =============================================================
 
+@bp.route('/todo')
+def todo():
+    return render_template("todo.html", title=_('In progress'))
+
 @bp.route('/faq')
 def faq():
     return render_template("faq.html", title=_('Frequently Asked Questions'),

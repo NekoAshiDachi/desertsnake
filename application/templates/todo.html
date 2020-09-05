@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+<h2><?= $title ?></h2>
+
+<h3>Current</h3>
+<ul>
+    <li><strike>Finish conversion from PHP database to Flask</strike></li>
+    <li>Source submission form:</li>
+    <ul>
+        <li><strike>Name, if applicable (if training tip)</strike></li>
+        <li><strike>Source: video, book, instructor</strike></li>
+        <li><strike>Technique/drill/</strike>kata</li>
+        <li><strike>Description</strike></li>
+    </ul>
+    <li>Fix JS: Messages count/link, translator</li>
+    <li><strike>badge/flag for tournament-/traditional-style technique comments</strike></li>
+    <li>Add to media</li>
+</ul>
+
+<h3>Primary features</h3>
+<ul>
+    <li><del>List “official” organizations, branches, dojos and instructors</del></li>
+    <li><del>Provide a list of useful resources in physical support (books, magazines, websites)</del></li>
+    <li><del>Provide a taxonomy-based list of videos (and images) on the web (by content, performer, organization)</del></li>
+    <li><del>Articles (links)</del></li>
+    <li>Provide a comprehensive historical background on the style, techniques and katas</li>
+    <li>Advertise events (listing and calendar)</li>
+    <li>Index social networks channels and other blogs on the subject.</li>
+</ul>
+
+<h3>Content</h3>
+<ul>
+    <li>General</li>
+    <ul>
+        <li><del>brief intro to shotokan karate, kata, kumite at 140 chars (in FAQ)</del></li>
+        <li><del>brief explanation of each page; don't assume people know</del></li>
+    </ul>
+    <li>Events</li>
+    <ul>
+        <li><del>Events widget</del></li>
+    </ul>
+    <li>History</li>
+    <ul>
+        <li>Location/map section: e.g. Takushoku University, Hoitsugan dojo, Shuri, Naha, JKA hombu dojo (1st
+            and 2nd), general history about karate in Japan, Hawaii, US, UK, Italy, Australia, and any other
+            place of significance in receiving key people or producing key competitors; Google maps</li>
+        <li>link to maps page</li>
+        <li>continue adding events to chronology (e.g. people moving)</li>
+    </ul>
+    <li>Glossary
+        <ul>
+            <li><del>do Glossary page/db</del></li>
+            <li>Fill in Glossary: nukite, finger-pokes</li>
+            <li><del>Brief intro: can supply English for categories, e.g. tachi = stance</del></li>
+            <li>Go through profile bios for Japanese words</li>
+            <li>General category can be split into physical (chudan, hajime, rei, etc) and "traditional" (dojo kun, kata, kohai, etc)</li>
+            <li>Add kumite terminology (ippon, sanbon, jiyu, torimasen, chukoku, aiuchi, etc)</li>
+        </ul>
+    </li>
+    <li>Kata
+        <ul>
+            <li>Make enbusen</li>
+            <li>brief introduction to kata and enbusen</li>
+            <li>Do Kata movement tables (requires glossary table); update the db/pages to use a meaning column in kata table.</li>
+        </ul>
+    </li>
+    <li>Organizations
+        <ul>
+            <li><del>add logos</del></li>
+            <li>brief introduction to organizations<a class="btn btn-default" href="<?php //echo site_url('/library/glossary'); ?>">Read More</a></p></li>
+            <li><del>add bio; organization profile page</del></li>
+            <li><del>Need proper links to organization pages from people profiles.</del></li>
+            <li>standardize references, romaji, names</li>
+            <li><del>Dojo listing; </del>funtion (phone) =&gt; SQL statement; note: under organizations/KUGB, there should be a 0 before
+                the 151 phone #. however, the DB drops the 0 before applying changes.</li>
+            <li>add something like a logo/map to use up blank space on right side of organizations.</li>
+            <li>link to maps page</li>
+            <li>NYC dojos</li>
+        </ul>
+    </li>
+    <li>People
+        <ul>
+            <li><del>brief intro</del></li>
+            <li>affiliations: join previous organizations and join current organizations</li>
+            <li>add bio</li>
+            <li><del>google maps</del></li>
+            <li>link to maps page</li>
+            <li><del>use grid format (told her it was organized by rank)</del></li>
+            <li>Profiles on right side of the profile: add something like a short Wikipedia summary about the person, followed by a "read more" link that will expand further information about that person.</li>
+            <li>blog info, articles</li>
+            <li>publications, youtube video links; fix publications</li>
+            <li>fix video listings on profile pages</li>
+            <li>isKarateka, remove author from title</li>
+            <li>standardize references, romaji, names</li>
+            <li><del>optipng larger pictures and upload to db, DB/page ready</del></li>
+            <li>videos on people page are sorting and appearing by title on youtube rather than title in database.</li>
+            <li>add famous competitors and legendary people; also add karate people in other arts (UFC)</li>
+        </ul>
+    </li>
+    <li>Articles/Books/DVDs
+        <ul>
+            <li>All citations should also go here</li>
+            <li>isKarateka, remove author from title</li>
+            <li>keep Wiki from coming up as article</li>
+            <li>Implement metatags; add tags to rel_PublicationsTags table from Kanazawa onwards (note: some books have many tags, and I'm adding tags by looking at summaries and table of contents)</li>
+            <li>Do Article</li>
+            <li>connect rel_VideosPeople to videos (for multiple people, or possibly those that aren't included in the People page)</li>
+            <li>C: videos should appear on top of kata page. Might also help to fill up space better if publications/videos were on side on people profiles.</li>
+            <li>add overlay for videos</li>
+            <li>Implement Automatic Reference numbers and section.</li>
+            <li>on books/videos/etc include number shown out of number available</li>
+            <li>add book reviews from Amazon as necessary</li>
+            <li>fix /update list view =&gt; remove tooltip and show more info at once</li>
+            <li>add a search page</li>
+            <li>add a filter option in the browsing pages; add sectioning display for sorting options (with or without border): filtering acts like sorting;
+                fix: when the load more disappears, if you change the sorting option the button doesnt show up anymore
+                fix list view; remove the "loadmore" button when there's nothing more to retrieve</li>
+            <li>Sports science articles; calisthenics/related arts; recovery</li>
+        </ul>
+    </li>
+    <ul>
+        <li>products section with place for comments, reviews, media</li>
+        <li>karate equipment and media from People</li>
+    </ul>
+    <li>Training</li>
+    <ul>
+        <li>Cross training; include dancing, other martial arts, etc</li>
+    </ul>
+    <li>About: <del>fill in the legal crap pages</del>
+        <ul>
+            <li><del>who we are - About section should be about us</del></li>
+            <li>FAQ: how beginners/intermediates/advanced should navigate website</li>
+            <li>terms of use should be on bottom of (each) page</li>
+        </ul>
+    </li>
+    <li>Collaboration section (separate from About)
+        <ul>
+            <li>Blog section - list of blogs with brief description of content and author, frequency of updates, etc ---&gt; this is something that perhaps needs authorization. This was part of the collaboration idea</li>
+            <li>Advertising (corporate)</li>
+            <li>Partners (other websites)</li>
+            <li>create a template email to send to people asking for permissions and/or personal data.</li>
+            <li>add a contact form/ create email</li>
+        </ul>
+    </li>
+    <li>Social
+        <ul>
+            <li>allow people who subscribe to make account: for access to forum, to make comments, but also to for favorites (e.g. videos). maybe also way to post onto FB activities, whether we post on FB after granted permission (however automated) or by providing code for posting on FB: X is working on Jion, X has worked on Y's kumite technique - watch out!, wants to look like Z doing kata, sharing an article crediting both us and original author, etc. would be fun to have a karate avatar generator. : )</li>
+            <li>debates forum or links to own karate blog</li>
+            <li>news section with place for comments, media, products</li>
+            <li>quotes (comments later)</li>
+            <li>Get a fb/twitter/g+ account and link them</li>
+            <li>Subscribe to us (easy to find and do)</li>
+            <li>Personal training log</li>
+            <li>Philosophy/budo writings</li>
+            <li>Favorite martial arts movies, webcomics</li>
+        </ul>
+    </li>
+    <li>Other suggestions
+        <ul>
+            <li>Training Session Generator can be own button; doesn't need to be dropped down from tools; training
+                session generator app: by category (conditioning, stretching, kumite, etc) or by person (train like the
+                greats)</li>
+            <li>belt exam training regimen by paid subscriptions</li>
+        </ul>
+    </li>
+</ul>
+
+<h3>Design goals</h3>
+<ul>
+    <li>unique & large typography; diversify fonts</li>
+    <li>add pics</li>
+    <li>integrate tags to interact with one another</li>
+    <li>instructions about grid/list views</li>
+    <li>large hero images (medium.com); giant product images</li>
+    <li>background videos; short product feature videos</li>
+    <li>flat design</li>
+    <li>card design (Brit + Co)</li>
+    <li>create a logo :)</li>
+    <li>Retention</li>
+    <ul>
+        <li>what kind of emotion to inspire in the visitor? the website almost 100% appeals to the intellectual rather than the emotional side of the visitor</li>
+        <li>through what handles to keep the visitor from straying away when first coming to the site?</li>
+        <li>how to keep the visitor interested and coming back? relevancy to current trends, tying to the universal and personal</li>
+        <li>how to accommodate a larger variety of visitors? the interested but has never done karate, the parent, the beginner, the intermediate, the advanced, the instructor, the non-karate martial artist, the skeptic?]]</li>
+    </ul>
+</ul>
+
+{% endblock %}

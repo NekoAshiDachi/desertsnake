@@ -1,0 +1,93 @@
+<!-- Refs table -->
+{% if refs.first() %}
+<table class="table table-hover">
+    <tr>
+        <th>Category</th>
+        <th>Text</th>
+        <th>Source</th>
+    </tr>
+
+    {% for t in refs %}
+    <tr>
+        <td>{% if t.category %}{{ t.category[0].name.title() }}{% endif %}</td>
+        <td>{{ t.text | safe }}</td>
+        <td>{% if t.person and t.person.id != 99999 %}
+            <a href="{{ url_for('library.person', id=t.person.id) }}">
+                {{ t.person.firstName }} {{ t.person.lastName }}</a>
+            {% endif %}
+
+            {% if t.person and t.person.id != 99999 and (t.video or t.pub) %} &bull; {% endif %}
+
+            {% if t.video %}<a href='#' class="modal_custom_trigger modal_youtube" data-youtube_id="{{ t.video.URL }}">{{ t.video.name }}</a>{% endif %}
+
+            {% if t.pub %}
+            <a href="{{ url_for('library.person', id=t.pub.author[0].id) }}">
+                {{ t.pub.author[0].firstName }} {{t.pub.author[0].lastName }}</a>
+            &bull;
+            <a href="{{ t.pub.store_link }}" target="_blank">{{ t.pub.title }}</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+<!-- Button trigger modal -->
+<button id="add_src_btn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSource">
+    Add source
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addSource" tabindex="-1" role="dialog" aria-labelledby="addSourceLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addSourceLabel">{{ ref_form_header }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="" method="post">
+                <div class="modal-body">
+                    {{ form.hidden_tag() }}
+
+                    <div class="row">
+                        <span class="col-2">{{ form.training_add_source.label }}</span>
+                        <span class="col-3">{{ form.training_add_source }}</span>
+                        <span class="col-3">{{ form.category.label }}</span>
+                        <span class="col-4">{{ form.category }}<br></span>
+                    </div>
+
+                    <div id="training_publication" class="d-none">{{ form.pub.label }}&nbsp;{{ form.pub }}<br></div>
+
+                    <div id="training_style_org" class="row d-none">
+                        <span class="col-2">{{ form.style.label }}</span>
+                        <span class="col-3">{{ form.style }}</span>
+                        <span class="col-3">{{ form.org.label }}</span>
+                        <span class="col-4">{{ form.org }}<br></span>
+                    </div>
+
+                    <div id="training_person" class="row d-none">
+                        <span class="col-2">{{ form.person.label }}</span>
+                        <span class="col-10">{{ form.person }}</span>
+                    </div>
+
+                    <div id="training_video" class="row d-none">
+                        <span class="col">{{ form.video_id }}</span>
+                        <span class="col">{{ form.video_name }}</span>
+                    </div>
+
+                    <div id="training_text">
+                        {{ form.text_field(cols="48", rows="5", id="training_textarea") }}
+                        <br></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="training_cancel" data-dismiss="modal">
+                        Cancel</button>
+                    <button type="button" class="btn" id="training_submit">{{ form.submit() }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

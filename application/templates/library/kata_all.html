@@ -8,7 +8,7 @@
         <h3 style='padding-left:25px'>Contents</h3>
     </div>
     <ul>
-        <li><a href='#About Kata'>About Kata</a></li>
+        <li><a href='#AboutKata'>About Kata</a></li>
         <ul>
             <li><a href='#Origins'>Origins</a></li>
             <li><a href='#Applications'>Applications</a></li>
@@ -22,6 +22,7 @@
         </ul>
     </ul>
 </div>
+<br>
 
 {% set ns = namespace() %}
 {% set ns.pubs = {} %}
@@ -39,115 +40,124 @@
 {{ v.update({'n': loop.index}) | default("", True) }}
 {% endfor %}
 
-<h1><span id='About Kata'>About Kata</span></h1>
+<a class="btn btn-secondary" data-toggle="collapse" href="#AboutKata" role="button" aria-expanded="false"
+   aria-controls="AboutKata"><h2>About Kata</h2></a><br><br>
 
-<p>
-    A kata is a prescribed sequence of karate techniques. It allows the practitioner to exercise the mind and body in
-    preparation for combat. Certain combinations of techniques in the kata may be used in constructing combat
-    applications for those techniques, and the range of movement is useful for increasing coordination, balance,
-    strength, flexibility, and stamina.
-</p>
+<div id="AboutKata" class="collapse">
+    <p>
+        A kata is a prescribed sequence of karate techniques. It allows the practitioner to exercise the mind and body in
+        preparation for combat. Certain combinations of techniques in the kata may be used in constructing combat
+        applications for those techniques, and the range of movement is useful for increasing coordination, balance,
+        strength, flexibility, and stamina.
+    </p>
 
-<p>
-    型 : The kanji (Japanese character) for kata is composed of three radicals (characters). The upper left radical means
-    <i>shape</i>, the upper right radical means <i>cut</i>, and the bottom radical means <i>ground</i>. A kata is a
-    shape that cuts the ground. 形 is also frequently used for the word <i>kata</i>, and also means <i>shape</i>.
-    <sup><a class='citation' data-content="Redmond 9-10">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-</p>
+    <p>
+        型 : The kanji (Japanese character) for kata is composed of three radicals (characters). The upper left radical means
+        <i>shape</i>, the upper right radical means <i>cut</i>, and the bottom radical means <i>ground</i>. A kata is a
+        shape that cuts the ground. 形 is also frequently used for the word <i>kata</i>, and also means <i>shape</i>.
+        <sup><a class='citation' data-content="Redmond 9-10">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+    </p>
+</div>
 
-<h2><span id="Origins">Origins</span></h2>
+<a class="btn btn-secondary" data-toggle="collapse" href="#Origins" role="button" aria-expanded="false"
+       aria-controls="Origins"><h2>Origins</h2></a><br><br>
 
-<p>
-    Kata may have originated long ago with the Chinese as an alternative method of recordkeeping to reading and writing.
-    <a href="{{ url_for('library.history') }}#origin_chinese"><i>Quan</i>, which were central training devices within
-    their martial arts</a>, were passed onto the
-    <a href="{{ url_for('library.history') }}##okinawa_instructors">Okinawans</a> in the 18th and 19th centuries. As the
-    Chinese revised their practices over time and did not limit themselves to single systems or instructors, specific
-    kata lineage to systems remains largely unknown. Adding to the ambiguity, categorizing the subsequent Okinawan Naha
-    and Shuri kata by their slow and fast speeds, respectively, may be anachronistic since each of the kata came from
-    individual quan.
-    <sup><a class='citation' data-content="Redmond 25-6">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-</p>
+<div id="Origins" class="collapse">
+    <p>
+        Kata may have originated long ago with the Chinese as an alternative method of recordkeeping to reading and writing.
+        <a href="{{ url_for('library.history') }}#origin_chinese"><i>Quan</i>, which were central training devices within
+        their martial arts</a>, were passed onto the
+        <a href="{{ url_for('library.history') }}##okinawa_instructors">Okinawans</a> in the 18th and 19th centuries. As the
+        Chinese revised their practices over time and did not limit themselves to single systems or instructors, specific
+        kata lineage to systems remains largely unknown. Adding to the ambiguity, categorizing the subsequent Okinawan Naha
+        and Shuri kata by their slow and fast speeds, respectively, may be anachronistic since each of the kata came from
+        individual quan.
+        <sup><a class='citation' data-content="Redmond 25-6">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+    </p>
 
-Examples of Chinese influences in modern kata:
-<ul>
-    <li>Fujian White Crane, which descended from Shaolin boxing, influenced Sanchin, which was known as <i>San
-        Chian</i> in White Crane. <small><i>TODO - Wikipedia</i></small>
-    </li>
-    <li>These kata came from Fuzhou, China: Suparinpei (Peichurin), Sanseiryu, Sanchin, Seisan, Kururunfa, Seipai,
-        Nipaipo, Niseishi, Useishi, Unshu, Sochin, Naihanchi, Channan (Pinans or Heians), Jutte, and
-        possibly Kushanku
-        <sup><a class='citation' data-content="Redmond 25">[{{ ns.pubs['redmond']['n'] }}]</a></sup></li>
-</ul>
+    Examples of Chinese influences in modern kata:
+    <ul>
+        <li>Fujian White Crane, which descended from Shaolin boxing, influenced Sanchin, which was known as <i>San
+            Chian</i> in White Crane. <small><i>TODO - Wikipedia</i></small>
+        </li>
+        <li>These kata came from Fuzhou, China: Suparinpei (Peichurin), Sanseiryu, Sanchin, Seisan, Kururunfa, Seipai,
+            Nipaipo, Niseishi, Useishi, Unshu, Sochin, Naihanchi, Channan (Pinans or Heians), Jutte, and
+            possibly Kushanku
+            <sup><a class='citation' data-content="Redmond 25">[{{ ns.pubs['redmond']['n'] }}]</a></sup></li>
+    </ul>
 
-<p>
-    The names of kata may be older Okinawan names, or more recent Japanese names. Their kanji may not be the original
-    kanji and may differ between instructors, so their meaning may have multiple interpretations.
-    <a href="{{ url_for('library.person', id=1) }}">Gichin Funakoshi</a>, the first Okinawan to teach karate in Japan,
-    transliterated the original Okinawan names into the mainland Tokyo dialect in response to Japanese nationalism, but
-    not all names were adapted.
-    <sup><a class='citation' data-content="Redmond 9-34">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-</p>
+    <p>
+        The names of kata may be older Okinawan names, or more recent Japanese names. Their kanji may not be the original
+        kanji and may differ between instructors, so their meaning may have multiple interpretations.
+        <a href="{{ url_for('library.person', id=1) }}">Gichin Funakoshi</a>, the first Okinawan to teach karate in Japan,
+        transliterated the original Okinawan names into the mainland Tokyo dialect in response to Japanese nationalism, but
+        not all names were adapted.
+        <sup><a class='citation' data-content="Redmond 9-34">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+    </p>
 
-<!--    List of kata if Okinawan/Japanese, and by origin (ryu or master), romanized name, kanji or katakana, and translation -->
+    <!--    List of kata if Okinawan/Japanese, and by origin (ryu or master), romanized name, kanji or katakana, and translation -->
 
-<h3>Shotokan kata</h3>
+    <h3>Shotokan kata</h3>
 
-<p>There are about 150 distinct Okinawan and Japanese kata (including revisions and adaptations), most of which come
-    from Okinawa. Kata created since the 1920s have been rejected by most instructors and associations as illegitimate,
-    though with the exception of
-    <a href="{{ url_for('library.person', id=7) }}">Tetsuhiko Asai's</a> kata, students in the past were encouraged to
-    create kata.
-    <sup><a class='citation' data-content="Redmond 33-4">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-</p>
-<p>
-    Shotokan is exclusively Shorin except for some of Shito-ryu’s
-    <a href="{{ url_for('library.person', id=48) }}">Arakaki</a> kata (Unsu, Sochin, and Nijushiho), which are reputed
-    to have been imported into Shotokan by Funakoshi's son <a href="{{ url_for('library.person', id=18) }}">Gigo</a>.
-    The 100 Okinawan kata became the 21-32 of Shotokan (depending on the school) because 1) Funakoshi did not know all
-    100 kata, and/or 2) students chose not to do certain kata or forgot them. The Shotokai organization is stricter and
-    endorses only the 15 of Funakoshi’s <a href="{{ pubs[1].store_link }}">Karate-do Kyohan</a>.
-    <sup><a class='citation' data-content="Redmond 9-44">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-</p>
+    <p>There are about 150 distinct Okinawan and Japanese kata (including revisions and adaptations), most of which come
+        from Okinawa. Kata created since the 1920s have been rejected by most instructors and associations as illegitimate,
+        though with the exception of
+        <a href="{{ url_for('library.person', id=7) }}">Tetsuhiko Asai's</a> kata, students in the past were encouraged to
+        create kata.
+        <sup><a class='citation' data-content="Redmond 33-4">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+    </p>
+    <p>
+        Shotokan is exclusively Shorin except for some of Shito-ryu’s
+        <a href="{{ url_for('library.person', id=48) }}">Arakaki</a> kata (Unsu, Sochin, and Nijushiho), which are reputed
+        to have been imported into Shotokan by Funakoshi's son <a href="{{ url_for('library.person', id=18) }}">Gigo</a>.
+        The 100 Okinawan kata became the 21-32 of Shotokan (depending on the school) because 1) Funakoshi did not know all
+        100 kata, and/or 2) students chose not to do certain kata or forgot them. The Shotokai organization is stricter and
+        endorses only the 15 of Funakoshi’s <a href="{{ pubs[1].store_link }}">Karate-do Kyohan</a>.
+        <sup><a class='citation' data-content="Redmond 9-44">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+    </p>
+</div>
 
-<h2><span id="Applications">Applications</span></h2>
+<a class="btn btn-secondary" data-toggle="collapse" href="#Applications" role="button" aria-expanded="false"
+   aria-controls="Applications"><h2>Applications</h2></a><br><br>
 
-<p>Kata used to contain grappling applications that were watered down or discarded with the rise of sport karate.
-    Funakoshi, mainly a children's instructor, was not very skilled or knowledgeable about more aggressive karate
-    applications. He also might have intentionally watered down techniques to popularize it as a family friendly
-    sport.
-    <sup><a class='citation' data-content="Redmond 29">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-</p>
+<div id="Applications" class="collapse">
+    <p>Kata used to contain grappling applications that were watered down or discarded with the rise of sport karate.
+        Funakoshi, mainly a children's instructor, was not very skilled or knowledgeable about more aggressive karate
+        applications. He also might have intentionally watered down techniques to popularize it as a family friendly
+        sport.
+        <sup><a class='citation' data-content="Redmond 29">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+    </p>
 
-<h2><span id="Changes">Changes</span></h2>
+    <h2><span id="Changes">Changes</span></h2>
 
-<p>Kata is supposed to be immutable, except for small changes by senior instructors supported by clear explanation.
-    Funakoshi did introduce significant changes and was criticized sharply in Okinawa for that, and that was one reasons
-    why he never returned to Okinawa.
-    <sup><a class='citation' data-content="Yokota">[{{ ns.pubs['yokota']['n'] }}]</a></sup><br>
-    <small><i>TODO: get page number</i></small>
-</p>
-
-Some of Funakoshi's changes:
-<ul>
-    <li>Okinawan kata names became Japanese names.</li>
-    <li>Nekoashi-dachi replaced with koukutsu-dachi: Shorin-ryu does not have a koukutsu-dachi stance. Shito-ryu and
-        Goju-ryu do have koukutsu-dachi, but it is more like a zenkutsu-dachi facing the opposite direction. A possible
-        explanation is that Funakoshi depended on judo founder Jigoro Kano's support for the spread of karate in Japan,
-        and the groin kick from nekoashi-dachi would too easily neutralize judo-ka before they could close distance.
+    <p>Kata is supposed to be immutable, except for small changes by senior instructors supported by clear explanation.
+        Funakoshi did introduce significant changes and was criticized sharply in Okinawa for that, and that was one reasons
+        why he never returned to Okinawa.
         <sup><a class='citation' data-content="Yokota">[{{ ns.pubs['yokota']['n'] }}]</a></sup><br>
         <small><i>TODO: get page number</i></small>
-    </li>
-    <li>Mae-geri replaced with yoko-geri-keage: Okinawan karate kicks are largely limited to mae-geri and mikazuki-geri
-        (ushiro-geri in Unsu and a gedan kekomi in Bassai Dai being exceptions). Wado-ryu, whose founder left Shotokan
-        around 1929, uses mae-geri in its kata, meaning that yoko-geri-keage was introduced after Funakoshi arrived in
-        Japan. A couple possibilities why are that Funakoshi's university students may have requested more kicking
-        variety in kata, and that yoko-geri-keage to the side is easier to do from koukutsu-dachi than from
-        nekoashi-dachi in certain kata (e.g., Heian Nidan).
-        <sup><a class='citation' data-content="Yokota">[{{ ns.pubs['yokota']['n'] }}]</a></sup><br>
-        <small><i>TODO: get page number</i></small>
-    </li>
-</ul>
+    </p>
+
+    Some of Funakoshi's changes:
+    <ul>
+        <li>Okinawan kata names became Japanese names.</li>
+        <li>Nekoashi-dachi replaced with koukutsu-dachi: Shorin-ryu does not have a koukutsu-dachi stance. Shito-ryu and
+            Goju-ryu do have koukutsu-dachi, but it is more like a zenkutsu-dachi facing the opposite direction. A possible
+            explanation is that Funakoshi depended on judo founder Jigoro Kano's support for the spread of karate in Japan,
+            and the groin kick from nekoashi-dachi would too easily neutralize judo-ka before they could close distance.
+            <sup><a class='citation' data-content="Yokota">[{{ ns.pubs['yokota']['n'] }}]</a></sup><br>
+            <small><i>TODO: get page number</i></small>
+        </li>
+        <li>Mae-geri replaced with yoko-geri-keage: Okinawan karate kicks are largely limited to mae-geri and mikazuki-geri
+            (ushiro-geri in Unsu and a gedan kekomi in Bassai Dai being exceptions). Wado-ryu, whose founder left Shotokan
+            around 1929, uses mae-geri in its kata, meaning that yoko-geri-keage was introduced after Funakoshi arrived in
+            Japan. A couple possibilities why are that Funakoshi's university students may have requested more kicking
+            variety in kata, and that yoko-geri-keage to the side is easier to do from koukutsu-dachi than from
+            nekoashi-dachi in certain kata (e.g., Heian Nidan).
+            <sup><a class='citation' data-content="Yokota">[{{ ns.pubs['yokota']['n'] }}]</a></sup><br>
+            <small><i>TODO: get page number</i></small>
+        </li>
+    </ul>
+</div>
 
 <h1><span id="Kata List">Kata list</span></h1>
 
@@ -159,24 +169,50 @@ Some of Funakoshi's changes:
 <span id='Canonical'><h3>Canonical kata</h3></span>
 
 <div class="row">
-{% for n, k in enumerate(kata) %}
-    {% if k.id < 28 %}
-        <div class="col-2"><a href="{{ url_for('library.kata', id=k.id) }}">{{ k.name }}</a></div>
-    {% endif %}
-{% endfor %}
+    <div class="col">
+        <a href="{{ url_for('library.kata', id=1) }}">Taikyoku Shodan</a><br>
+        <a href="{{ url_for('library.kata', id=2) }}">Heian Shodan</a><br>
+        <a href="{{ url_for('library.kata', id=3) }}">Heian Nidan</a><br>
+        <a href="{{ url_for('library.kata', id=4) }}">Heian Sandan</a><br>
+        <a href="{{ url_for('library.kata', id=5) }}">Heian Yondan</a><br>
+        <a href="{{ url_for('library.kata', id=6) }}">Heian Godan</a>
+    </div>
+    <div class="col">
+        <a href="{{ url_for('library.kata', id=7) }}">Tekki Shodan</a><br>
+        <a href="{{ url_for('library.kata', id=8) }}">Tekki Nidan</a><br>
+        <a href="{{ url_for('library.kata', id=9) }}">Tekki Sandan</a><br>
+        <a href="{{ url_for('library.kata', id=10) }}">Bassai Dai</a><br>
+        <a href="{{ url_for('library.kata', id=11) }}">Bassai Shō</a><br>
+        <a href="{{ url_for('library.kata', id=12) }}">Kanku Dai</a><br>
+        <a href="{{ url_for('library.kata', id=13) }}">Kanku Shō</a><br>
+        <a href="{{ url_for('library.kata', id=14) }}">Jion</a><br>
+        <a href="{{ url_for('library.kata', id=15) }}">Jiin</a><br>
+        <a href="{{ url_for('library.kata', id=16) }}">Jitte</a><br>
+        <a href="{{ url_for('library.kata', id=17) }}">Empi</a>
+    </div>
+    <div class="col">
+        <a href="{{ url_for('library.kata', id=18) }}">Hangetsu</a><br>
+        <a href="{{ url_for('library.kata', id=19) }}">Gankaku</a><br>
+        <a href="{{ url_for('library.kata', id=20) }}">Nijushiho</a><br>
+        <a href="{{ url_for('library.kata', id=21) }}">Chinte</a><br>
+        <a href="{{ url_for('library.kata', id=22) }}">Sōchin</a><br>
+        <a href="{{ url_for('library.kata', id=23) }}">Meikyō</a><br>
+        <a href="{{ url_for('library.kata', id=24) }}">Unsu</a><br>
+        <a href="{{ url_for('library.kata', id=25) }}">Wankan</a><br>
+        <a href="{{ url_for('library.kata', id=26) }}">Gojushiho Dai</a><br>
+        <a href="{{ url_for('library.kata', id=27) }}">Gojushiho Shō</a><br>
+        <a href="{{ url_for('library.kata', id=30) }}">Gankaku Shō</a>
+    </div>
 </div>
 <br>
 
 <span id='Other Kata'><h3>Other kata</h3></span>
 
-<div class="row">
 {% for k in kata %}
     {% if k.id >= 28 %}
-    <div class="col-2"><a href="{{ url_for('library.kata', id=k.id) }}">{{ k.name }}</a></div>
+    <a href="{{ url_for('library.kata', id=k.id) }}">{{ k.name }}</a><br>
     {% endif %}
 {% endfor %}
-</div>
-
 <br>
 
 <h4>References</h4>

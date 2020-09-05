@@ -38,7 +38,8 @@ def org(id):
 
 @bp.route('/people')
 def people():
-    return render_template("library/people.html", title=_('People'))
+    people = Person.query.filter_by(persons_hide=None).order_by(Person.lastName).all()
+    return render_template("library/people.html", people=people, enumerate=enumerate, title=_('People'))
 
 @bp.route('/person/<int:id>')
 def person(id):
@@ -51,95 +52,84 @@ def glossary():
     glossary = Glossary.query.order_by(Glossary.type).all()
     return render_template("library/glossary.html", title=_('Glossary'), glossary=glossary)
 
-@bp.route('/tech/<int:id>', methods=['GET', 'POST'])
-@login_required
-def tech(id):
-    term = Glossary.query.filter_by(id=id).first_or_404()
-    form = TrainingAddForm()
+
+def validate_add_reference_form(form, request, route: str, id: int):
 
 #     flash('Request method: ' + request.method, 'info')
 
-    if request.method == 'POST':
-        submission = request.form
+    submission = request.form
 #         flash(f"""raw submission:
 #             {[k + ' - ' + v for k, v in submission.items() if k not in ('csrf_token', 'submit')]}
 #             """, 'info')
 
-        src = submission.get('training_add_source')
+    src = submission.get('training_add_source')
 
-        video_valid = src != 'video' or (src == 'video' and re.search(r'[-_\w\d]{11}', submission.get('video_id')))
-        if form.validate_on_submit() and video_valid:
+    video_valid = src != 'video' or (src == 'video' and re.search(r'[-_\w\d]{11}', submission.get('video_id')))
+    if form.validate_on_submit() and video_valid:
 
-            # VIDEO ----------------------------------------------------------------------------------------------------
-            if submission.get('training_add_source') == 'video':
+        # VIDEO ----------------------------------------------------------------------------------------------------
+        if submission.get('training_add_source') == 'video':
 
-                video = Video.query.filter_by(URL=submission.get('video_id')).first()
-                if not video:
-                    video = Video()
-                    db.session.add(video)
-                    db.session.commit()
-                    db.session.refresh(video)
+            video = Video.query.filter_by(URL=submission.get('video_id')).first()
+            if not video:
+                video = Video()
+                db.session.add(video)
+                db.session.commit()
+                db.session.refresh(video)
 #                     flash(f'New video record created with ID {video.id}', 'info')
-                else:
+            else:
 #                     flash(f'Previous video record with ID {video.id}', 'info')
-                    pass
+                pass
 
-                org_id = submission.get('org')
-                video_dict = {
-                    'style_id': submission.get('style'),
-                    'org_id': org_id if org_id and org_id != '__None' else None,
-                    'performer_person_id': submission.get('person').replace('__None', '99999'),
-                    'name': submission.get('video_name'),
-                    'URL': submission.get('video_id')
-                }
+            org_id = submission.get('org')
+            video_dict = {
+                'style_id': submission.get('style'),
+                'org_id': org_id if org_id and org_id != '__None' else None,
+                'performer_person_id': submission.get('person').replace('__None', '99999'),
+                'name': submission.get('video_name'),
+                'URL': submission.get('video_id')
+            }
 
-                [setattr(video, k, v) for k, v in video_dict.items()]
+            [setattr(video, k, v) for k, v in video_dict.items()]
 
 #                 flash(f"""video:
 #                     {[k + ' - ' + str(v) for k, v in video.__dict__.items() if v and k != '_sa_instance_state']}""",
 #                     'info')
 
-                db.session.add(video)
-                db.session.commit()
+            db.session.add(video)
+            db.session.commit()
 
-            new_ref_dict = {
-                'glossary_id': str(id),
-                'person_id': submission.get('person').replace('__None', '99999') if src in ('person', 'video') else None,
-                'video_id': video.id if src == 'video' else None,
-                'pub_id': submission.get('pub') if src == 'publication' else None,
-                'text': submission.get('text_field'),
-                'created_date': datetime.now()
-            }
+        new_ref_dict = {
+            'glossary_id': str(id),
+            'person_id': submission.get('person').replace('__None', '99999') if src in ('person', 'video') else None,
+            'video_id': video.id if src == 'video' else None,
+            'pub_id': submission.get('pub') if src == 'publication' else None,
+            'text': submission.get('text_field'),
+            'created_date': datetime.now()
+        }
 
-            # TODO until can add video/people/pubs on the fly, dropdown menu and separate function for adding people/pub
-            new_ref = Reference(**new_ref_dict)
+        # TODO until can add video/people/pubs on the fly, dropdown menu and separate function for adding people/pub
+        new_ref = Reference(**new_ref_dict)
 #             flash(f"""new_ref: {[k + ' - ' + str(v) for k, v in new_ref_dict.items() if v]}""", 'info')
 
-            db.session.add(new_ref)
-            db.session.commit()
-            db.session.refresh(new_ref)  # gets new Reference ID
+        db.session.add(new_ref)
+        db.session.commit()
+        db.session.refresh(new_ref)  # gets new Reference ID
 
-            ref_category = Ref_category.query.filter_by(id=submission.get('category')).first()
-            new_ref.category.append(ref_category)
-            db.session.add(new_ref)
-            db.session.commit()
+        ref_category = Ref_category.query.filter_by(id=submission.get('category')).first()
+        new_ref.category.append(ref_category)
+        db.session.add(new_ref)
+        db.session.commit()
 
-            flash(f'Your changes have been saved.', 'success')
-            return redirect(url_for('library.tech', id=id))
+        flash(f'Your changes have been saved.', 'success')
 
-        else:
-            if src == 'video' and not video_valid:
-                flash('Check YouTube address for 11-character alphanumeric YouTube ID after "v=".')
+    else:
+        if src == 'video' and not video_valid:
+            flash('Check YouTube address for 11-character alphanumeric YouTube ID after "v=".')
 
-            for k, v in form.errors.items():
-                flash(f"{k} field: {v[0]}", 'danger')
-            return redirect(url_for('library.tech', id=id))
+        for k, v in form.errors.items():
+            flash(f"{k} field: {v[0]}", 'danger')
 
-    return render_template("library/tech.html", term=term, form=form)
-
-@bp.route('/kihon')
-def kihon():
-    return render_template("library/kihon.html", title=_('Kihon'), o=o, p=p)
 
 @bp.route('/kata_all')
 def kata_all():
@@ -151,11 +141,34 @@ def kata_all():
 def kata(id):
     k = Kata.query.filter_by(id=id).first_or_404()
     creator = Person.query.filter_by(id=k.creator_person_id).first()
-    return render_template("library/kata.html", title=_('Kata'), k=k, creator=creator)
+    form = TrainingAddForm()
+
+    if request.method == 'POST':
+        validate_add_reference_form(form, request, 'library.kata', id)
+        return redirect(url_for('library.kata', id=id))
+
+    return render_template("library/kata.html", title=_('Kata'), k=k, creator=creator, form=form, enumerate=enumerate,
+        len=len)
+
+@bp.route('/kihon')
+def kihon():
+    return render_template("library/kihon.html", title=_('Kihon'), o=o, p=p)
 
 @bp.route('/kumite')
 def kumite():
     return render_template("library/kumite.html", title=_('Kumite'))
+
+@bp.route('/tech/<int:id>', methods=['GET', 'POST'])
+@login_required
+def tech(id):
+    term = Glossary.query.filter_by(id=id).first_or_404()
+    form = TrainingAddForm()
+
+    if request.method == 'POST':
+        validate_add_reference_form(form, request, 'library.tech', id)
+        return redirect(url_for('library.tech', id=id))
+
+    return render_template("library/tech.html", term=term, form=form)
 
 @bp.route('/training')
 def training():

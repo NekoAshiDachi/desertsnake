@@ -85,7 +85,7 @@ def upgrade():
         sa.Column('style_id', sa.Integer(), nullable=True),
         sa.Column('org_id', sa.Integer(), nullable=True),
         sa.Column('rank', sa.Integer(), nullable=True),
-        sa.Column('pic', sa.String(25), nullable=True),
+        sa.Column('pic', sa.String(100), nullable=True),
         sa.Column('bio', sa.Text(), nullable=True),
         sa.Column('created_date', mysql.TIMESTAMP(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
         sa.Column('updated_date', mysql.TIMESTAMP(), server_default=sa.text('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'), nullable=True),

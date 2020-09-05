@@ -475,7 +475,7 @@ class Person(db.Model):
     DoB =db.Column(db.DateTime)
     DoD =db.Column(db.DateTime)
     rank = db.Column(db.Integer)
-    pic = db.Column(db.String(25))
+    pic = db.Column(db.String(100))
     persons_hide = db.Column(db.Integer, nullable=True)
     bio = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
@@ -605,14 +605,28 @@ class Kata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25), nullable=False)
     kanji = db.Column(db.String(25))
-    creator_person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
     history = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
+
+    creator_person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
+    creator = db.relationship('Person')
 
     styles = db.relationship('Style',
         secondary=kata_rel,
         primaryjoin=id==kata_rel.c.kata_id,
         secondaryjoin=kata_rel.c.style_id==Style.id,
         backref=db.backref('styles'))
+
+    parent_kata = db.relationship('Kata',
+        secondary=kata_rel,
+        primaryjoin=kata_rel.c.kata_id==id,
+        secondaryjoin=kata_rel.c.parent_kata_id==id)
+
+    children_kata = db.relationship('Kata',
+        secondary=kata_rel,
+        primaryjoin=kata_rel.c.parent_kata_id==id,
+        secondaryjoin=kata_rel.c.kata_id==id)
+
+    refs = db.relationship('Reference', backref='kata', lazy='dynamic')
 
