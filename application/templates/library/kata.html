@@ -32,9 +32,18 @@
     {% endfor %}<br>
 {% endif %}
 
-{% if k.history %}<br>{{ k.history }}{% endif %}
+{% if k.history %}
+    <br>
+    <a class="btn btn-secondary" data-toggle="collapse" href="#History" role="button" aria-expanded="false"
+       aria-controls="History">History</a><br><br>
 
-<br><br>
+    <div id="History" class="collapse">
+        {{ k.history | safe }}
+        <br><br>
+    </div>
+{% endif %}
+
+
 
 {% set refs = k.refs %}
 {% set ref_form_header = k.name %}
