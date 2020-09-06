@@ -135,9 +135,9 @@ def validate_add_reference_form(form, request, route: str, id: int):
 def kata_all():
     pubs = Publication.query.join()
     kata = Kata.query.all()
-    return render_template("library/kata_all.html", pubs=pubs, kata=kata, enumerate = enumerate, title=_('Kata'))
+    return render_template("library/kata_all.html", pubs=pubs, kata=kata, p=p, o=o, enumerate = enumerate, title=_('Kata'))
 
-@bp.route('/kata/<int:id>')
+@bp.route('/kata/<int:id>', methods=['GET', 'POST'])
 def kata(id):
     k = Kata.query.filter_by(id=id).first_or_404()
     creator = Person.query.filter_by(id=k.creator_person_id).first()

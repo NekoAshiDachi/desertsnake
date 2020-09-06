@@ -8,17 +8,17 @@
         <h3 style='padding-left:25px'>Contents</h3>
     </div>
     <ul>
-        <li><a href='#AboutKata'>About Kata</a></li>
+        <li><a href='#AboutKata'>About kata</a></li>
         <ul>
             <li><a href='#Origins'>Origins</a></li>
             <li><a href='#Applications'>Applications</a></li>
             <li><a href='#Changes'>Changes</a></li>
-            <li><a href='#References'>References</a></li>
         </ul>
-        <li><a href='#Kata List'>Kata List</a></li>
+        <li><a href='#TeachingTraining'>Teaching and training</a></li>
+        <li><a href='#Kata List'>Kata list</a></li>
         <ul>
-            <li><a href="#Canonical">Canonical Kata</a></li>
-            <li><a href="#Other Kata">Other Kata</a></li>
+            <li><a href="#Canonical">Canonical kata</a></li>
+            <li><a href="#Other Kata">Other kata</a></li>
         </ul>
     </ul>
 </div>
@@ -41,7 +41,7 @@
 {% endfor %}
 
 <a class="btn btn-secondary" data-toggle="collapse" href="#AboutKata" role="button" aria-expanded="false"
-   aria-controls="AboutKata"><h2>About Kata</h2></a><br><br>
+   aria-controls="AboutKata"><h3>About kata</h3></a><br><br>
 
 <div id="AboutKata" class="collapse">
     <p>
@@ -57,70 +57,63 @@
         shape that cuts the ground. 形 is also frequently used for the word <i>kata</i>, and also means <i>shape</i>.
         <sup><a class='citation' data-content="Redmond 9-10">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
     </p>
-</div>
 
-<a class="btn btn-secondary" data-toggle="collapse" href="#Origins" role="button" aria-expanded="false"
-       aria-controls="Origins"><h2>Origins</h2></a><br><br>
+    <h2 id="Origins">Origins</h2>
+        <p>
+            Kata may have originated long ago with the Chinese as an alternative method of recordkeeping to reading and writing.
+            <a href="{{ url_for('library.history') }}#origin_chinese"><i>Quan</i>, which were central training devices within
+            their martial arts</a>, were passed onto the
+            <a href="{{ url_for('library.history') }}##okinawa_instructors">Okinawans</a> in the 18th and 19th centuries. As the
+            Chinese revised their practices over time and did not limit themselves to single systems or instructors, specific
+            kata lineage to systems remains largely unknown. Adding to the ambiguity, categorizing the subsequent Okinawan Naha
+            and Shuri kata by their slow and fast speeds, respectively, may be anachronistic since each of the kata came from
+            individual quan.
+            <sup><a class='citation' data-content="Redmond 25-6">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+        </p>
 
-<div id="Origins" class="collapse">
-    <p>
-        Kata may have originated long ago with the Chinese as an alternative method of recordkeeping to reading and writing.
-        <a href="{{ url_for('library.history') }}#origin_chinese"><i>Quan</i>, which were central training devices within
-        their martial arts</a>, were passed onto the
-        <a href="{{ url_for('library.history') }}##okinawa_instructors">Okinawans</a> in the 18th and 19th centuries. As the
-        Chinese revised their practices over time and did not limit themselves to single systems or instructors, specific
-        kata lineage to systems remains largely unknown. Adding to the ambiguity, categorizing the subsequent Okinawan Naha
-        and Shuri kata by their slow and fast speeds, respectively, may be anachronistic since each of the kata came from
-        individual quan.
-        <sup><a class='citation' data-content="Redmond 25-6">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-    </p>
+        Examples of Chinese influences in modern kata:
+        <ul>
+            <li>Fujian White Crane, which descended from Shaolin boxing, influenced Sanchin, which was known as <i>San
+                Chian</i> in White Crane. <small><i>TODO - Wikipedia</i></small>
+            </li>
+            <li>These kata came from Fuzhou, China: Suparinpei (Peichurin), Sanseiryu, Sanchin, Seisan, Kururunfa, Seipai,
+                Nipaipo, Niseishi, Useishi, Unshu, Sochin, Naihanchi, Channan (Pinans or Heians), Jutte, and
+                possibly Kushanku
+                <sup><a class='citation' data-content="Redmond 25">[{{ ns.pubs['redmond']['n'] }}]</a></sup></li>
+        </ul>
 
-    Examples of Chinese influences in modern kata:
-    <ul>
-        <li>Fujian White Crane, which descended from Shaolin boxing, influenced Sanchin, which was known as <i>San
-            Chian</i> in White Crane. <small><i>TODO - Wikipedia</i></small>
-        </li>
-        <li>These kata came from Fuzhou, China: Suparinpei (Peichurin), Sanseiryu, Sanchin, Seisan, Kururunfa, Seipai,
-            Nipaipo, Niseishi, Useishi, Unshu, Sochin, Naihanchi, Channan (Pinans or Heians), Jutte, and
-            possibly Kushanku
-            <sup><a class='citation' data-content="Redmond 25">[{{ ns.pubs['redmond']['n'] }}]</a></sup></li>
-    </ul>
+        <p>
+            The names of kata may be older Okinawan names, or more recent Japanese names. Their kanji may not be the original
+            kanji and may differ between instructors, so their meaning may have multiple interpretations.
+            <a href="{{ url_for('library.person', id=1) }}">Gichin Funakoshi</a>, the first Okinawan to teach karate in Japan,
+            transliterated the original Okinawan names into the mainland Tokyo dialect in response to Japanese nationalism, but
+            not all names were adapted.
+            <sup><a class='citation' data-content="Redmond 9-34">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+        </p>
 
-    <p>
-        The names of kata may be older Okinawan names, or more recent Japanese names. Their kanji may not be the original
-        kanji and may differ between instructors, so their meaning may have multiple interpretations.
-        <a href="{{ url_for('library.person', id=1) }}">Gichin Funakoshi</a>, the first Okinawan to teach karate in Japan,
-        transliterated the original Okinawan names into the mainland Tokyo dialect in response to Japanese nationalism, but
-        not all names were adapted.
-        <sup><a class='citation' data-content="Redmond 9-34">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-    </p>
+        <!--    List of kata if Okinawan/Japanese, and by origin (ryu or master), romanized name, kanji or katakana, and translation -->
 
-    <!--    List of kata if Okinawan/Japanese, and by origin (ryu or master), romanized name, kanji or katakana, and translation -->
+        <h3>Shotokan kata</h3>
 
-    <h3>Shotokan kata</h3>
+        <p>There are about 150 distinct Okinawan and Japanese kata (including revisions and adaptations), most of which come
+            from Okinawa. Kata created since the 1920s have been rejected by most instructors and associations as illegitimate,
+            though with the exception of
+            <a href="{{ url_for('library.person', id=7) }}">Tetsuhiko Asai's</a> kata, students in the past were encouraged to
+            create kata.
+            <sup><a class='citation' data-content="Redmond 33-4">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+        </p>
+        <p>
+            Shotokan is exclusively Shorin except for some of Shito-ryu’s
+            <a href="{{ url_for('library.person', id=48) }}">Arakaki</a> kata (Unsu, Sochin, and Nijushiho), which are reputed
+            to have been imported into Shotokan by Funakoshi's son <a href="{{ url_for('library.person', id=18) }}">Gigo</a>.
+            The 100 Okinawan kata became the 21-32 of Shotokan (depending on the school) because 1) Funakoshi did not know all
+            100 kata, and/or 2) students chose not to do certain kata or forgot them. The Shotokai organization is stricter and
+            endorses only the 15 of Funakoshi’s <a href="{{ pubs[1].store_link }}">Karate-do Kyohan</a>.
+            <sup><a class='citation' data-content="Redmond 9-44">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
+        </p>
 
-    <p>There are about 150 distinct Okinawan and Japanese kata (including revisions and adaptations), most of which come
-        from Okinawa. Kata created since the 1920s have been rejected by most instructors and associations as illegitimate,
-        though with the exception of
-        <a href="{{ url_for('library.person', id=7) }}">Tetsuhiko Asai's</a> kata, students in the past were encouraged to
-        create kata.
-        <sup><a class='citation' data-content="Redmond 33-4">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-    </p>
-    <p>
-        Shotokan is exclusively Shorin except for some of Shito-ryu’s
-        <a href="{{ url_for('library.person', id=48) }}">Arakaki</a> kata (Unsu, Sochin, and Nijushiho), which are reputed
-        to have been imported into Shotokan by Funakoshi's son <a href="{{ url_for('library.person', id=18) }}">Gigo</a>.
-        The 100 Okinawan kata became the 21-32 of Shotokan (depending on the school) because 1) Funakoshi did not know all
-        100 kata, and/or 2) students chose not to do certain kata or forgot them. The Shotokai organization is stricter and
-        endorses only the 15 of Funakoshi’s <a href="{{ pubs[1].store_link }}">Karate-do Kyohan</a>.
-        <sup><a class='citation' data-content="Redmond 9-44">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
-    </p>
-</div>
+    <h2>Applications</h2></a>
 
-<a class="btn btn-secondary" data-toggle="collapse" href="#Applications" role="button" aria-expanded="false"
-   aria-controls="Applications"><h2>Applications</h2></a><br><br>
-
-<div id="Applications" class="collapse">
     <p>Kata used to contain grappling applications that were watered down or discarded with the rise of sport karate.
         Funakoshi, mainly a children's instructor, was not very skilled or knowledgeable about more aggressive karate
         applications. He also might have intentionally watered down techniques to popularize it as a family friendly
@@ -128,7 +121,7 @@
         <sup><a class='citation' data-content="Redmond 29">[{{ ns.pubs['redmond']['n'] }}]</a></sup>
     </p>
 
-    <h2><span id="Changes">Changes</span></h2>
+    <h2>Changes</h2></a>
 
     <p>Kata is supposed to be immutable, except for small changes by senior instructors supported by clear explanation.
         Funakoshi did introduce significant changes and was criticized sharply in Okinawa for that, and that was one reasons
@@ -159,7 +152,45 @@
     </ul>
 </div>
 
-<h1><span id="Kata List">Kata list</span></h1>
+<a class="btn btn-secondary" data-toggle="collapse" href="#TeachingTraining" role="button" aria-expanded="false"
+   aria-controls="TeachingTraining"><h3>Teaching and training</h3></a><br><br>
+
+{% set RA = {"o": "<a href='%s'>WTKO</a>" % o(8), "p": "<a href='%s'>Richard Amos</a>" % p(32)} %}
+
+<div id="TeachingTraining" class="collapse">
+    <h3>Teaching</h3>
+    <ul>
+        <li>In a crowded class, "float" techniques and use the limited space as an opportunity to change timing and
+            angle
+            <sup><a class="citation" data-title="{{ RA['p'] }}" data-content="{{ RA['o'] }}">RA</a></sup>
+        </li>
+        <li>Tell first time students to move by body/core first, and hands will follow, more or less. This is similar to
+            how one changes distance and angle in sparring by <i>not</i> looking for the opponent’s hands
+            <sup><a class="citation" data-title="{{ RA['p'] }}" data-content="{{ RA['o'] }}">RA</a></sup>
+        </li>
+    </ul>
+    <h3>Training</h3>
+    <ul>
+        <li>In small spaces, pivot and turn actively, as if in kumite, drawing back/front foot in first as necessary in
+            order to pivot sharply
+            <sup><a class="citation" data-title="{{ RA['p'] }}" data-content="{{ RA['o'] }}">RA</a></sup>
+        </li>
+        <li>Don't move head early; be ready as if attack may come from any direction
+            <sup><a class="citation" data-title="{{ RA['p'] }}" data-content="{{ RA['o'] }}">RA</a></sup>
+        </li>
+        <li>
+            When not done with visible intention, stomping is permissible for competition-style kata; e.g. after
+            hiki-ashi and during fast advances (one stepping technique quickly followed by another step)
+            <sup><a class="citation" data-title="Senior translating student"
+                    data-content="<a href='{{ url_for('library.org', id=2) }}'>SKI</a> HQ">SKIF</a></sup>
+        </li>
+    </ul>
+</div>
+
+Koukutsu-dachi with heiwan-uke: torque hip and energy back (Tanaka, <a href="{{ url_for('library.org', id=2) }}">SKI</a> HQ); with block goes forwards, then hip goes back again very quickly. (Naka, <a href="https://www.facebook.com/video.php?v=727616257291532&fref=nf">Germany Gasshuku 2014</a>).
+
+
+<h2><span id="Kata List">Kata list</span></h2>
 
 <p>The pages for the kata linked below have embusen, background information, and related videos. Embusen are
     maps of the lines of footwork in kata. While the list of standard kata may change depending on
@@ -218,18 +249,18 @@
 <h4>References</h4>
 
 {% for k, v in ns.pubs|dictsort(true) %}
-{% set pub, author = v['p'], v['p'].author[0] %}
-<span id={{ k }}>{{ v['n'] }}. {{ author.lastName }}, {{ author.firstName }}</span>.
-<i>
-    {%- if pub.store_link %}<a href="{{ pub.store_link }}" target="_blank">{{ pub.title }}</a>
-    {%- else %}{{ pub.title }}
-    {%- endif %}.
-</i>
-{% if pub.publisher %}
-{{ pub.publisher}}, {{ pub.year.year | default("n.d.", True) }}.
-{% endif %}
-<br>
+    {% set pub, author = v['p'], v['p'].author[0] %}
+    <span id={{ k }}>{{ v['n'] }}. {{ author.lastName }}, {{ author.firstName }}</span>.
+    <i>
+        {%- if pub.store_link %}<a href="{{ pub.store_link }}" target="_blank">{{ pub.title }}</a>
+        {%- else %}{{ pub.title }}
+        {%- endif %}.
+    </i>
+    {% if pub.publisher %}
+    {{ pub.publisher}}, {{ pub.year.year | default("n.d.", True) }}.
+    {% endif %}
+    <br>
 {% endfor %}
-
+<br>
 
 {% endblock %}
