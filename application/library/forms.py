@@ -26,7 +26,7 @@ class TrainingAddForm(FlaskForm):
 
     # TODO https://gomakethings.com/how-to-create-a-form-input-autocomplete-without-a-library-or-framework/
     person = QuerySelectField(
-        'Performer', allow_blank=True, blank_text='Person, Unknown',
+        'Person', allow_blank=True, blank_text='Person, Unknown',
         query_factory=lambda: Person.query.filter_by(persons_hide=None).order_by(Person.lastName))
 
     pub = QuerySelectField('Book title', query_factory=lambda: Publication.query.filter_by(format='BOOK').order_by(Publication.title))
