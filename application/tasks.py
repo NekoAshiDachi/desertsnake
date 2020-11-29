@@ -10,31 +10,34 @@ from application.models import Task, User, Post
 from application.email import send_email
 
 """
-If wanting multiple workers (should have at least as many workers as available
+If wanting multiple workers (should have # of workers >= available
 CPUS), run more instances of rq worker, all connected to same queue. Does not
 preserve history of executed jobs.
 
+to configure settings (URL, host, password):
+desertsnake/redis_settings.py
+
 bash console:
-rq info --url redis://:T08FaEFU6UZZRxqjZjfdSGPVh9cvNLWx@redis-16986.c89.us-east-1-3.ec2.cloud.redislabs.com:16986
-rq worker -c redis_settings tasks
+rq info -c redis_settings
+rq worker tasks -c redis_settings
 
 separately, in python console:
 from rq import Queue, Connection
 from redis import Redis
+import os
+from dotenv import load_dotenv
 
-host = "redis-16986.c89.us-east-1-3.ec2.cloud.redislabs.com"
-port = 16986
-password = "T08FaEFU6UZZRxqjZjfdSGPVh9cvNLWx"
-
-queue = rq.Queue('tasks', connection=Redis.from_url('<redis://:<password>@<url>'))
+load_dotenv()
+conn = Redis.from_url(os.environ.get('REDIS_URL'))
+queue = Queue('tasks', connection=conn)
 
 OR
 
 with Connection(Redis(host, port, password):
-    q1 = Queue('foo')
+    queue = Queue('tasks')
 
 task name as function obj or import str; following args are for task function:
-job = queue.enqueue('app.tasks.example', 23)
+job = queue.enqueue('application.tasks.example', 23)
 job.get_id() -> c651de7f-21a8-4068-afd5-8b982a6f6d32
 
 job.is_finished
@@ -50,6 +53,7 @@ app = create_app()
 """push makes app context "current" app instance; enables extensions such as
 Flask-SQLAlchemy to use current_app.config"""
 app.app_context().push()
+
 
 def example(seconds):
     job = get_current_job()
