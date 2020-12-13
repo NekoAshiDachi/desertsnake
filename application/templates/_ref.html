@@ -9,7 +9,7 @@
 
     {% for t in refs %}
     <tr>
-        <td>{% if t.category %}{{ t.category[0].name.title() }}{% endif %}</td>
+        <td>{% if t.category %}{{ t.category.name.title() }}{% endif %}</td>
         <td>{{ t.text | safe }}</td>
         <td>{% if t.person and t.person.id != 99999 %}
             <a href="{{ url_for('library.person', id=t.person.id) }}">

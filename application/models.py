@@ -506,20 +506,30 @@ class Glossary(db.Model):
 
     refs = db.relationship('Reference', backref='term', lazy='dynamic')
 
-
-ref_rel = db.Table('ref_rel',
-    db.Column('ref_id', db.Integer, db.ForeignKey('reference.id'), nullable=False),
-    db.Column('ref_category_id', db.Integer, db.ForeignKey('ref_category.id'))
-)
-
+# ref_rel = db.Table('ref_rel',
+#     db.Column('ref_id', db.Integer, db.ForeignKey('reference.id'), nullable=False),
+#     db.Column('ref_category_id', db.Integer, db.ForeignKey('ref_category.id'))
+# )
 
 class Ref_category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25))
+    refs = db.relationship('Reference', backref='category')
 
     def __repr__(self):
         return self.name.title()
 
+class Ref_order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    ref_id = db.Column(db.Integer)
+    order = db.Column(db.Integer)
+
+# test new migration and website
+# push changes to PA
+
+# reference: person id, video id, pub id, category id, text
+# ref rel: ref id, kata id, tech id
+# ref order: ref id, glossary id, kata id, order number--order number dictated by len(other ref ids under tech/kata id)
 
 class Reference(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -533,14 +543,15 @@ class Reference(db.Model):
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
     video_id = db.Column(db.Integer, db.ForeignKey('video.id'))
     pub_id = db.Column(db.Integer, db.ForeignKey('publication.id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('ref_category.id'))
 
     ref_term = db.relationship('Glossary', backref='ref')
-
-    category = db.relationship('Ref_category',
-        secondary=ref_rel,
-        primaryjoin=id==ref_rel.c.ref_id,
-        secondaryjoin=Ref_category.id==ref_rel.c.ref_category_id,
-        backref=db.backref('category'))
+#
+#     category = db.relationship('Ref_category',
+#         secondary=ref_rel,
+#         primaryjoin=id==ref_rel.c.ref_id,
+#         secondaryjoin=Ref_category.id==ref_rel.c.ref_category_id,
+#         backref=db.backref('category'))
 
 
 class Video(db.Model):
