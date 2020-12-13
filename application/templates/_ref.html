@@ -18,7 +18,11 @@
 
             {% if t.person and t.person.id != 99999 and (t.video or t.pub) %} &bull; {% endif %}
 
-            {% if t.video %}<a href='#' class="modal_custom_trigger modal_youtube" data-youtube_id="{{ t.video.URL }}">{{ t.video.name }}</a>{% endif %}
+            {% if t.video %}
+                <a href='#' class="modal_custom_trigger modal_youtube" data-youtube_id="{{ t.video.URL }}">
+                    {{ t.video.name }}
+                </a>
+            {% endif %}
 
             {% if t.pub %}
             <a href="{{ url_for('library.person', id=t.pub.author[0].id) }}">
