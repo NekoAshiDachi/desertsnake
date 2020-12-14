@@ -1,0 +1,120 @@
+2020-05-03 12:55:23,127 ERROR: Exception on / [GET] [in /home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1947, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 2241, in preprocess_request
+    rv = func()
+  File "/home/skye/Coding/desertsnake/application/main/routes.py", line 28, in before_request
+    db.session.commit()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1036, in commit
+    self.transaction.commit()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 510, in commit
+    self.session.dispatch.after_commit(self.session)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/event/attr.py", line 322, in __call__
+    fn(*args, **kw)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 224, in after_commit
+    models_committed.send(session.app, changes=list(d.values()))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/blinker/base.py", line 266, in send
+    return [(receiver, receiver(sender, **kwargs))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/blinker/base.py", line 266, in <listcomp>
+    return [(receiver, receiver(sender, **kwargs))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask_whooshalchemy.py", line 239, in _after_flush
+    for model, values in bytype.iteritems():
+AttributeError: 'dict' object has no attribute 'iteritems'
+2020-05-03 12:56:53,536 ERROR: Exception on / [GET] [in /home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/MySQLdb/cursors.py", line 209, in execute
+    res = self._query(query)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/MySQLdb/cursors.py", line 315, in _query
+    db.query(q)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/MySQLdb/connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1947, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 2241, in preprocess_request
+    rv = func()
+  File "/home/skye/Coding/desertsnake/application/main/routes.py", line 24, in before_request
+    if current_user.is_authenticated:
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/werkzeug/local.py", line 347, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/werkzeug/local.py", line 306, in _get_current_object
+    return self.__local()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask_login/utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask_login/utils.py", line 346, in _get_user
+    current_app.login_manager._load_user()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask_login/login_manager.py", line 318, in _load_user
+    user = self._user_callback(user_id)
+  File "/home/skye/Coding/desertsnake/application/models.py", line 360, in load_user
+    return User.query.get(int(id))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1004, in get
+    return self._get_impl(ident, loading.load_on_pk_identity)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 1116, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/loading.py", line 284, in load_on_pk_identity
+    return q.one()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3347, in one
+    ret = self.one_or_none()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3316, in one_or_none
+    ret = list(self)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3389, in __iter__
+    return self._execute_and_instances(context)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3414, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 293, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1095, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1249, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1245, in _execute_context
+    self.dialect.do_execute(
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 588, in do_execute
+    cursor.execute(statement, parameters)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/MySQLdb/cursors.py", line 209, in execute
+    res = self._query(query)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/MySQLdb/cursors.py", line 315, in _query
+    db.query(q)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/MySQLdb/connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (MySQLdb._exceptions.OperationalError) (2006, 'MySQL server has gone away')
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen, user.token AS user_token, user.token_expiration AS user_token_expiration, user.last_message_read_time AS user_last_message_read_time 
+FROM user 
+WHERE user.id = %s]
+[parameters: (5,)]
+(Background on this error at: http://sqlalche.me/e/e3q8)

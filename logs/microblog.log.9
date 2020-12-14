@@ -1,0 +1,92 @@
+2020-05-02 12:59:27,720 ERROR: Exception on /auth/login [POST] [in /home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 238, in _do_get
+    return self._create_connection()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlite3.OperationalError: unable to open database file
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/skye/Coding/desertsnake/application/auth/routes.py", line 37, in login
+    user = User.query.filter_by(username=form.username.data).first()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3287, in first
+    ret = list(self[0:1])
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3065, in __getitem__
+    return list(res)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3389, in __iter__
+    return self._execute_and_instances(context)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3410, in _execute_and_instances
+    conn = self._get_bind_args(
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3425, in _get_bind_args
+    return fn(
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 3404, in _connection_from_session
+    conn = self.session.connection(**kw)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1130, in connection
+    return self._connection_for_bind(
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1138, in _connection_for_bind
+    return self.transaction._connection_for_bind(
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 432, in _connection_for_bind
+    conn = bind._contextual_connect()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2242, in _contextual_connect
+    self._wrap_pool_connect(self.pool.connect, None),
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2279, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1547, in _handle_dbapi_exception_noconnection
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2276, in _wrap_pool_connect
+    return fn()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 363, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 773, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 492, in checkout
+    rec = pool._do_get()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 238, in _do_get
+    return self._create_connection()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 308, in _create_connection
+    return _ConnectionRecord(self)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 437, in __init__
+    self.__connect(first_connect_check=True)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 652, in __connect
+    connection = pool._invoke_creator(self)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/strategies.py", line 114, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 489, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) unable to open database file
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-05-02 16:41:42,380 INFO: Microblog startup [in /home/skye/Coding/desertsnake/application/__init__.py:143]

@@ -1,6 +1,8 @@
 .pyc
 __pycache__
 .env
+logs/
+venv38/
 
 # Unit test / coverage reports
 .coverage
@@ -9,5 +11,3 @@ nosetests.xml
 
 # Translations
 *.mo
-
-logs

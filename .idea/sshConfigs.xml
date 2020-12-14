@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="ssh.pythonanywhere.com" id="d2f66e03-80c9-49ef-8854-d288295b9373" nameFormat="DESCRIPTIVE" username="desertsnake" />
+    </configs>
+  </component>
+</project>

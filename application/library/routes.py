@@ -51,7 +51,7 @@ def glossary():
 
 @bp.route('/kata_all')
 def kata_all():
-    pubs = Publication.query.join()
+    pubs = Publication.query.all()
     kata = Kata.query.all()
     return render_template("library/kata_all.html", pubs=pubs, kata=kata, p=p, o=o, enumerate = enumerate, title=_('Kata'))
 

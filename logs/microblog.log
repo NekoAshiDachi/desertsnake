@@ -1,0 +1,68 @@
+2020-05-03 14:48:00,986 ERROR: Exception on /library/history [GET] [in /home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1947, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 2241, in preprocess_request
+    rv = func()
+  File "/home/skye/Coding/desertsnake/application/main/routes.py", line 28, in before_request
+    db.session.commit()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1036, in commit
+    self.transaction.commit()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 510, in commit
+    self.session.dispatch.after_commit(self.session)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/event/attr.py", line 322, in __call__
+    fn(*args, **kw)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 224, in after_commit
+    models_committed.send(session.app, changes=list(d.values()))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/blinker/base.py", line 266, in send
+    return [(receiver, receiver(sender, **kwargs))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/blinker/base.py", line 266, in <listcomp>
+    return [(receiver, receiver(sender, **kwargs))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask_whooshalchemy.py", line 239, in _after_flush
+    for model, values in bytype.iteritems():
+AttributeError: 'dict' object has no attribute 'iteritems'
+2020-05-03 18:47:46,361 INFO: Microblog startup [in /home/skye/Coding/desertsnake/application/__init__.py:143]
+2020-05-03 18:47:55,800 ERROR: Exception on / [GET] [in /home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py:1890]
+Traceback (most recent call last):
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 1947, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask/app.py", line 2241, in preprocess_request
+    rv = func()
+  File "/home/skye/Coding/desertsnake/application/main/routes.py", line 28, in before_request
+    db.session.commit()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1036, in commit
+    self.transaction.commit()
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 510, in commit
+    self.session.dispatch.after_commit(self.session)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/sqlalchemy/event/attr.py", line 322, in __call__
+    fn(*args, **kw)
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask_sqlalchemy/__init__.py", line 224, in after_commit
+    models_committed.send(session.app, changes=list(d.values()))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/blinker/base.py", line 266, in send
+    return [(receiver, receiver(sender, **kwargs))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/blinker/base.py", line 266, in <listcomp>
+    return [(receiver, receiver(sender, **kwargs))
+  File "/home/skye/Coding/desertsnake/venv38/lib/python3.8/site-packages/flask_whooshalchemy.py", line 239, in _after_flush
+    for model, values in bytype.iteritems():
+AttributeError: 'dict' object has no attribute 'iteritems'
+2020-05-03 20:55:00,795 INFO: Microblog startup [in /home/skye/Coding/desertsnake/application/__init__.py:143]

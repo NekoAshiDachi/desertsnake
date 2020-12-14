@@ -506,11 +506,6 @@ class Glossary(db.Model):
 
     refs = db.relationship('Reference', backref='term', lazy='dynamic')
 
-# ref_rel = db.Table('ref_rel',
-#     db.Column('ref_id', db.Integer, db.ForeignKey('reference.id'), nullable=False),
-#     db.Column('ref_category_id', db.Integer, db.ForeignKey('ref_category.id'))
-# )
-
 class Ref_category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(25))
@@ -521,19 +516,21 @@ class Ref_category(db.Model):
 
 class Ref_order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    ref_id = db.Column(db.Integer)
+    glossary_id = db.Column(db.Integer, db.ForeignKey('glossary.id'))
+    kata_id = db.Column(db.Integer, db.ForeignKey('kata.id'))
+    ref_id = db.Column(db.Integer, db.ForeignKey('reference.id'))
     order = db.Column(db.Integer)
 
-# test new migration and website
-# push changes to PA
+    # TODO add glossary and kata ID
 
-# reference: person id, video id, pub id, category id, text
-# ref rel: ref id, kata id, tech id
-# ref order: ref id, glossary id, kata id, order number--order number dictated by len(other ref ids under tech/kata id)
+    refs = db.relationship('Reference')
+
+    def __repr__(self):
+        tbl = f'Glossary {self.glossary_id}' if self.glossary_id else f'Kata {self.kata_id}'
+        return f'{tbl}, order {self.order}'
 
 class Reference(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-#     category = db.Column(db.String(25))
     text = db.Column(db.Text)
     created_date = db.Column(db.DateTime)
     updated_date = db.Column(db.DateTime)
@@ -546,13 +543,8 @@ class Reference(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('ref_category.id'))
 
     ref_term = db.relationship('Glossary', backref='ref')
-#
-#     category = db.relationship('Ref_category',
-#         secondary=ref_rel,
-#         primaryjoin=id==ref_rel.c.ref_id,
-#         secondaryjoin=Ref_category.id==ref_rel.c.ref_category_id,
-#         backref=db.backref('category'))
-
+    orders = db.relationship('Ref_order', backref='ref')
+    # todo glossary ID 306 example
 
 class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
