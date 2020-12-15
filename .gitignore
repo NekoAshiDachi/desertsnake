@@ -1,8 +1,12 @@
 .pyc
 __pycache__
+.idea/
 .env
 logs/
 venv38/
+app.db
+dump.rdb
+ss_db_backup.sql
 
 # Unit test / coverage reports
 .coverage

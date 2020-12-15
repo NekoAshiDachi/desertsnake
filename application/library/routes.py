@@ -101,7 +101,7 @@ def tech(id):
 
     null_check = [order for ref, order in refs if order]
     if not null_check:
-        [db.session.add(Ref_order(glossary_id=id, ref_id=r[0].id, order=n + 1)) for n, r in enumerate(refs)]
+        [db.session.add(Ref_order(glossary=id, ref_id=r[0].id, order=n + 1)) for n, r in enumerate(refs)]
         db.session.commit()
         refs = term.refs.outerjoin(Ref_order, conditions).add_columns(Ref_order.order).all()
 
@@ -114,7 +114,7 @@ def tech(id):
         validate_add_reference_form(form, request, 'library.tech', id)
         return redirect(url_for('library.tech', id=id))
 
-    return render_template("library/tech.html", term=term, ref=refs, ref_data=ref_data, form=form, enumerate=enumerate,
+    return render_template("library/tech.html", term=term, refs=refs, ref_data=ref_data, form=form, enumerate=enumerate,
     len=len)
 
 @bp.route('/training')
