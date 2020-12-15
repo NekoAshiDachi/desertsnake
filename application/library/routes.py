@@ -101,7 +101,7 @@ def tech(id):
 
     null_check = [order for ref, order in refs if order]
     if not null_check:
-        [db.session.add(Ref_order(glossary=id, ref_id=r[0].id, order=n + 1)) for n, r in enumerate(refs)]
+        [db.session.add(Ref_order(glossary_id=id, ref_id=r[0].id, order=n + 1)) for n, r in enumerate(refs)]
         db.session.commit()
         refs = term.refs.outerjoin(Ref_order, conditions).add_columns(Ref_order.order).all()
 
