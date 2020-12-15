@@ -4,9 +4,10 @@ from flask import render_template, url_for, redirect, request
 from flask_login import current_user, login_required
 from flask_babel import _
 
+from application import db
 from application.library import bp
 from application.models import Org, Person, Dojo, Country, State, Glossary, \
-    Reference, Ref_category, Video, Kata, Publication, \
+    Reference, Ref_category, Ref_order, Video, Kata, Publication, \
     o, p
 
 from application.library.forms import TrainingAddForm, validate_add_reference_form
@@ -56,8 +57,22 @@ def kata_all():
     return render_template("library/kata_all.html", pubs=pubs, kata=kata, p=p, o=o, enumerate = enumerate, title=_('Kata'))
 
 @bp.route('/kata/<int:id>', methods=['GET', 'POST'])
+@login_required
 def kata(id):
     k = Kata.query.filter_by(id=id).first_or_404()
+
+    conditions = (Ref_order.kata_id==k.id) & (Ref_order.ref_id==Reference.id)
+    refs = k.refs.outerjoin(Ref_order, conditions).add_columns(Ref_order.order).all()
+
+    null_check = [order for ref, order in refs if order]
+    if not null_check:
+        [db.session.add(Ref_order(kata_id=id, ref_id=r[0].id, order=n + 1)) for n, r in enumerate(refs)]
+        db.session.commit()
+        refs = k.refs.outerjoin(Ref_order, conditions).add_columns(Ref_order.order).all()
+
+    refs = [ref for ref, order in sorted(refs, key=lambda x: x[1])]
+    ref_data = {'ref_type': 'kata', 'ref_type_id': id}
+
     creator = Person.query.filter_by(id=k.creator_person_id).first()
     form = TrainingAddForm()
 
@@ -65,8 +80,8 @@ def kata(id):
         validate_add_reference_form(form, request, 'library.kata', id)
         return redirect(url_for('library.kata', id=id))
 
-    return render_template("library/kata.html", title=_('Kata'), k=k, creator=creator, form=form, enumerate=enumerate,
-        len=len)
+    return render_template("library/kata.html", title=_('Kata'), k=k, refs=refs, ref_data=ref_data, creator=creator,
+        form=form, enumerate=enumerate, len=len)
 
 @bp.route('/kihon')
 def kihon():
@@ -80,13 +95,27 @@ def kumite():
 @login_required
 def tech(id):
     term = Glossary.query.filter_by(id=id).first_or_404()
+
+    conditions = (Ref_order.glossary_id==term.id) & (Ref_order.ref_id==Reference.id)
+    refs = term.refs.outerjoin(Ref_order, conditions).add_columns(Ref_order.order).all()
+
+    null_check = [order for ref, order in refs if order]
+    if not null_check:
+        [db.session.add(Ref_order(glossary_id=id, ref_id=r[0].id, order=n + 1)) for n, r in enumerate(refs)]
+        db.session.commit()
+        refs = term.refs.outerjoin(Ref_order, conditions).add_columns(Ref_order.order).all()
+
+    refs = [ref for ref, order in sorted(refs, key=lambda x: x[1])]
+    ref_data = {'ref_type': 'tech', 'ref_type_id': id}
+
     form = TrainingAddForm()
 
     if request.method == 'POST':
         validate_add_reference_form(form, request, 'library.tech', id)
         return redirect(url_for('library.tech', id=id))
 
-    return render_template("library/tech.html", term=term, form=form)
+    return render_template("library/tech.html", term=term, ref=refs, ref_data=ref_data, form=form, enumerate=enumerate,
+    len=len)
 
 @bp.route('/training')
 def training():
@@ -98,3 +127,31 @@ def training():
 @bp.route('/media')
 def media():
     return render_template("library/media.html", title=_('Media'))
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+def get_ref(ref_type, ref_type_id: int, order: int):
+    ref_type_col = getattr(Ref_order, f'{ref_type}_id')
+    return Ref_order.query.filter((ref_type_col==ref_type_id) & (Ref_order.order==order)).first_or_404()
+
+@bp.route('/prioritize/<ref_type>/<int:ref_type_id>/<int:order>')
+@login_required
+def prioritize(ref_type, ref_type_id, order):
+    ref_current_id = get_ref(ref_type, ref_type_id, order).id
+    ref_above_id = get_ref(ref_type, ref_type_id, order - 1).id
+
+    Ref_order.query.filter_by(id=ref_current_id).update({'order': order - 1})
+    Ref_order.query.filter_by(id=ref_above_id).update({'order': order})
+    db.session.commit()
+    return redirect(url_for(f'library.{ref_type}', id=ref_type_id))
+
+@bp.route('/deprioritize/<ref_type>/<int:ref_type_id>/<int:order>')
+@login_required
+def deprioritize(ref_type, ref_type_id, order):
+    ref_current_id = get_ref(ref_type, ref_type_id, order).id
+    ref_below_id = get_ref(ref_type, ref_type_id, order + 1).id
+
+    Ref_order.query.filter_by(id=ref_current_id).update({'order': order + 1})
+    Ref_order.query.filter_by(id=ref_below_id).update({'order': order})
+    db.session.commit()
+    return redirect(url_for(f'library.{ref_type}', id=ref_type_id))

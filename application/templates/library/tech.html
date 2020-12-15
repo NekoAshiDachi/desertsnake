@@ -6,7 +6,6 @@
 <h1>{{ term.word }} ({{ term.kanji}}) - {{ term.translation }}</h1>
 {% if term.notes %}{{ term.notes | safe }}{% endif %}
 
-{% set refs = term.refs %}
 {% set ref_form_header = term.word %}
 {% include '_ref.html' %}
 

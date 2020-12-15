@@ -9,7 +9,7 @@ from wtforms.widgets import TextArea
 from wtforms.validators import DataRequired, Regexp
 
 from application import db
-from application.models import Style, Org, Person, Publication, Reference, Ref_category
+from application.models import Style, Org, Person, Publication, Reference, Ref_category, Ref_order
 
 # TRAINING_ADD ---------------------------------------------------------------------------------------------------------
 
@@ -90,10 +90,12 @@ def validate_add_reference_form(form, request, route: str, id: int):
             db.session.commit()
 
         # BASE ---------------------------------------------------------------------------------------------------------
+        glossary_kata = 'glossary' if 'tech' in route else 'kata'
 
         new_ref_dict = {
-            'glossary_id': str(id) if 'tech' in route else None,
-            'kata_id': str(id) if 'kata' in route else None,
+            'glossary_id': str(id) if glossary_kata == 'glossary' else None,
+            'kata_id': str(id) if glossary_kata == 'kata' else None,
+            'category_id': submission.get('category'),
             'person_id': submission.get('person').replace('__None', '99999') if src in ('person', 'video') else None,
             'video_id': video.id if src == 'video' else None,
             'pub_id': submission.get('pub') if src == 'publication' else None,
@@ -107,11 +109,13 @@ def validate_add_reference_form(form, request, route: str, id: int):
 
         db.session.add(new_ref)
         db.session.commit()
-        db.session.refresh(new_ref)  # gets new Reference ID
+        db.session.refresh(new_ref)  # ID added to new_ref after insert and refresh
 
-        ref_category = Ref_category.query.filter_by(id=submission.get('category')).first()
-        new_ref.category.append(ref_category)
-        db.session.add(new_ref)
+        glossary_kata_id = new_ref_dict[f'{glossary_kata}_id']
+        ref_len = Ref_order.query.filter_by(**{f'{glossary_kata}_id': glossary_kata_id}).count()
+        db.session.add(
+            Ref_order(**{f'{glossary_kata}_id': glossary_kata_id, 'ref_id': new_ref.id, 'order': ref_len + 1}))
+
         db.session.commit()
 
         flash(f'Your changes have been saved.', 'success')

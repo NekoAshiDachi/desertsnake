@@ -521,13 +521,11 @@ class Ref_order(db.Model):
     ref_id = db.Column(db.Integer, db.ForeignKey('reference.id'))
     order = db.Column(db.Integer)
 
-    # TODO add glossary and kata ID
-
     refs = db.relationship('Reference')
 
     def __repr__(self):
         tbl = f'Glossary {self.glossary_id}' if self.glossary_id else f'Kata {self.kata_id}'
-        return f'{tbl}, order {self.order}'
+        return f'{tbl} - order {self.order}'
 
 class Reference(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -544,7 +542,6 @@ class Reference(db.Model):
 
     ref_term = db.relationship('Glossary', backref='ref')
     orders = db.relationship('Ref_order', backref='ref')
-    # todo glossary ID 306 example
 
 class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -633,3 +630,5 @@ class Kata(db.Model):
 
     refs = db.relationship('Reference', backref='kata', lazy='dynamic')
 
+    def __repr__(self):
+        return self.name

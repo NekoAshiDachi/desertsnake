@@ -1,5 +1,5 @@
 <!-- Refs table -->
-{% if refs.first() %}
+{% if refs %}
 <table class="table table-hover">
     <tr>
         <th>Category</th>
@@ -7,7 +7,8 @@
         <th>Source</th>
     </tr>
 
-    {% for t in refs %}
+    {% for n, t in enumerate(refs) %}
+    {% set n = n + 1 %}
     <tr>
         <td>{% if t.category %}{{ t.category.name.title() }}{% endif %}</td>
         <td>{{ t.text | safe }}</td>
@@ -29,6 +30,19 @@
                 {{ t.pub.author[0].firstName }} {{t.pub.author[0].lastName }}</a>
             &bull;
             <a href="{{ t.pub.store_link }}" target="_blank">{{ t.pub.title }}</a>
+            {% endif %}
+        </td>
+        <td>
+            {% if n != 1 %}
+                <a class="oi oi-caret-top" style="color: gray" title="Prioritize"
+                   href="{{ url_for('library.prioritize', order=n, **ref_data) }}">
+                </a>
+            {% endif %}
+
+            {% if n != len(refs) %}
+                <a class="oi oi-caret-bottom" style="color: gray" title="Deprioritize"
+                   href="{{ url_for('library.deprioritize', order=n, **ref_data) }}">
+                </a>
             {% endif %}
         </td>
     </tr>
