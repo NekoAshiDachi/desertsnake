@@ -106,7 +106,7 @@ def tech(id):
         refs = term.refs.outerjoin(Ref_order, conditions).add_columns(Ref_order.order).all()
 
     refs = [ref for ref, order in sorted(refs, key=lambda x: x[1])]
-    ref_data = {'ref_type': 'tech', 'ref_type_id': id}
+    ref_data = {'ref_type': 'glossary', 'ref_type_id': id}
 
     form = TrainingAddForm()
 
@@ -143,7 +143,9 @@ def prioritize(ref_type, ref_type_id, order):
     Ref_order.query.filter_by(id=ref_current_id).update({'order': order - 1})
     Ref_order.query.filter_by(id=ref_above_id).update({'order': order})
     db.session.commit()
-    return redirect(url_for(f'library.{ref_type}', id=ref_type_id))
+
+    library_url = f"library.{'kata' if ref_type=='kata' else 'tech'}"
+    return redirect(url_for(library_url, id=ref_type_id))
 
 @bp.route('/deprioritize/<ref_type>/<int:ref_type_id>/<int:order>')
 @login_required
@@ -154,4 +156,6 @@ def deprioritize(ref_type, ref_type_id, order):
     Ref_order.query.filter_by(id=ref_current_id).update({'order': order + 1})
     Ref_order.query.filter_by(id=ref_below_id).update({'order': order})
     db.session.commit()
-    return redirect(url_for(f'library.{ref_type}', id=ref_type_id))
+
+    library_url = f"library.{'kata' if ref_type=='kata' else 'tech'}"
+    return redirect(url_for(library_url, id=ref_type_id))
