@@ -73,15 +73,14 @@ def kata(id):
     refs = [ref for ref, order in sorted(refs, key=lambda x: x[1])]
     ref_data = {'ref_type': 'kata', 'ref_type_id': id}
 
-    creator = Person.query.filter_by(id=k.creator_person_id).first()
     form = TrainingAddForm()
 
     if request.method == 'POST':
         validate_add_reference_form(form, request, 'library.kata', id)
         return redirect(url_for('library.kata', id=id))
 
-    return render_template("library/kata.html", title=_('Kata'), k=k, refs=refs, ref_data=ref_data, creator=creator,
-        form=form, enumerate=enumerate, len=len)
+    return render_template("library/kata.html", title=_('Kata'), k=k, refs=refs, ref_data=ref_data, form=form,
+    enumerate=enumerate, len=len)
 
 @bp.route('/kihon')
 def kihon():

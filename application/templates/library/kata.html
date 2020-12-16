@@ -8,15 +8,17 @@
 
 <ul class="list-unstyled">
     {% if k.creator %}
-        Creator: <a href="{{ url_for('library.person', id=creator.id) }}">
-        {{ creator.firstName }} {{ creator.lastName }}</a><br>
+        Creator: <a href="{{ url_for('library.person', id=k.creator.id) }}">
+                {{ k.creator.firstName }} {{ k.creator.lastName }}</a><br>
     {% endif %}
 </ul>
 
 {% if k.parent_kata %}
-    {% set parent_kata = k.parent_kata[0] %}
-    Parent kata: <a href="{{ url_for('library.kata', id=parent_kata.id) }}">
-        {{ parent_kata.name }}</a><br>
+    Parent kata:
+    {% for n, parent in enumerate(k.parent_kata) %}
+         <a href="{{ url_for('library.kata', id=parent.id) }}">{{ parent.name }}</a>
+        {%- if n != len(k.parent_kata) - 1 %}, {% endif %}
+    {% endfor %}<br>
 {% endif %}
 
 {% if k.children_kata %}
