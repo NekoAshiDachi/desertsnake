@@ -9,7 +9,7 @@ from wtforms.widgets import TextArea
 from wtforms.validators import DataRequired, Regexp
 
 from application import db
-from application.models import Style, Org, Person, Publication, Reference, Ref_category, Ref_order
+from application.models import Style, Org, Person, Video, Publication, Reference, Ref_category, Ref_order
 
 # TRAINING_ADD ---------------------------------------------------------------------------------------------------------
 
