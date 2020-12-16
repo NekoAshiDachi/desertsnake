@@ -7,16 +7,11 @@
 </h1>
 
 <ul class="list-unstyled">
-    <li>
-        {% if creator %}Creator: {{ creator.firstName }} {{ creator.lastName }}{% endif %}
-    </li>
-</ul>
-
-{% if k.creator %}
-    {% set creator = k.creator[0] %}
-    Creator: <a href="{{ url_for('library.person', id=creator.id) }}">
+    {% if k.creator %}
+        Creator: <a href="{{ url_for('library.person', id=creator.id) }}">
         {{ creator.firstName }} {{ creator.lastName }}</a><br>
-{% endif %}
+    {% endif %}
+</ul>
 
 {% if k.parent_kata %}
     {% set parent_kata = k.parent_kata[0] %}
