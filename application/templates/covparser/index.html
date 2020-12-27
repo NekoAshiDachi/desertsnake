@@ -4,6 +4,29 @@
 
 <h1>{{ title }}</h1>
 
+<p>
+    Submit a URL of an <a href="https://www.sec.gov/edgar.shtml" target="_blank">EDGAR</a> credit agreement, and once
+    the page has finished loading, check the results below. This classifier uses n-grams with Naive Bayes to train its
+    model. Under the hood, each document is parsed into its individual discrete sections, allowing the possibility of
+    the model classifying more covenants and parsing out more granular data.
+</p>
+
+<h2>EDGAR Scraper</h2>
+<p>
+    The code behind the classifier includes a webscraper to go through the hundreds of thousands of
+    <a href="https://www.sec.gov/Archives/edgar/full-index/" target="_blank">EDGAR filings</a> each
+    quarter. It is currently set for Exhibit 4s and 10s, but it can be set for other exhibit types as well. Each filing
+    can be analyzed and saved with all of its metadata and documents.
+</p>
+
+Coming soon:
+<ul>
+    <li>Results on top of log</li>
+    <li>Most recent EDGAR filings (all)</li>
+    <li>Most recent Exhibit 4s and 10s</li>
+    <li>Most recent credit agreements, with links</li>
+</ul>
+
 <form action="" method="post">
     {{ form.hidden_tag() }}
     <table>

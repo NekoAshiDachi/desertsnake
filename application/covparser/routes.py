@@ -30,11 +30,7 @@ def index():
     # TODO receive form URL and send to new route to execute covparser py
     if request.method == 'POST':
         submission = request.form
-        flash(f"""raw submission:
-            {[k + ' - ' + v for k, v in submission.items() if k not in ('csrf_token', 'submit')]}
-            """, 'info')
-
         client_url = submission.get('url')
         get_client_covs(client_url)
 
-    return render_template("covparser/index.html", title='Index', form=form)
+    return render_template("covparser/index.html", title='Covenant Classifier', form=form)
