@@ -109,6 +109,9 @@ def create_app(config_class=Config):
     from application.community import bp as community_bp
     app.register_blueprint(community_bp, url_prefix='/community')
 
+    from application.covparser import bp as covparser_bp
+    app.register_blueprint(covparser_bp, url_prefix='/covparser')
+
     from application.api import bp as api_bp
     app.register_blueprint(api_bp, url_prefix='/api')
 

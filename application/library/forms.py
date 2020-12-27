@@ -122,7 +122,7 @@ def validate_add_reference_form(form, request, route: str, id: int):
 
     else:
         if src == 'video' and not video_valid:
-            flash('Check YouTube address for 11-character alphanumeric YouTube ID after "v=".')
+            flash('Check YouTube address for 11-character alphanumeric YouTube ID after "v=".', 'alert')
 
         for k, v in form.errors.items():
             flash(f"{k} field: {v[0]}", 'danger')

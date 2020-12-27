@@ -87,8 +87,8 @@ class Story(FB_tag):
         self.date = list(filter(re.compile(date_re).search, self.footer.stripped_strings))
         self.date = self.date[0] if self.date else 'No date'
 
-        # TODO: grab videos sourced as YouTube link
         videos_1 = self.soup.find_all('a', {'target': '_blank'})
+        # TODO: grab videos sourced as YouTube link
         videos_2 = self.search_data_ft(self.soup, 'E')
         videos_2 = videos_2[0].find_all('a') if videos_2 else []
 
