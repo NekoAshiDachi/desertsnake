@@ -1,13 +1,14 @@
 import re
 import os
 import sys
-import requests, bs4
+import requests
+import bs4
 import pickle
 import logging
 
 from dotenv import load_dotenv
 from unidecode import unidecode
-from typing import List, Tuple, NewType
+from typing import List, NewType
 
 # Processes up to exhibit n URLs (does not specify CAs).
 
@@ -24,7 +25,6 @@ logger.addHandler(handler)
 request_soup = lambda url: bs4.BeautifulSoup(requests.get(url).text, 'lxml')
 
 URL = NewType('URL', str)
-Labeled_String = NewType('Labeled_String', Tuple[str, bool])
 
 # PICKLES ==============================================================================================================
 

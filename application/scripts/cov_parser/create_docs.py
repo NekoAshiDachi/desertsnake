@@ -1,5 +1,14 @@
-from application.scripts.cov_parser.webscrape import *
-from typing import Callable, Union
+import sys
+import pickle
+import re
+import bs4
+import webbrowser
+from datetime import datetime
+from unidecode import unidecode
+from typing import List, Callable, Union
+
+from cov_parser.webscrape import logger, URL, request_soup, get_pickle, edgar_filings, Filing, \
+    get_filings_from_full_index, get_exhibits
 
 
 # ======================================================================================================================
@@ -238,11 +247,14 @@ class Sec_Doc(Doc):
             logger.info(f"Missing titles: {[i for i in self.sections if not self.sections[i]['title']]}")
             logger.info(f"Missing firsts: {[i for i in self.sections if not self.sections[i]['first']]}")
 
-        logger.info('Finished.\n')
+        logger.info('Sec_Doc initialization inished.\n')
 
     def report(self):
-        logger.info([i for i in self.sections if not self.sections[i]['title']])
-        logger.info([i for i in self.sections if not self.sections[i]['first']])
+        logger.info('Missing title:')
+        logger.info('\t', [i for i in self.sections if not self.sections[i]['title']])
+
+        logger.info('Missing first:')
+        logger.info('\t', [i for i in self.sections if not self.sections[i]['first']])
 
 
 # ======================================================================================================================
@@ -261,7 +273,7 @@ def get_filings(file_path: str, url_list: List[URL], class_type=Union[Filing, Do
     for filing_n, filing_url in enumerate(url_list):
 
         if filing_url not in [i.url for i in pickled_filings]:
-            logger.info(f'\t{filing_n} {filing_url}')
+            logger.info(f'\t{filing_n}/{len(url_list)} {filing_url}')
 
             new_filing = class_type(filing_url)
             pickled_filings.append(new_filing)
@@ -269,12 +281,33 @@ def get_filings(file_path: str, url_list: List[URL], class_type=Union[Filing, Do
             pickle.dump(pickled_filings, open(file_path, 'wb'))
             pickled_filings = get_pickle(file_path)
 
-        if filing_n == 0 or not filing_n % 1000:
-            logger.info(f'\t\tURL list completed: {filing_n}')
+        # if filing_n == 0 or not filing_n % 1000:
+        #     logger.info(f'\t\tURL list completed: {filing_n}')
 
     logger.info(f'\t\tPickled filings total: {len(pickled_filings)}')
 
     return pickled_filings
+
+
+def create_exhibit_filings(year: int = datetime.now().year, qtrn:str = 'QTR' + str(round(datetime.now().month / 4 + 1)),
+                   index_n: int = 1) -> List[Doc]:
+
+    # scrape EDGAR for CAs and create Filing objects
+    filings = get_pickle(edgar_filings(f'Filings_{year}_{qtrn}_{index_n}'))
+    if not filings:
+        filings = get_filings_from_full_index(year, qtrn, index_n)
+
+    # get exhibit type 4 or 10 URLs
+    exhibit_urls = get_exhibits(
+        filings, exhibits_path=edgar_filings(f'URLs - Ex 4, 10 - {year} {qtrn} {index_n}'), exhibit_types=[4, 10])
+
+    # get Docs for exhibit URLs
+    exhibit_docs = get_pickle(edgar_filings(f'exhibit_Docs_{year}'))
+    if not exhibit_docs:
+        exhibit_docs = get_filings(
+            file_path=edgar_filings(f'exhibit_Docs_{year}'), url_list=exhibit_urls, class_type=Doc)
+
+    return exhibit_docs
 
 
 # ======================================================================================================================

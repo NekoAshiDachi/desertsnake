@@ -1,14 +1,11 @@
-from application.scripts.cov_parser.webscrape import *
-
 import nltk
-from nltk.metrics import ConfusionMatrix
 import random
 
-from typing import Dict
+from typing import List, Tuple, Dict, NewType
+from nltk.metrics import ConfusionMatrix
+
 
 # VAR ==================================================================================================================
-
-logging.basicConfig(level=logger.info, format='%(asctime)s - %(levelname)s - %(message)s')
 
 Trigrams = NewType('Trigrams', List[ Tuple[str, str] ])
 Bigrams = NewType('Bigrams', List[ Tuple[str, str] ])
@@ -17,6 +14,7 @@ Unigrams = NewType('Unigrams', List[str])
 stopwords = nltk.corpus.stopwords.words('english')
 stopwords += list('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~') + ['first', 'second', 'third', 'fourth', 'fifth']
 
+Labeled_String = NewType('Labeled_String', Tuple[str, bool])
 Features = NewType('Features', Dict[str, bool])
 Feature_Set = NewType('Feature_Set', Tuple[Features, bool])
 
@@ -108,4 +106,3 @@ def train_naive_bayes(labeled_strings: List[Labeled_String]):
 
     evaluate_test(naive_bayes, test, most_common_ngrams)
     return most_common_ngrams, naive_bayes
-

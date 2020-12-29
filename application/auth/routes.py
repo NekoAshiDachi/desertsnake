@@ -15,7 +15,7 @@ from application.auth.forms import (
     LoginForm, RegistrationForm, ResetPasswordRequestForm, ResetPasswordForm)
 
 from application.models import User
-from application.auth.email import send_password_reset_email
+from application.auth.reset_email import send_password_reset_email
 
 # ==============================================================================
 

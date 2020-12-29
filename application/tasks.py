@@ -7,7 +7,7 @@ from rq import get_current_job
 
 from application import create_app, db
 from application.models import Task, User, Post
-from application.email import send_email
+from application.send_email import send_email
 
 """
 If wanting multiple workers (should have # of workers >= available

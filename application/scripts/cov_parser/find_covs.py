@@ -1,73 +1,97 @@
-from application.scripts.cov_parser.process_CAs import *
-from application.scripts.cov_parser.train import *
+import pandas
+import re
+import nltk
+from typing import List, Dict
+
+from cov_parser.webscrape import logger
+from cov_parser.create_docs import Sec_Doc
+from cov_parser.train import Labeled_String, get_most_common, extract_ngram_features, train_naive_bayes
 
 
-def quick_model(df_true: pandas.DataFrame, df_all: pandas.DataFrame, cov: str) -> Dict:
+class CovModel:
 
-    most_common_titles = get_most_common(df_true[f'{cov}_title'].dropna().values)
-    # most_common_first = get_most_common(df_true[f'{cov}_first'].dropna().values)[:2]  # excludes unigrams
+    def __init__(self, df_true: pandas.DataFrame, df_all: pandas.DataFrame, cov: str):
+        most_common_titles = get_most_common(df_true[f'{cov}_title'].dropna().values)
+        # most_common_first = get_most_common(df_true[f'{cov}_first'].dropna().values)[:2]  # excludes unigrams
 
-    df_false = df_all.loc[(
-        df_all[['title', 'first']].notnull().all(axis=1) &
-        ~df_all.title.dropna().apply(
-            lambda x: True if True in extract_ngram_features(x, most_common_titles).values() else False)
-    )][['title', 'first']]
+        df_false = df_all[['title', 'first']].dropna()
+        df_false = df_false.loc[df_false.title.apply(
+            lambda title: set(extract_ngram_features(title, most_common_titles).values())) == {False}]
 
-    df_false = df_false.append([pandas.DataFrame(
-        df_true[[f'{cov}_title', f'{cov}_first']].dropna(how='all').rename(columns=lambda x: x.replace(f"{cov}_", '')))
-        for cov in {re.sub(r'_.*', '', cov) for cov in df_true.filter(regex=f'(?<!{cov}_)((title)|(first))').columns} ])
+        df_false = df_false.append([
+            df_true.filter(regex=f'{false_cov}_(title|first)')
+                .dropna(how='all').rename(columns=lambda x: x.replace(f"{cov}_", ''))
+                for false_cov in re.findall(f'~([\\w+\\s*]+)(?<!{cov})_title', '~'.join(df_true.columns))])
 
-    most_common_title, model_title = train_naive_bayes(labeled_strings= \
-        [Labeled_String((text, False)) for text in df_false.title.dropna().values] + \
-        [Labeled_String((text, True)) for text in df_true[f'{cov}_title'].dropna().values])
+        title_labeled_strings, first_labeled_strings = [
+            [Labeled_String((text, False)) for text in df_false[title_first].dropna().values] +
+            [Labeled_String((text, True)) for text in df_true[f'{cov}_{title_first}'].dropna().values]
+            for title_first in ('title', 'first')]
 
-    most_common_first, model_first = train_naive_bayes(labeled_strings= \
-        [Labeled_String((text, False)) for text in df_false['first'].dropna().values] + \
-        [Labeled_String((text, True)) for text in df_true[f'{cov}_first'].dropna().values])
+        self.name = cov
+        self.df_false = df_false
+        self.most_common_title, self.title = train_naive_bayes(labeled_strings=title_labeled_strings)
+        self.most_common_first, self.first = train_naive_bayes(labeled_strings=first_labeled_strings)
 
-    model_dicts = dict({'most_common_title': most_common_title, 'model_title': model_title,
-                 'most_common_first': most_common_first, 'model_first': model_first})
+    def classify(self, title_or_first: str, classified: str) -> bool:
+        return getattr(self, title_or_first) \
+            .classify(extract_ngram_features(classified, getattr(self, f'most_common_{title_or_first}')))
 
-    pickle.dump(model_dicts, open(edgar_filings(f"model_dicts"), 'wb'))
-    return model_dicts
+    def classify_probability(self, title_or_first: str, classified: str) -> float:
+        return getattr(self, title_or_first) \
+            .prob_classify(extract_ngram_features(classified, getattr(self, f'most_common_{title_or_first}'))) \
+            .prob(True)
+
+    def find_cov(self, sec_doc: Sec_Doc) -> List[Dict]:
+
+        matches = nltk.defaultdict(lambda: {})
+        for section in sec_doc.sections.values():
+            if section['title'] and self.classify('title', section['title'][0]):
+                prob = self.classify_probability('title', section['title'][0])
+                matches[section['title'][0]].update(prob={'title': prob})
+            if section['first'] and self.classify('first', section['first'][0]):
+                prob = self.classify_probability('first', section['first'][0])
+                m = matches[section['title'][0]]
+                m['prob'].update({'first': prob}) if 'prob' in m else m.update(prob={'first': prob})
+
+        if matches:
+            # add section data, and probability sum and string, to each match in matches dict
+            [matches[s['title'][0]].update(s) for s in sec_doc.sections.values() if
+             s['title'] and s['title'][0] in matches]
+
+            [m['prob'].update(sum=sum(m['prob'].values())) for m in matches.values()]
+
+            [m['prob'].update(string=', '.join(
+                [f"{p} - {round(p_n, 4)}" for p, p_n in m['prob'].items()])) for m in matches.values()]
+
+            # max_sum = max(map(lambda x: x['prob']['sum'], matches.values()))
+            # match = {k: v for k, v in matches.items() if v['prob']['sum'] == max_sum}  # may be >1 match to max sum
+
+            # ordered list of matches by descending probability
+            matches = [matches[m] for m in sorted(matches, key=lambda m: matches[m]['prob']['sum'], reverse=True)]
+
+            logger.info(f"\t{self.name}:\n\t\t" + f'\n\t\t'.join([
+                f"{n + 1}. {m['title'][0].strip()}: " + m['prob']['string'] for n, m in enumerate(matches)]))
+
+            return matches
+
+        logger.info('\tNo match found in title or first.')
+
+    def __repr__(self):
+        return f"<{self.name} CovModel>"
 
 
-def find_cov(sec_doc: Sec_Doc, model_dict: Dict) -> List[Dict]:
-    # finds single covenant as passed to model_dict arg
+class CovModels:
+    def __init__(self, df_true: pandas.DataFrame, df_all: pandas.DataFrame):
+        self.df_true, self.df_all = df_true, df_all
+        self.cov_names = ('Debt', 'Liens', 'RP', 'Asset Sales')
 
-    most_common_title, model_title, most_common_first, model_first = \
-        model_dict['most_common_title'], model_dict['model_title'], \
-        model_dict['most_common_first'], model_dict['model_first']
+        self.models = [CovModel(self.df_true, self.df_all, cov) for cov in self.cov_names]
+        [setattr(self, f"model_{cov.name.lower()}", cov) for cov in self.models]
 
-    matches = nltk.defaultdict(lambda: 0)
-    for section in sec_doc.sections.values():
-        if section['title'] and model_title.classify(extract_ngram_features(section['title'][0], most_common_title)):
-            matches[section['title'][0]] += model_title.prob_classify(
-                extract_ngram_features(section['title'][0], most_common_title)).prob(True)
-        if section['first'] and model_first.classify(extract_ngram_features(section['first'][0], most_common_first)):
-            matches[section['title'][0]] += model_first.prob_classify(
-                extract_ngram_features(section['first'][0], most_common_title)).prob(True)
+    def find_covs(self, sec_doc: Sec_Doc):
+        logger.info(f"Matching by summed probabilities in descending order:")
+        covs = [model.find_cov(sec_doc) for model in self.models]
 
-    matched_title = {k: v for k, v in matches.items() if v == max(matches.values())}
-    matched = [i for i in sec_doc.sections.values() if i['title'] and i['title'][0] in matched_title]
-
-    if matched:
-        logger.info(f"\tMatched: {matched_title}")
-        return matched
-
-    logger.info('No match found in title or first.')
-
-
-def find_covs(sec_doc: Sec_Doc, model_dicts: Dict[str, Dict]):
-    # finds all covenant types within model_dicts
-    results_dict = nltk.defaultdict(None)
-
-    logger.info(f"Matching by maximum summed probabilities.")
-    for cov_name, cov_dict in model_dicts.items():
-        logger.info(f"{cov_name}:")
-        results_dict.update({cov_name: find_cov(sec_doc, cov_dict)})
-        firsts = '\n'.join([f"\t{results_dict[cov_name][n]['first'][0]}" for n in range(len(results_dict[cov_name]))])
-        logger.info(f"\tFirst: {firsts}")
-
-    logger.info('Classification finished.')
-    return results_dict
+        logger.info('Classification finished.')
+        return covs

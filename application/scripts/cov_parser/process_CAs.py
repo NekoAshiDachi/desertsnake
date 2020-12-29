@@ -1,6 +1,12 @@
-from application.scripts.cov_parser.create_docs import *
+import sys
+import pickle
+import re
 import pandas
 import numpy
+from typing import List, Tuple
+
+from cov_parser.webscrape import logger, get_pickle, edgar_filings
+from cov_parser.create_docs import Doc, Sec_Doc, get_filings, create_exhibit_filings
 
 
 # FIND TRUE CREDIT AGREEMENTS ==========================================================================================
@@ -54,7 +60,7 @@ def get_CAs(exhibit_Docs: List[Doc]) -> Tuple[ List[Doc], List[Doc] ]:
 # PREP TRUE CA DATAFRAME ===============================================================================================
 
 
-def prep_true_cov_df(ods_path: str) -> pandas.DataFrame:
+def prep_true_cov_df(exhibit_true_docs: List[Doc], ods_path: str) -> pandas.DataFrame:
 
     logger.info(f'Creating CA title DataFrame from {ods_path}.')
     df_true = pandas.read_excel(ods_path)
@@ -71,17 +77,49 @@ def prep_true_cov_df(ods_path: str) -> pandas.DataFrame:
         col: df_true[col].apply(
             lambda x: x[0] if type(x) in [tuple] else x) for col in df_true.filter(regex='first')})
 
+    for url in [i.url for i in exhibit_true_docs]:
+        df_true = df_true.append({'Link': url}, ignore_index=True)
+
     return df_true
 
 
 # PREP ALL COV DATAFRAME -----------------------------------------------------------------------------------------------
 
 
-def prep_all_cov_df(sec_docs: List[Sec_Doc]) -> pandas.DataFrame:
-    df_all = pandas.DataFrame.from_records({k: v for sec_doc in sec_docs for k, v in sec_doc.sections.items()})
+def prep_all_cov_df(df_true: pandas.DataFrame) -> pandas.DataFrame:
+
+    true_sec_docs = get_pickle(edgar_filings('true_df_Sec_Docs')) or \
+                    get_filings(file_path=edgar_filings(edgar_filings('true_df_Sec_Docs')),
+                                url_list=df_true.Link.dropna(), class_type=Sec_Doc)
+
+    df_all = pandas.DataFrame.from_records({k: v for sec_doc in true_sec_docs for k, v in sec_doc.sections.items()})
     df_all = df_all.T.reset_index().drop('index', axis=1)
 
     df_all.title = df_all.title.apply(lambda x: x[0] if len(x) >= 1 else numpy.NaN)
     df_all['first'] = df_all['first'].apply(lambda x: x[0] if len(x) >= 1 else numpy.NaN)
 
     return df_all
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+
+def create_df_true_all(year: int = 2019, qtrn: str = 'QTR1', index_n: int = 1):
+
+    """Filings and models were originally created from year = 2019, qtrn = 1, index_n = 1
+    (https://www.sec.gov/Archives/edgar/full-index//2019/QTR1/sitemap.quarterlyindex1.xml)"""
+
+    exhibit_docs = get_pickle(edgar_filings(f'exhibit_Docs_2019')) or create_exhibit_filings(year, qtrn, index_n)
+    exhibit_true_docs, exhibit_false_docs = get_CAs(exhibit_docs)
+
+    # create/get true CA Docs; 53 total true_Docs; 73 total true_Sec_Docs; for testing purposes
+    # true_docs = get_pickle(edgar_filings('true_df_Docs'))
+    # if not true_docs:
+    #     get_filings(file_path=edgar_filings(edgar_filings('true_df_Docs')), url_list=df_true.Link.dropna(),
+    #     class_type=Doc)
+
+    # create true CA df  145 x 17, and all cov df
+    df_true = prep_true_cov_df(exhibit_true_docs, './application/scripts/cov_parser/true_credit_docs.ods')
+    df_all = prep_all_cov_df(df_true)
+    return df_true, df_all
+
